@@ -1,0 +1,221 @@
+USE CASE 1:
+
+Player accesses web-app, on sign-up/login screen.
+
+After sign-up/login, player is taken to main menu.
+
+Main Menu:
+-> Challenge Player (takes you to ChallengePlayer)
+
+Challenge Player has (at least):
+-> an "input user name" button
+-> a "send invite" button
+
+Extras:
+-> random challenger button
+
+
+Once a challenge is sent, the challenger is taken to the BattleField and can field his troops then click on ready when he's done
+
+The challenged player (if online) is shown a notification and asked to go to the BattleField, he can field his troops, and click on ready when he's done.
+
+Once both players have clicked on 'ready', the challenge can start, and the attacker gets the first turn.
+
+
+VIEWS:
+
+# LoginSignup
+# MainMenu
+# PrepareBattleField
+# FightBattleField
+
+
+
+
+CLASSES
+
+
+# App 
+
+Root of everything, handles events (both inbound and outbound).
+
+Sprites (and other components) and Server issue events, App alone acts on events.
+
+All graphical updates are triggered by App, based on the relevant events.
+
+App modifies the Game object (passed down to all children of App).
+
+
+
+# Game 
+
+stores information on the current game, edited in App by means of events and callbacks, passed down to all child elements of App that need it.
+
+
+More specifically, it stores:
+
+current game's id
+challenger
+defender
+updated player's battle units' disposition
+updated opponent's battle units' disposition
+
+
+
+
+# HalfChessboard
+
+select(squareId): void //select a square on the grid
+
+getSelected(): BattleUnit //get the battle unit on the selected square
+
+setSelected(battleUnit): void //set the battle unit on the selected square
+ 
+drop(squareId) : void  //remove battle unit (if any) from selected square
+
+
+# BattleUnit
+
+a sprite with a toJson method for the purpose of 'serialization' and api-communication.
+
+
+hit(fireEvent) : void // decreases the health of the battle unit if conditions are met 
+
+
+
+# PrepareBattleField
+
+(view) editable, allows player to place units on his squares.
+
+contains a single HalfChessboard.
+
+
+# FightBattleField
+
+(view) non-editable, just has the commands necessary to play
+
+comprises two HalfChessboards
+
+
+# Server
+
+
+# Events
+
+
+
+
+
+MESSAGES AND APIs:
+
+
+I_M_ONLINE
+Periodically sent by player to server. Server uses it to determine whether a player is online.
+
+{
+username : str
+}
+
+Server also sends back response with events directed to client
+
+
+
+
+
+FIGHT_INVITE
+
+Sent by challenger to defender. 
+
+{
+challenger : str,
+defender : str,
+gameId : int //random number to identify instance of game on server
+}
+
+FIGHT_ACCEPT
+
+Sent by defender to challenged.
+
+{
+challenger : str,
+defender : str,
+gameId : int // same as the one in relative FIGHT_INVITE
+}
+
+
+READY (sent along w/ disposition)
+
+Both the challenger and the defender send such messages. When both have received it, the real battle can start
+
+
+{
+username : str,
+battleUnits : [ BattleUnit ],
+gameId : int 
+}
+
+
+BattleUnit{
+faction : str, //name of player
+position : int, //square id 
+type : str, //battle unit type
+health : int //amount of helth points left 
+maxHealth : int //max (initial) amount of health points
+}
+
+
+FIRE
+Sent by current attacker to opponent.
+
+{
+fromUnit : BattleUnit, //attacking unit
+toUnit :  BattleUnit, //victim
+id : int,  // random (and 99.9% unique) id number for the event
+gameId : int
+}
+
+
+FIRE_ACK
+
+Sent by player that got hit back to server and opponent.
+
+{
+toUnit : BattleUnit, //victim
+id : int, //same as corresponding FIRE's id
+victimDead : bool, // true if the victim died after the FIRE event
+allDeadGiveUp : bool, // if true, triggers victory of opponent
+gameId : int
+}
+
+
+Server uses it to make sure that player received the FIRE event. 
+Opponent uses it to determine whether an opponent's unit died.
+Also used to decide whether the game is over.
+
+
+DATABASE:
+
+Player{
+username : str,
+password : str,
+credits : int,
+experience : int,
+}
+
+
+
+use tinydb:
+https://pypi.org/project/tinydb/
+
+
+
+
+
+
+
+
+
+
+
+
+
