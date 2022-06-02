@@ -29,7 +29,7 @@ def index():
 def i_am_online():
 
     if "username" not in request.cookies:
-        return 400, "error: no username provided"
+        return  "error: no username provided", 400
     
     # set user's online status
     username = request.cookies["username"]
@@ -43,7 +43,7 @@ def i_am_online():
 def online_users():
 
     if "username" not in request.cookies:
-        return 400, "error: no username provided"
+        return  "error: no username provided",  400
     
     return json.dumps(Users.instance().online_users())
 
@@ -52,13 +52,13 @@ def online_users():
 def fight_invite():
 
     if "challenger" not in request.json:
-        return 400, "error: 'challenger' not specified in json"
+        return  "error: 'challenger' not specified in json", 400
     
     if "defender" not in request.json:
-        return 400, "error: 'defender' not specified in json"
+        return  "error: 'defender' not specified in json", 400
     
     if "gameId" not in request.json:
-        return 400, "error: 'gameId' not specified in json"
+        return  "error: 'gameId' not specified in json", 400
 
     challenger = request.json["challenger"]
     defender = request.json["defender"]
@@ -78,13 +78,13 @@ def fight_invite():
 def fight_accept():
     
     if "challenger" not in request.json:
-        return 400, "error: 'challenger' not specified in json"
+        return  "error: 'challenger' not specified in json", 400
     
     if "defender" not in request.json:
-        return 400, "error: 'defender' not specified in json"
+        return "error: 'defender' not specified in json", 400
     
     if "gameId" not in request.json:
-        return 400, "error: 'gameId' not specified in json"
+        return  "error: 'gameId' not specified in json", 400
 
     challenger = request.json["challenger"]
     defender = request.json["defender"]
@@ -101,13 +101,13 @@ def fight_accept():
 def ready():
 
     if "username" not in request.cookies:
-        return 400, "error: no username provided"
+        return  "error: no username provided", 400
 
     if "gameId" not in request.json:
-        return 400, "error: 'gameId' not specified in json"
+        return  "error: 'gameId' not specified in json", 400
 
     if "battleUnits" not in request.json:
-        return 400, "error: 'battleUnits' not specified in json"
+        return "error: 'battleUnits' not specified in json", 400
 
     username = request.cookies["username"]
     battleUnits = request.json["battleUnits"]
@@ -128,19 +128,19 @@ def ready():
 def fire():
 
     if "username" not in request.cookies:
-        return 400, "error: no username provided"
+        return  "error: no username provided", 400
 
     if "fromUnit" not in request.json:
-        return 400, "error: 'fromUnit' not specified in json"
+        return "error: 'fromUnit' not specified in json", 400
 
     if "toUnit" not in request.json:
-        return 400, "error: 'toUnit' not specified in json"
+        return  "error: 'toUnit' not specified in json", 400
 
     if "id" not in request.json:
-        return 400, "error: 'id' not specified in json"
+        return  "error: 'id' not specified in json", 400
 
     if "gameId" not in request.json:
-        return 400, "error: 'gameId' not specified in json"
+        return "error: 'gameId' not specified in json", 400
 
     username = request.cookies["username"]
     fromUnit = request.json["fromUnit"]
@@ -162,22 +162,22 @@ def fire():
 def fire_ack():
 
     if "username" not in request.cookies:
-        return 400, "error: no username provided"
+        return "error: no username provided", 400
 
     if "gameId" not in request.json:
-        return 400, "error: 'gameId' not specified in json"
+        return "error: 'gameId' not specified in json", 400
 
     if "toUnit" not in request.json:
-        return 400, "error: 'toUnit' not specified in json"
+        return "error: 'toUnit' not specified in json", 400
 
     if "id" not in request.json:
-        return 400, "error: 'id' not specified in json"
+        return  "error: 'id' not specified in json", 400
 
     if "victimDead" not in request.json:
-        return 400, "error: 'victimDead' not specified in json"
+        return "error: 'victimDead' not specified in json", 400
 
     if "allDeadGiveUp" not in request.json:
-        return 400, "error: 'allDeadGiveUp' not specified in json"
+        return "error: 'allDeadGiveUp' not specified in json", 400
 
     username = request.cookies["username"]
     gameId = request.json["gameId"]
