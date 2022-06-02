@@ -1,3 +1,5 @@
+from battle_unit import BattleUnit
+
 class Game:
     
     """
@@ -10,6 +12,7 @@ class Game:
         self.__challenger = challenger
         self.__defender = defender
         self.__gameId = gameId
+        self.__battle_units_dict = {}
         Game.GAME_POOL.append(self)
     
     def challenger(self)->str:
@@ -21,18 +24,12 @@ class Game:
     def game_id(self)->int:
         return self.__gameId
 
-    def challenger_battle_units(self)->[]:
-        return self.__challenger_battle_units
-
-    def defender_battle_units(self)->[]:
-        return self.__defender_battle_units
-
-    def set_challenger_battle_units(self, battleUnits:[]):
-        self.__challenger_battle_units = battleUnits
+    def set_battle_units(self, username:str, battleUnits:[BattleUnit]):
+        self.__battle_units_dict[username] = battleUnits
     
-    def set_defender_battle_units(self, battleUnits:[]):
-        self.__defender_battle_units = battleUnits
-    
+    def get_battle_units(self, username:str)->[BattleUnit]:
+        return self.__battle_units_dict[username]
+
     def game_over(self):
 
         """
@@ -71,14 +68,3 @@ class Game:
 
         li = [g for g in Game.GAME_POOL if (g.challenger()==username) or (g.defender()==username)]
         return li[0] if len(li)!=0 else None
-        
-
-
-
-# g = Game("capra", "asino", 1)
-# x = Game("capra2", "asino2", 2)
-# print(Game.games())
-# x.game_over()
-# print(Game.games())
-# print(Game.get_game_for("capra"))
-# # print(g.get_other_player("sdmsm"))
