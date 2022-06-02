@@ -41,10 +41,6 @@ def i_am_online():
 
 @app.route('/online-users', methods = ["GET", "POST"])                                                                                                 
 def online_users():
-
-    if "username" not in request.cookies:
-        return  "error: no username provided",  400
-    
     return json.dumps(Users.instance().online_users())
 
 
