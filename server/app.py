@@ -39,6 +39,14 @@ def i_am_online():
     ev = Events.instance().pop_event_queue(username)
     return json.dumps(ev)
 
+@app.route('/online-users')                                                                                                 
+def online_users():
+
+    if "username" not in request.cookies:
+        return 400, "error: no username provided"
+    
+    return json.dumps(Users.instance().online_users())
+    
 
 @app.route('/fight-invite', methods = ["GET", "POST"])
 def fight_invite():
