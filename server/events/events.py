@@ -1,4 +1,4 @@
-from classes.event import Event
+from .classes.event import Event
 
 class Events:
 

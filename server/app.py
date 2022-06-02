@@ -2,7 +2,8 @@
 import json
 from flask import Flask, render_template, request, send_file, redirect, url_for
 from flask_cors import CORS
-
+from game import Game
+from events.events import Events
 
 
 app = Flask(__name__)
@@ -12,7 +13,6 @@ path=app.root_path+"/../webapp/dist/index.html"
 
 with open(path) as f:
     homepage=f.read()
-
 
 @app.route('/')                                                                                                 
 def index():     
@@ -26,6 +26,8 @@ def i_am_online():
     
     # set user's online status
     username = request.cookies["username"]
+
+    
 
     events_for_user  = []
     return json.dumps(  events_for_user  )
@@ -135,23 +137,3 @@ def fire_ack():
     # relay fire-ack event to back to challenger 
 
     return "success"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

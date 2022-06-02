@@ -75,11 +75,10 @@ class Game:
 
 
 
-g = Game("capra", "asino", 1)
-x = Game("capra2", "asino2", 2)
-print(Game.games())
-x.game_over()
-print(Game.games())
-print(Game.get_game_for("capra"))
-# print(g.get_other_player("sdmsm"))
-
+# g = Game("capra", "asino", 1)
+# x = Game("capra2", "asino2", 2)
+# print(Game.games())
+# x.game_over()
+# print(Game.games())
+# print(Game.get_game_for("capra"))
+# # print(g.get_other_player("sdmsm"))
