@@ -1,4 +1,10 @@
 import React, {Component} from "react";
+import EditableBattleField from "./view/EditableBattleField.jsx";
+import FightBattleField from "./view/FightBattleField.jsx";
+import Login from "./view/Login.jsx";
+import MainMenu from "./view/MainMenu.jsx";
+import WorldMap from "./view/WorldMap.jsx";
+import Game from "./model/Game.js"
 
 /**
  * All of the state *everywhere* is managed *solely* by App.
@@ -22,16 +28,34 @@ export default class App extends Component{
         super(props)
 
         this.state = {
-
+            mode : App.LOGIN
         }
     }
 
     render(){
-        
+
+        switch(this.state.mode){
+
+            case App.LOGIN:
+                return <Login />
+            case App.MAIN_MENU:
+                return <MainMenu />
+            case App.WORLD_MAP:
+                return <WorldMap />
+            case App.EDITABLE_BATTLE_FIELD:
+                return <EditableBattleField />
+            case App.FIGHT_BATTLE_FIELD:
+                return <FightBattleField />
+
+        }
 
         return <h1>Hello world, this is App!</h1>
     }
 
+    switchMode(mode, args){
+        this.setState({mode: mode})
+    }
+
+
+
 }
-
-
