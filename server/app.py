@@ -25,9 +25,9 @@ with open(path) as f:
 def index():     
     return homepage
 
-@app.route('/i-am-online')                                                                                                 
+@app.route('/i-am-online', methods = ["GET", "POST"])                                                                                                 
 def i_am_online():
-    
+
     if "username" not in request.cookies:
         return 400, "error: no username provided"
     
@@ -36,17 +36,17 @@ def i_am_online():
     Users.instance().set_user_online(username)
 
     # return user's events
-    ev = Events.instance().pop_event_queue(username)
-    return json.dumps(ev)
+    evs = Events.instance().pop_event_queue(username)
+    return json.dumps(evs)
 
-@app.route('/online-users')                                                                                                 
+@app.route('/online-users', methods = ["GET", "POST"])                                                                                                 
 def online_users():
 
     if "username" not in request.cookies:
         return 400, "error: no username provided"
     
     return json.dumps(Users.instance().online_users())
-    
+
 
 @app.route('/fight-invite', methods = ["GET", "POST"])
 def fight_invite():
