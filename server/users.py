@@ -30,3 +30,6 @@ class Users:
             return False
         
         return (time() - self.users[username]["last_online"]) <  Users.__duration_of_session
+    
+    def online_users(self)->[str]:
+        return [ user for user in self.users.keys() if self.is_user_online(user) ]
