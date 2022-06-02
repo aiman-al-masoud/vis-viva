@@ -114,8 +114,8 @@ def ready():
     g.set_battle_units(username, battleUnits)
 
     # send ready event to opponent 
-    ev = ReadyEvent( g.get_other_player(username), battleUnits, gameId)
-    Events.instance().add_event(username, ev)
+    ev = ReadyEvent( battleUnits, gameId)
+    Events.instance().add_event( g.get_other_player(username) , ev)
 
     return "success"
 
