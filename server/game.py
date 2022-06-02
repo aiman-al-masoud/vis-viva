@@ -61,6 +61,16 @@ class Game:
         self.__defender_event_queue.clear()
         return b
 
+    def get_other_player(self, username):
+        """
+        Given a player, get the other one.
+        """
+
+        if username not in [self.__challenger, self.__defender]:
+            raise ValueError(f"error: specified player '{username}' not in game: {self}")
+
+        return self.__challenger if username==self.__defender else self.__defender
+
     @staticmethod
     def games()->['Game']:
 
@@ -83,13 +93,11 @@ class Game:
 
 
 
-
-
 g = Game("capra", "asino", 1)
 x = Game("capra2", "asino2", 2)
 print(Game.games())
 x.game_over()
 print(Game.games())
 print(Game.get_game_for("capra"))
-
+print(g.get_other_player("sdmsm"))
 
