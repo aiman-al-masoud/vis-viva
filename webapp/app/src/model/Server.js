@@ -2,9 +2,8 @@ class Server{
 
     __instance = undefined
 
-    constructor(username, baseUrl){
-        this.username = username
-        this.baseUrl = baseUrl
+    constructor(){
+        
     }
 
     static instance(){

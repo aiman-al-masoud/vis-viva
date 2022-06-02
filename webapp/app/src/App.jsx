@@ -51,7 +51,6 @@ export default class App extends Component{
 
         }
 
-        return <h1>Hello world, this is App!</h1>
     }
 
     switchMode(mode, args){
