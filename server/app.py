@@ -157,6 +157,7 @@ def fire():
 @app.route('/fire-ack', methods = ["GET", "POST"])
 def fire_ack():
 
+
     if "username" not in request.cookies:
         return "error: no username provided", 400
 
@@ -174,13 +175,15 @@ def fire_ack():
 
     if "allDeadGiveUp" not in request.json:
         return "error: 'allDeadGiveUp' not specified in json", 400
+    
 
     username = request.cookies["username"]
     gameId = request.json["gameId"]
     toUnit = request.json["toUnit"]
     Id = request.json["id"]
-    victimDead = request.cookies["victimDead"]
-    allDeadGiveUp = request.cookies["allDeadGiveUp"]
+    victimDead = request.json["victimDead"]
+    allDeadGiveUp = request.json["allDeadGiveUp"]
+
 
     # fetch and update Game's state
     g = Game.get_game_for(username)
