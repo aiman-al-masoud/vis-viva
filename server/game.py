@@ -10,8 +10,6 @@ class Game:
         self.__challenger = challenger
         self.__defender = defender
         self.__gameId = gameId
-        self.__challenger_event_queue = []
-        self.__defender_event_queue = []
         Game.GAME_POOL.append(self)
     
     def challenger(self)->str:
@@ -44,23 +42,7 @@ class Game:
 
     def __repr__(self):
         return f"Game(challenger={self.__challenger},defender={self.__defender})"
-
-    def add_event_for_challenger(self, event):
-        self.__challenger_event_queue.append(event)
     
-    def add_event_for_defender(self, event):
-        self.__defender_event_queue.append(event)
-    
-    def get_events_for_challenger(self):
-        b = list(self.__challenger_event_queue)
-        self.__challenger_event_queue.clear()
-        return b
-
-    def get_events_for_defender(self):
-        b = list(self.__defender_event_queue)
-        self.__defender_event_queue.clear()
-        return b
-
     def get_other_player(self, username):
         """
         Given a player, get the other one.
@@ -99,5 +81,5 @@ print(Game.games())
 x.game_over()
 print(Game.games())
 print(Game.get_game_for("capra"))
-print(g.get_other_player("sdmsm"))
+# print(g.get_other_player("sdmsm"))
 
