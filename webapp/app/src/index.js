@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import reactDom from "react-dom";
+import App from "./App.jsx";
 
 
-reactDom.render(<h1>Hello world!</h1>,  window.root)
+reactDom.render(<App/>,  window.root)
