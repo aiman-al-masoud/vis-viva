@@ -181,7 +181,7 @@ def fire_ack():
     # fetch and update Game's state
     g = Game.get_game_for(username)
 
-    # relay fire-ack event to back to challenger 
+    # relay fire-ack event to back to attacker 
     ev = FireAckEvent(toUnit, Id, gameId, victimDead, allDeadGiveUp)
     Events.instance().add_event( g.get_other_player(username), ev)
 
