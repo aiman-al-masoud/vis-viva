@@ -1,0 +1,1 @@
+//allows you to browse active players and challenge them
