@@ -1,5 +1,4 @@
 import requests as rq
-from random import randint
 
 homepage = "http://127.0.0.1:5000"
 
