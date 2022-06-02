@@ -11,6 +11,7 @@ from events.classes.fight_invite_event import *
 from events.classes.fire_ack_event import *
 from events.classes.fire_event import *
 from events.classes.ready_event import *
+from events.classes.game_over_event import *
 
 app = Flask(__name__)
 CORS(app)
@@ -118,6 +119,9 @@ def ready():
 @app.route('/fire', methods = ["GET", "POST"])
 def fire():
 
+    if "username" not in request.cookies:
+        return 400, "error: no username provided"
+
     if "fromUnit" not in request.json:
         return 400, "error: 'fromUnit' not specified in json"
 
@@ -130,10 +134,18 @@ def fire():
     if "gameId" not in request.json:
         return 400, "error: 'gameId' not specified in json"
 
-    # fetch and update Game's state
-    
+    username = request.cookies["username"]
+    fromUnit = request.json["fromUnit"]
+    toUnit = request.json["toUnit"]
+    Id = request.json["id"]
+    gameId = request.json["gameId"]
 
-    # relay fire event to toUnit's username
+    # fetch and update Game's state    
+    g = Game.get_game_for(username)
+
+    # relay fire event to victim
+    ev = FireEvent(fromUnit, toUnit, Id, gameId)
+    Events.instance().add_event( g.get_other_player(username) , ev)
 
     return "success"
 
@@ -141,8 +153,14 @@ def fire():
 @app.route('/fire-ack', methods = ["GET", "POST"])
 def fire_ack():
 
+    if "username" not in request.cookies:
+        return 400, "error: no username provided"
+
     if "gameId" not in request.json:
         return 400, "error: 'gameId' not specified in json"
+
+    if "toUnit" not in request.json:
+        return 400, "error: 'toUnit' not specified in json"
 
     if "id" not in request.json:
         return 400, "error: 'id' not specified in json"
@@ -153,10 +171,25 @@ def fire_ack():
     if "allDeadGiveUp" not in request.json:
         return 400, "error: 'allDeadGiveUp' not specified in json"
 
+    username = request.cookies["username"]
+    gameId = request.json["gameId"]
+    toUnit = request.json["toUnit"]
+    Id = request.json["id"]
+    victimDead = request.cookies["victimDead"]
+    allDeadGiveUp = request.cookies["allDeadGiveUp"]
+
     # fetch and update Game's state
+    g = Game.get_game_for(username)
+
+    # relay fire-ack event to back to challenger 
+    ev = FireAckEvent(toUnit, Id, gameId, victimDead, allDeadGiveUp)
+    Events.instance().add_event( g.get_other_player(username), ev)
 
     # eventually terminate Game
-    
-    # relay fire-ack event to back to challenger 
+    if allDeadGiveUp:
+        ev = GameOverEvent(g.get_other_player(username))
+        Events().instance().add_event(username, ev)
+        Events().instance().add_event(g.get_other_player(username), ev)
+        g.game_over()
 
     return "success"
