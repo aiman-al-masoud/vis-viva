@@ -147,7 +147,6 @@ READY (sent along w/ disposition)
 
 Both the challenger and the defender send such messages. When both have received it, the real battle can start
 
-
 {
 username : str,
 battleUnits : [ BattleUnit ],

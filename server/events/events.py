@@ -1,3 +1,5 @@
+from classes.event import Event
+
 class Events:
 
     __instance = None
@@ -11,7 +13,7 @@ class Events:
             Events.__instance = Events()
         return Events.__instance
 
-    def add_event(self, username:str, event):
+    def add_event(self, username:str, event:Event):
 
         """
         Add an event to a player's queue.
@@ -25,7 +27,7 @@ class Events:
         events.append(event)
         self.__player_queues[username] = events
 
-    def pop_event_queue(self, username:str)->[]:
+    def pop_event_dump(self, username:str)->[Event]:
 
         """
         Get the events for a player and remove them
@@ -37,12 +39,5 @@ class Events:
 
         b = list(self.__player_queues[username])
         self.__player_queues[username].clear()
+
         return b 
-
-
-
-
-
-    
-Events.instance().add_event("capra", {"a":1})
-print(Events().instance().pop_event_queue("capra"))
