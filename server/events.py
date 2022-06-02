@@ -25,7 +25,7 @@ class Events:
         events.append(event)
         self.__player_queues[username] = events
 
-    def pop_event_queue(self, username):
+    def pop_event_queue(self, username:str):
 
         """
         Get the events for a player and remove them

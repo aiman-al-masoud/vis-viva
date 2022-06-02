@@ -43,7 +43,7 @@ class Game:
     def __repr__(self):
         return f"Game(challenger={self.__challenger},defender={self.__defender})"
     
-    def get_other_player(self, username):
+    def get_other_player(self, username:str)->str:
         """
         Given a player, get the other one.
         """
