@@ -28,7 +28,9 @@ export default class App extends Component{
         super(props)
 
         this.state = {
-            mode : App.LOGIN
+            mode : App.LOGIN,
+            myUsername : undefined,
+            game : undefined
         }
     }
 
