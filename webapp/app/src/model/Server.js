@@ -20,7 +20,7 @@ export default class Server {
 
     /**
      * 
-     * @returns {Promise<[{}]>}
+     * @returns {Promise<[{eventType:string }]>}
      */
     iAmOnline = async () => {
         let res = await fetch('/i-am-online',

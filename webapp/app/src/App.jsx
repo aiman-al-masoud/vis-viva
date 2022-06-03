@@ -10,6 +10,7 @@ import Server from "./model/Server.js";
 import AcceptChallengePrompt from "./view/AcceptChallengePrompt.jsx";
 import Styles from "./view/Styles.js"
 import LocalEvents from "./model/LocalEvents.js";
+import RemoteEvents from "./model/RemoteEvents.js";
 
 
 /**
@@ -96,6 +97,13 @@ export default class App extends Component{
         let remoteEvents = await Server.instance().iAmOnline()
         remoteEvents.forEach(ev=>{
             console.log(ev)
+
+            switch(ev.eventType){
+                case RemoteEvents.FIGHT_INVITE:
+                    let g = new Game(ev.challenger, ev.defender, ev.gameId)
+                    this.setState({ game: g , acceptChallengePrompt : true})
+                    break
+            }
         })
 
         //handle events generated locally

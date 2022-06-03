@@ -3,7 +3,7 @@ from .event import Event
 class FireEvent(Event):
 
     def __init__(self, fromUnit, toUnit, Id:int, gameId:int):
-        self["event_type"] = "fire"
+        self["eventType"] = "fire"
         self["fromUnit"] = fromUnit
         self["toUnit"] = toUnit
         self["id"] = Id
