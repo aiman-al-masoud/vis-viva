@@ -42,7 +42,7 @@ export default class App extends Component{
             case App.LOGIN:
                 return <Login onLogin={this.onLogin} />
             case App.MAIN_MENU:
-                return <MainMenu />
+                return <MainMenu  goToWorldMap={()=>{this.switchMode(App.WORLD_MAP)}} />
             case App.WORLD_MAP:
                 return <WorldMap />
             case App.EDITABLE_BATTLE_FIELD:
@@ -69,6 +69,6 @@ export default class App extends Component{
     }
 
 
-    
+
 
 }
