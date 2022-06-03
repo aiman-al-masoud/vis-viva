@@ -65,5 +65,3 @@ def fire_ack(username, toUnit, Id, gameId, victimDead, allDeadGiveUp):
         "victimDead" : victimDead,
         "allDeadGiveUp" : allDeadGiveUp
     }).text
-
-
