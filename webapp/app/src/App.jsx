@@ -54,12 +54,21 @@ export default class App extends Component{
 
     }
 
-    switchMode(mode, args){
+    /**
+     * 
+     * @param {string} mode 
+     * @param {*} args 
+     */
+    switchMode = (mode, args)=>{
         this.setState({mode: mode})
     }
 
-    onLogin(username, password){
+    onLogin = (username, password)=>{
         Settings.getInstance().set(Settings.USERNAME, username)
+        this.switchMode(App.MAIN_MENU, {})
     }
+
+
+    
 
 }
