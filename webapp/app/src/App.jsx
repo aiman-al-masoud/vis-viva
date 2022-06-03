@@ -6,6 +6,7 @@ import MainMenu from "./view/MainMenu.jsx";
 import WorldMap from "./view/WorldMap.jsx";
 import Game from "./model/Game.js"
 import Settings from "./model/Settings.js";
+import Server from "./model/Server.js";
 
 /**
  * All of the state *everywhere* is managed *solely* by App.
@@ -66,6 +67,15 @@ export default class App extends Component{
     onLogin = (username, password)=>{
         Settings.getInstance().set(Settings.USERNAME, username)
         this.switchMode(App.MAIN_MENU, {})
+        //start the event loop upon a successful login
+        setInterval(this.eventLoop, 1000);
+    }
+
+    eventLoop = async ()=>{
+        let events = await Server.instance().iAmOnline()
+        console.log(events)
+        
+
     }
 
 

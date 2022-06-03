@@ -15,7 +15,7 @@ import Cookies from "./Cookies.js"
 
     //Keys:
     static APP_LANGUAGE = "APP_LANGUAGE"
-    static USERNAME = "USERNAME"
+    static USERNAME = "username"
 
     //instance
     static __instance = undefined
@@ -43,7 +43,7 @@ import Cookies from "./Cookies.js"
 
         //settings to be saved also in cookies
         if( [Settings.USERNAME].includes(key)  ){
-            Cookies.setCookie(key, value)
+            Cookies.setCookie(key.toLowerCase(), value)
         }
 
     }
