@@ -4,7 +4,7 @@ export default class LocalEvents{
 
     
     static postEvent(event){
-        Event.events.push(event)
+        LocalEvents.events.push(event)
     }
 
     /**
@@ -12,8 +12,8 @@ export default class LocalEvents{
      * @returns {[{}]}
      */
     static get(){
-        let buf = Events.events
-        Event.events = []
+        let buf = LocalEvents.events
+        LocalEvents.events = []
         return buf
     }
 

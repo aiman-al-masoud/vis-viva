@@ -53,7 +53,7 @@ export default class App extends Component{
                 view = <MainMenu goToWorldMap={()=>{this.switchMode(App.WORLD_MAP)}} />
                 break
             case App.WORLD_MAP:
-                view =  <WorldMap />
+                view =  <WorldMap getOnlineUsers={Server.instance().onlineUsers}  challengeUser={this.challengeUser} />
                 break
             case App.EDITABLE_BATTLE_FIELD:
                 view = <EditableBattleField />
@@ -106,6 +106,16 @@ export default class App extends Component{
 
     }
 
+    /**
+     * local user challenges remote user
+     * @param {string} defender  username 
+     */
+    challengeUser = (defender)=>{
+        let g = new Game( Settings.getInstance().get(Settings.USERNAME) , defender,   parseInt(999999*Math.random()) )
+        this.setState({game:g})
+        Server.instance().fightInvite(g)
+        //go to EditableBattleField 
+    }
 
 
 
