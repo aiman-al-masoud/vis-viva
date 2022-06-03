@@ -29,10 +29,7 @@ export default class Language{
      */
     static reload(){
         let langName = S.getInstance().get(S.APP_LANGUAGE) ?? "english"
-        console.log(langName)
         Language.currentLang = langName
-        console.log(Language.currentLang)
-        console.log(langs)
         Object.entries(langs[langName]).forEach((entry, i)=>{Language[entry[0]] = entry[1]  })
     }
 
