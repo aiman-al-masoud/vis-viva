@@ -5,6 +5,7 @@ import Login from "./view/Login.jsx";
 import MainMenu from "./view/MainMenu.jsx";
 import WorldMap from "./view/WorldMap.jsx";
 import Game from "./model/Game.js"
+import Settings from "./model/Settings.js";
 
 /**
  * All of the state *everywhere* is managed *solely* by App.
@@ -39,7 +40,7 @@ export default class App extends Component{
         switch(this.state.mode){
 
             case App.LOGIN:
-                return <Login />
+                return <Login onLogin={this.onLogin} />
             case App.MAIN_MENU:
                 return <MainMenu />
             case App.WORLD_MAP:
@@ -57,6 +58,8 @@ export default class App extends Component{
         this.setState({mode: mode})
     }
 
-
+    onLogin(username, password){
+        Settings.getInstance().set(Settings.USERNAME, username)
+    }
 
 }

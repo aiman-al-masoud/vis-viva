@@ -1,0 +1,17 @@
+.center {
+    /* border: 5px solid #FFFF00; */
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.text-box{
+    width: 30vw;
+    font-size: larger;
+    margin: 1vh;
+}
+
+.button{
+    
+}
+
