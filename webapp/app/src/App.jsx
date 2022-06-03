@@ -72,8 +72,12 @@ export default class App extends Component{
     }
 
     eventLoop = async ()=>{
+       
+        //deal with events coming from the server
         let events = await Server.instance().iAmOnline()
         console.log(events)
+
+        //deal with locally generated events
         
 
     }

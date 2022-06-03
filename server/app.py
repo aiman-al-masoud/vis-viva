@@ -37,7 +37,7 @@ def i_am_online():
 
     # return user's events
     evs = Events.instance().pop_event_queue(username)
-    return json.dumps(evs)
+    return json.dumps({ "events" : evs })
 
 @app.route('/online-users', methods = ["GET", "POST"])                                                                                                 
 def online_users():
