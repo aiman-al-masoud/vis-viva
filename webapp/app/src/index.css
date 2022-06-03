@@ -22,3 +22,15 @@
     text-align: center;
     align-items: center;
 }
+
+
+
+.accept-challenge-prompt{
+    background: rgba(6, 6, 114, 0.318);
+    border: solid 3px darkblue;
+    border-radius: 1%;
+    width: 50vw;
+    text-align: center;
+    padding: 2vh;   
+    margin: 2vh;
+}

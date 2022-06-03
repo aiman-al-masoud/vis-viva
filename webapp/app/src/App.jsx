@@ -7,6 +7,7 @@ import WorldMap from "./view/WorldMap.jsx";
 import Game from "./model/Game.js"
 import Settings from "./model/Settings.js";
 import Server from "./model/Server.js";
+import AcceptChallengePrompt from "./view/AcceptChallengePrompt.jsx";
 
 /**
  * All of the state *everywhere* is managed *solely* by App.
@@ -38,21 +39,31 @@ export default class App extends Component{
 
     render(){
 
+        let view
+
         switch(this.state.mode){
-
             case App.LOGIN:
-                return <Login onLogin={this.onLogin} />
+                view =  <Login onLogin={this.onLogin} />
+                break
             case App.MAIN_MENU:
-                return <MainMenu  goToWorldMap={()=>{this.switchMode(App.WORLD_MAP)}} />
+                view = <MainMenu goToWorldMap={()=>{this.switchMode(App.WORLD_MAP)}} />
+                break
             case App.WORLD_MAP:
-                return <WorldMap />
+                view =  <WorldMap />
+                break
             case App.EDITABLE_BATTLE_FIELD:
-                return <EditableBattleField />
+                view = <EditableBattleField />
+                break
             case App.FIGHT_BATTLE_FIELD:
-                return <FightBattleField />
-
+                view = <FightBattleField />
+                break
         }
 
+
+        return (<div>
+            {<AcceptChallengePrompt game={{challenger: "caprone"}}/>}
+            {view}
+        </div>)
     }
 
     /**
@@ -78,7 +89,7 @@ export default class App extends Component{
         console.log(events)
 
         //deal with locally generated events
-        
+
 
     }
 
