@@ -18,6 +18,10 @@ export default class Server {
         return (Server.__instance = Server.__instance ?? new Server())
     }
 
+    /**
+     * 
+     * @returns {Promise<[{}]>}
+     */
     iAmOnline = async () => {
         let res = await fetch('/i-am-online',
             {

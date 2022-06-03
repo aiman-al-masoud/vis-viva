@@ -9,6 +9,7 @@ import Settings from "./model/Settings.js";
 import Server from "./model/Server.js";
 import AcceptChallengePrompt from "./view/AcceptChallengePrompt.jsx";
 import Styles from "./view/Styles.js"
+import LocalEvents from "./model/LocalEvents.js";
 
 
 /**
@@ -91,12 +92,17 @@ export default class App extends Component{
 
     eventLoop = async ()=>{
        
-        //deal with events coming from the server
-        let events = await Server.instance().iAmOnline()
-        console.log(events)
+        //handle events coming from the server
+        let remoteEvents = await Server.instance().iAmOnline()
+        remoteEvents.forEach(ev=>{
+            console.log(ev)
+        })
 
-        //deal with locally generated events
-
+        //handle events generated locally
+        let localEvents = LocalEvents.get()
+        localEvents.forEach(ev=>{
+            console.log(ev)
+        })
 
     }
 
