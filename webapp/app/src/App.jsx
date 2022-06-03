@@ -8,6 +8,8 @@ import Game from "./model/Game.js"
 import Settings from "./model/Settings.js";
 import Server from "./model/Server.js";
 import AcceptChallengePrompt from "./view/AcceptChallengePrompt.jsx";
+import Styles from "./view/Styles.js"
+
 
 /**
  * All of the state *everywhere* is managed *solely* by App.
@@ -33,7 +35,8 @@ export default class App extends Component{
         this.state = {
             mode : App.LOGIN,
             myUsername : undefined,
-            game : undefined
+            game : undefined,
+            acceptChallengePrompt : false
         }
     }
 
@@ -61,7 +64,11 @@ export default class App extends Component{
 
 
         return (<div>
-            {<AcceptChallengePrompt game={{challenger: "caprone"}}/>}
+
+            <div style={this.state.acceptChallengePrompt?Styles.visible: Styles.invisible}>
+            <AcceptChallengePrompt game={this.state.game??{}}/>
+            </div>
+
             {view}
         </div>)
     }
