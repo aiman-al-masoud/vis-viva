@@ -1,3 +1,9 @@
+
+pass generic onclick method down to Square
+
+
+
+
 USE CASE 1:
 
 Player accesses web-app, on sign-up/login screen.
