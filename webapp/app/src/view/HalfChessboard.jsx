@@ -28,21 +28,29 @@ export default class HalfChessboard extends Component{
 
     render(){
 
-        let battleUnits = this.props.battleUnits.sort( (b1,b2) => b1.position - b2.position )
-        let emptySpaces =  this.NUM_COLUMNS * this.NUM_ROWS - battleUnits.length
-        let emptyArray = [  ]
+        let arr =  Array.from(Array(this.NUM_COLUMNS * this.NUM_ROWS), (_, i) => undefined)
 
-        for(let i=0;i<emptySpaces;i++){
-            emptyArray[i] = {position: i}
-        }
+        this.props.battleUnits.forEach(b=>{
+            arr.unshift(b)
+        })
 
-        battleUnits = battleUnits.concat(emptyArray)
+        console.log("stupid array  initially:" , arr )
 
-        return (
-            <div style={{display: "grid",  gridTemplateColumns: "auto ".repeat(this.NUM_COLUMNS)   }}>
-                {battleUnits.map( b =>  <Square key={b.position} id={b.position}  select={this.select} >  <BattleUnitSprite battleUnit={b} />  </Square>   )}
-            </div>
-        )
+        arr = arr.map((b, i)=>{
+            if(b){
+                return <Square key={b.position} id={b.position}  select={this.select} >  <BattleUnitSprite battleUnit={b} />  </Square> 
+            }else{
+                console.log(b, i)
+                return <Square key={i} id={i}  select={this.select} >  </Square>
+            }
+        })
+
+        console.log("square array" , arr )
+
+
+        return (<div style={{display: "grid",  gridTemplateColumns: "auto ".repeat(this.NUM_COLUMNS)   }} >
+            {arr}                
+        </div>)
     }
 
     select = (squareId)=>{
