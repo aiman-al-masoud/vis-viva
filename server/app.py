@@ -16,13 +16,12 @@ from events.classes.game_over_event import *
 app = Flask(__name__)
 CORS(app)
 
-path=app.root_path+"/../webapp/dist/index.html"                                                              
-
-with open(path) as f:
-    homepage=f.read()
 
 @app.route('/')                                                                                                 
 def index():     
+    path=app.root_path+"/../webapp/dist/index.html"                                                              
+    with open(path) as f:
+        homepage=f.read()
     return homepage
 
 @app.route('/i-am-online', methods = ["GET", "POST"])                                                                                                 
