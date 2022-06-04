@@ -16,16 +16,28 @@ export default class Square extends Component{
     constructor(props){
         super(props)
         this.props = props
+
+        this.state = {
+            className : "square"
+        }
     }
 
     render(){
-        return (<div onMouseEnter={this.select  }  onClick={()=>{this.props.add(this.props.id)}}  className="square" >
+        return (<div onMouseEnter={this.select} onMouseLeave={this.unselect} onClick={()=>{this.props.add(this.props.id)}}  className={this.state.className}>
             {this.props.children}
         </div>)
     }
 
     select = ()=>{
         this.props.select(this.props.id)
+        this.setState({className:"square  square-highlighted"})
     }
+
+    unselect = ()=>[
+        this.setState({className:"square"})
+    ]
+
+
+
 
 }
