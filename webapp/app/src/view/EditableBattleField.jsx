@@ -12,7 +12,7 @@ export default class EditableBattleField extends Component{
      * 
      * @param {{
      * game:Game,
-     * setBattleUnits:(battleUnits:[BattleUnit])=>Promise<void>
+     * setGame:(game:Game)=>Promise<void>
      * }} props 
      */
     constructor(props){
@@ -22,8 +22,25 @@ export default class EditableBattleField extends Component{
 
     render(){
         return (<div>
-            <HalfChessboard battleUnits={this.props.game.getBattleUnits(Settings.getInstance().get(Settings.USERNAME))}  setBattleUnits={this.props.setBattleUnits} />
+            <HalfChessboard  getBattleUnit={this.getBattleUnit}  battleUnits={this.props.game.getBattleUnits(Settings.getInstance().get(Settings.USERNAME))}  setBattleUnits={this.setBattleUnits} />
         </div>)
     }
+
+    getBattleUnit = ()=>{
+        return new BattleUnit()
+    }
+
+    /**
+     * 
+     * @param {[BattleUnit]} battleUnits 
+     */
+    setBattleUnits = (battleUnits)=>{
+        let g = this.props.game
+        g.setBattleUnits(Settings.getInstance().get(Settings.USERNAME),   battleUnits)
+        this.props.setGame(g)
+    }
+
+
+
 
 }

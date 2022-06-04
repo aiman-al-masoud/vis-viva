@@ -17,7 +17,8 @@ export default class HalfChessboard extends Component{
      * 
      * @param {{
      * battleUnits : [BattleUnit],
-     * setBattleUnits : (battleUnits:[BattleUnit]) => Promise<void>
+     * setBattleUnits : (battleUnits:[BattleUnit]) => Promise<void>,
+     * getBattleUnit() : () => BattleUnit 
      * }} props 
      */
     constructor(props){
@@ -30,15 +31,15 @@ export default class HalfChessboard extends Component{
 
         let arr =  Array.from(Array(this.NUM_COLUMNS * this.NUM_ROWS), (_, i) => undefined)
 
-        this.props.battleUnits.forEach(b=>{
-            arr.unshift(b)
+        this.props.battleUnits.forEach((b)=>{
+            arr[b.position] =  b
         })
-
+        
         arr = arr.map((b, i)=>{
             if(b){
-                return <Square key={b.position} id={b.position}  select={this.select} >  <BattleUnitSprite battleUnit={b} />  </Square> 
+                return <Square key={b.position} id={b.position}  select={this.select}   >  <BattleUnitSprite battleUnit={b} />  </Square> 
             }else{
-                return <Square key={i} id={i}  select={this.select} >  </Square>
+                return <Square key={i} id={i}  select={this.select} add={this.addToSelected}  >  </Square>
             }
         })
 
@@ -52,14 +53,17 @@ export default class HalfChessboard extends Component{
         this.selectedSquare = squareId
     }
 
-    setSelected(){
-        let b = new BattleUnit()  //deal with type somehow
+    addToSelected = ()=>{
+        let b = this.props.getBattleUnit()  //deal with type somehow
         b.position = this.selectedSquare
-        let battleUnits = this.props.battleUnits.concat(b)
+        let battleUnits = this.props.battleUnits //infinite battle units bug?
+        battleUnits =  battleUnits.filter(b => b.position!=this.selectedSquare )
+        battleUnits.push(b)
+
         this.props.setBattleUnits(battleUnits)
     }
 
-    dropSelected(){
+    dropSelected = ()=>{
         let bs = this.props.battleUnits.filter(b=>b.position!=this.selectedSquare)
         this.props.setBattleUnits(bs)
     }
