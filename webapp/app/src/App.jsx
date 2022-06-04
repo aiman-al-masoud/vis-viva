@@ -57,7 +57,7 @@ export default class App extends Component{
                 view =  <WorldMap getOnlineUsers={Server.instance().onlineUsers}  challengeUser={this.challengeUser} />
                 break
             case App.EDITABLE_BATTLE_FIELD:
-                view = <EditableBattleField />
+                view = <EditableBattleField game={this.state.game}  />
                 break
             case App.FIGHT_BATTLE_FIELD:
                 view = <FightBattleField />
@@ -123,11 +123,14 @@ export default class App extends Component{
         this.setState({game:g})
         Server.instance().fightInvite(g)
         //go to EditableBattleField 
+        this.switchMode(App.EDITABLE_BATTLE_FIELD)
     }
 
     acceptChallenge = ()=>{
         Server.instance().fightAccept(this.state.game)
         //go to EditableBattleField 
+        this.switchMode(App.EDITABLE_BATTLE_FIELD)
+        this.setState({acceptChallengePrompt :false})
     }
 
 
