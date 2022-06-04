@@ -18,7 +18,7 @@ export default class HalfChessboard extends Component{
      * @param {{
      * battleUnits : [BattleUnit],
      * setBattleUnits : (battleUnits:[BattleUnit]) => Promise<void>,
-     * getBattleUnit() : () => BattleUnit 
+     * getBattleUnit() : () => BattleUnit
      * }} props 
      */
     constructor(props){
