@@ -12,7 +12,9 @@ export default class Game{
         this.challenger = challenger
         this.defender = defender
         this.gameId = gameId 
-        this.__battleUnitsDictionary = {}
+        this.__battleUnitsDictionary = { }
+        this.__battleUnitsDictionary[challenger] = []
+        this.__battleUnitsDictionary[defender] = []
     }
 
     /**

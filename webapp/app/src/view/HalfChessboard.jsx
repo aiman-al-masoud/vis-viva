@@ -30,21 +30,23 @@ export default class HalfChessboard extends Component{
 
         let battleUnits = this.props.battleUnits.sort( (b1,b2) => b1.position - b2.position )
         let emptySpaces =  this.NUM_COLUMNS * this.NUM_ROWS - battleUnits.length
-        let emptyArray = [ null ]
+        let emptyArray = [  ]
 
         for(let i=0;i<emptySpaces;i++){
-            emptyArray = emptyArray.concat(emptyArray)
+            emptyArray[i] = {position: i}
         }
 
+        battleUnits = battleUnits.concat(emptyArray)
+
         return (
-            <div style={{display: "grid",  gridTemplateColumns: "auto ".repeat(this.NUM_COLUMNS)   }}>
-                {battleUnits.map( b =>  <Square id={b.position}  select={this.select} >  <BattleUnitSprite battleUnit={b} />  </Square>   )}
-                {emptyArray.map(b => <Square></Square>) }
+            <div style={{display: "grid",  gridTemplateColumns: "auto auto auto"   }}>
+                {battleUnits.map( b =>  <Square key={b.position} id={b.position}  select={this.select} >  <BattleUnitSprite battleUnit={b} />  </Square>   )}
             </div>
         )
     }
 
-    select(squareId){
+    select = (squareId)=>{
+        console.log(squareId)
         this.selectedSquare = squareId
     }
 

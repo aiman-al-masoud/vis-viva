@@ -1,5 +1,8 @@
 import React, {Component} from "react";
 import BattleUnit from "../model/BattleUnit.js";
+import HalfChessboard from "./HalfChessboard.jsx";
+import Game from "../model/Game.js";
+import Settings from "../model/Settings.js";
 
 /**
  */
@@ -18,7 +21,9 @@ export default class EditableBattleField extends Component{
     }
 
     render(){
-        return <h1>Hello world, this is EditableBattleField!</h1>
+        return (<div>
+            <HalfChessboard battleUnits={this.props.game.getBattleUnits(Settings.getInstance().get(Settings.USERNAME))}  setBattleUnits={this.props.setBattleUnits} />
+        </div>)
     }
 
 }

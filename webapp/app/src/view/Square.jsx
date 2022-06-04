@@ -17,7 +17,8 @@ export default class Square extends Component{
     }
 
     render(){
-        return (<div onMouseEnter={()=>{ this.props.select(this.props.id) }}  >
+        console.log("ciao square", this.props.children)
+        return (<div onMouseEnter={()=>{ this.props.select(this.props.id) }  }  className="square">
             {this.props.children}
         </div>)
     }
