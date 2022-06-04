@@ -119,7 +119,7 @@ export default class App extends Component{
         //handle events generated locally
         let localEvents = LocalEvents.get()
         localEvents.forEach(ev=>{
-            console.log(ev)
+            // console.log(ev)
         })
 
     }
@@ -144,10 +144,8 @@ export default class App extends Component{
     }
 
     onReady = () =>{
-        console.log(this.state.game)
+        console.log("in onReady:",this.state.game)
         Server.instance().ready(this.state.game)   
-
-        console.log("ready event posted to server")
         this.switchMode(App.FIGHT_BATTLE_FIELD)
     }
 

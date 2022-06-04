@@ -18,7 +18,8 @@ export default class HalfChessboard extends Component{
      * @param {{
      * battleUnits : [BattleUnit],
      * setBattleUnits : (battleUnits:[BattleUnit]) => Promise<void>,
-     * getBattleUnit() : () => BattleUnit
+     * getBattleUnit() : () => BattleUnit,
+     * invertedForEnemy : boolean
      * }} props 
      */
     constructor(props){
@@ -31,10 +32,22 @@ export default class HalfChessboard extends Component{
 
         let arr =  Array.from(Array(this.NUM_COLUMNS * this.NUM_ROWS), (_, i) => undefined)
 
-        this.props.battleUnits.forEach((b)=>{
-            arr[b.position] =  b
-        })
-        
+        let battleUnits = this.props.battleUnits.sort((b1, b2)=>b1.position-b2.position )
+        if(this.props.invertedForEnemy){
+            battleUnits.forEach((b, i)=>{
+                let row = parseInt( b.position /this.NUM_COLUMNS)
+                let s = (this.NUM_COLUMNS-1) +row*(2*this.NUM_COLUMNS)
+                arr[s - b.position] =  b
+
+                console.log("calculating pos:", "orig-pos", b.position,  "row", row, "sum", s,  "new-pos", s - b.position)
+            })
+        }else{
+            this.props.battleUnits.forEach((b)=>{
+                arr[b.position] =  b
+            })
+        }
+
+
         arr = arr.map((b, i)=>{
             if(b){
                 return <Square key={b.position} id={b.position}  select={this.select}   >  <BattleUnitSprite battleUnit={b} />  </Square> 

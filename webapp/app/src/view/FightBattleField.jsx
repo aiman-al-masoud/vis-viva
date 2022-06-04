@@ -27,7 +27,7 @@ export default class FightBattleField extends Component {
         return (<div>
             <div style={{ display: "grid", gridTemplateColumns: "auto auto" }} >
                 <HalfChessboard battleUnits={  this.props.game.getBattleUnits(S.getInstance().get(S.USERNAME))  }/>
-                <HalfChessboard battleUnits={  this.props.game.getBattleUnits(this.props.game.getOpponent())    }/>
+                <HalfChessboard battleUnits={  this.props.game.getBattleUnits(this.props.game.getOpponent()) }   invertedForEnemy={true}  />
             </div>
         </div>)
     }
