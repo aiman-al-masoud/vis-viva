@@ -22,6 +22,8 @@ export default class EditableBattleField extends Component{
 
     render(){
         return (<div>
+            <h1>Field your troops!</h1>
+            <button>Ready!</button>
             <HalfChessboard  getBattleUnit={this.getBattleUnit}  battleUnits={this.props.game.getBattleUnits(Settings.getInstance().get(Settings.USERNAME))}  setBattleUnits={this.setBattleUnits} />
         </div>)
     }
