@@ -39,7 +39,7 @@ export default class HalfChessboard extends Component{
         battleUnits = battleUnits.concat(emptyArray)
 
         return (
-            <div style={{display: "grid",  gridTemplateColumns: "auto auto auto"   }}>
+            <div style={{display: "grid",  gridTemplateColumns: "auto ".repeat(this.NUM_COLUMNS)   }}>
                 {battleUnits.map( b =>  <Square key={b.position} id={b.position}  select={this.select} >  <BattleUnitSprite battleUnit={b} />  </Square>   )}
             </div>
         )
