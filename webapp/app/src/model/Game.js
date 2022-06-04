@@ -1,4 +1,5 @@
 import BattleUnit from "./BattleUnit.js"
+import S from "./Settings.js"
 
 export default class Game{
 
@@ -38,7 +39,7 @@ export default class Game{
      * @returns {string}
      */
     getOpponent(){
-        //check with cookies or localStorage or ...   
+        return this.challenger == S.getInstance().get(S.USERNAME) ? this.defender : this.challenger
     }
 
 }

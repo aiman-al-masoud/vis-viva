@@ -34,10 +34,11 @@ export default class App extends Component{
     constructor(props){
         super(props)
 
+
         this.state = {
             mode : App.LOGIN,
             myUsername : undefined,
-            game : undefined,
+            game : new Game(),
             acceptChallengePrompt : false
         }
     }
@@ -60,7 +61,7 @@ export default class App extends Component{
                 view = <EditableBattleField game={this.state.game} setGame={this.setGame} onReady={this.onReady} />
                 break
             case App.FIGHT_BATTLE_FIELD:
-                view = <FightBattleField />
+                view = <FightBattleField game={this.state.game}/>
                 break
         }
 
@@ -103,6 +104,15 @@ export default class App extends Component{
                     let g = new Game(ev.challenger, ev.defender, ev.gameId)
                     this.setState({ game: g , acceptChallengePrompt : true})
                     break
+                case RemoteEvents.FIGHT_ACCEPT:
+
+                    break
+                case RemoteEvents.READY:
+                    let gm = this.state.game
+                    gm.setBattleUnits(gm.getOpponent(),  ev.battleUnits  )
+                    this.setGame(gm)
+                    break
+
             }
         })
 
@@ -134,8 +144,11 @@ export default class App extends Component{
     }
 
     onReady = () =>{
+        console.log(this.state.game)
         Server.instance().ready(this.state.game)   
+
         console.log("ready event posted to server")
+        this.switchMode(App.FIGHT_BATTLE_FIELD)
     }
 
     /**
