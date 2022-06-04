@@ -54,12 +54,11 @@ export default class HalfChessboard extends Component{
     }
 
     addToSelected = ()=>{
-        let b = this.props.getBattleUnit()  //deal with type somehow
+        let b = this.props.getBattleUnit()  
         b.position = this.selectedSquare
-        let battleUnits = this.props.battleUnits //infinite battle units bug?
+        let battleUnits = this.props.battleUnits 
         battleUnits =  battleUnits.filter(b => b.position!=this.selectedSquare )
         battleUnits.push(b)
-
         this.props.setBattleUnits(battleUnits)
     }
 
