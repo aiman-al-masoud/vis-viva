@@ -1,5 +1,5 @@
 
-pass generic onclick method down to Square
+pass generic onClickSquare method down to HalfChessboard and then down to Square
 
 
 
