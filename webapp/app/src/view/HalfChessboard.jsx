@@ -34,21 +34,15 @@ export default class HalfChessboard extends Component{
             arr.unshift(b)
         })
 
-        console.log("stupid array  initially:" , arr )
-
         arr = arr.map((b, i)=>{
             if(b){
                 return <Square key={b.position} id={b.position}  select={this.select} >  <BattleUnitSprite battleUnit={b} />  </Square> 
             }else{
-                console.log(b, i)
                 return <Square key={i} id={i}  select={this.select} >  </Square>
             }
         })
 
-        console.log("square array" , arr )
-
-
-        return (<div style={{display: "grid",  gridTemplateColumns: "auto ".repeat(this.NUM_COLUMNS)   }} >
+        return (<div style={{display: "grid",  gridTemplateColumns: "auto ".repeat(this.NUM_COLUMNS)  }} >
             {arr}                
         </div>)
     }
