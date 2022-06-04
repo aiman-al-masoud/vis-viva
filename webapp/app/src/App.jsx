@@ -68,7 +68,7 @@ export default class App extends Component{
         return (<div>
 
             <div style={this.state.acceptChallengePrompt?Styles.visible: Styles.invisible}>
-            <AcceptChallengePrompt game={this.state.game??{}}/>
+            <AcceptChallengePrompt game={this.state.game??{}} acceptChallenge={this.acceptChallenge} />
             </div>
 
             {view}
@@ -122,6 +122,11 @@ export default class App extends Component{
         let g = new Game( Settings.getInstance().get(Settings.USERNAME) , defender,   parseInt(999999*Math.random()) )
         this.setState({game:g})
         Server.instance().fightInvite(g)
+        //go to EditableBattleField 
+    }
+
+    acceptChallenge = ()=>{
+        Server.instance().fightAccept(this.state.game)
         //go to EditableBattleField 
     }
 

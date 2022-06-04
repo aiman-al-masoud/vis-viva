@@ -8,7 +8,8 @@ export default class AcceptChallengePrompt extends Component {
     /**
      * 
      * @param {{
-     * game : Game
+     * game : Game,
+     * acceptChallenge : ()=>Promise<void>
      * }} props 
      */
     constructor(props) {
@@ -20,7 +21,7 @@ export default class AcceptChallengePrompt extends Component {
 
         return (<div className="accept-challenge-prompt" style={{position:"absolute", top:0, left:window.screen.width/4  }}>
             <span>You got a challenge from {this.props.game.challenger}!    </span>
-            <button>Accept</button>
+            <button onClick={this.props.acceptChallenge}>Accept</button>
         </div>)
     }
 
