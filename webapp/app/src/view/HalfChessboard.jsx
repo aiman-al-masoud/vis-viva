@@ -50,9 +50,9 @@ export default class HalfChessboard extends Component{
 
         arr = arr.map((b, i)=>{
             if(b){
-                return <Square key={b.position} id={b.position}  select={this.select}   >  <BattleUnitSprite battleUnit={b} />  </Square> 
+                return <Square key={b.position} id={b.position}  select={this.select}  onClick={this.dropSelected}  >  <BattleUnitSprite battleUnit={b} />  </Square> 
             }else{
-                return <Square key={i} id={i}  select={this.select} add={this.addToSelected}  >  </Square>
+                return <Square key={i} id={i}  select={this.select}  onClick={this.addToSelected}  >  </Square>
             }
         })
 

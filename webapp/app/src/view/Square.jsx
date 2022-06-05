@@ -9,8 +9,9 @@ export default class Square extends Component{
      * @param {{
      * id : number, 
      * select : (squareId:number) => void,
-     * add : (squareId:number) => void
-     * drop : (squareId:number) => void
+     * onClick : ()=> void
+    //  * add : (squareId:number) => void
+    //  * drop : (squareId:number) => void
      * }} props 
      */
     constructor(props){
@@ -23,7 +24,7 @@ export default class Square extends Component{
     }
 
     render(){
-        return (<div onMouseEnter={this.select} onMouseLeave={this.unselect} onClick={()=>{this.props.add(this.props.id)}}  className={this.state.className}>
+        return (<div onMouseEnter={this.select} onMouseLeave={this.unselect} onClick={this.props.onClick }   className={this.state.className}>
             {this.props.children}
         </div>)
     }
