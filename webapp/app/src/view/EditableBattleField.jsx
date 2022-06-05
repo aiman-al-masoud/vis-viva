@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import BattleUnit from "../model/BattleUnit.js";
 import HalfChessboard from "./HalfChessboard.jsx";
 import Game from "../model/Game.js";
-import Settings from "../model/Settings.js";
+import S from "../model/Settings.js";
 
 /**
  */
@@ -25,7 +25,7 @@ export default class EditableBattleField extends Component{
         return (<div>
             <h1>Field your troops!</h1>
             <button onClick={this.props.onReady}>Ready!</button>
-            <HalfChessboard  getBattleUnit={this.getBattleUnit}  battleUnits={this.props.game.getBattleUnits(Settings.getInstance().get(Settings.USERNAME))}  setBattleUnits={this.setBattleUnits} />
+            <HalfChessboard  battleUnits={this.props.game.getBattleUnits(S.getInstance().get(S.USERNAME))}  onClickSquare={this.addBattleUnit}  />
         </div>)
     }
 
@@ -33,15 +33,35 @@ export default class EditableBattleField extends Component{
         return new BattleUnit()
     }
 
+    // /**
+    //  * 
+    //  * @param {[BattleUnit]} battleUnits 
+    //  */
+    // setBattleUnits = (battleUnits)=>{
+    //     let g = this.props.game
+    //     g.setBattleUnits(S.getInstance().get(S.USERNAME),   battleUnits)
+    //     this.props.setGame(g)
+    // }
+
     /**
-     * 
-     * @param {[BattleUnit]} battleUnits 
+     * Adds a new BattleUnit in the position/Square referenced in the argument.
+     * @param {number} squareId 
      */
-    setBattleUnits = (battleUnits)=>{
-        let g = this.props.game
-        g.setBattleUnits(Settings.getInstance().get(Settings.USERNAME),   battleUnits)
+    addBattleUnit = (squareId)=>{
+        let g =  this.props.game
+        let b = this.createNewBattleUnit()
+        b.position = squareId
+        let battleUnits = g.getBattleUnits(S.getInstance().get(S.USERNAME))
+        battleUnits =  battleUnits.filter(b => b.position!=squareId )
+        battleUnits.push(b)
+        g.setBattleUnits(S.getInstance().get(S.USERNAME),   battleUnits)
         this.props.setGame(g)
     }
+
+    createNewBattleUnit = ()=>{
+        return new BattleUnit()
+    }
+
 
 
 

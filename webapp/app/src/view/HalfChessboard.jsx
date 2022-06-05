@@ -17,9 +17,8 @@ export default class HalfChessboard extends Component{
      * 
      * @param {{
      * battleUnits : [BattleUnit],
-     * setBattleUnits : (battleUnits:[BattleUnit]) => Promise<void>,
-     * getBattleUnit() : () => BattleUnit,
-     * invertedForEnemy : boolean
+     * invertedForEnemy : boolean,
+     * onClickSquare : (squareId:number, contents:BattleUnit?)=>void
      * }} props 
      */
     constructor(props){
@@ -50,9 +49,9 @@ export default class HalfChessboard extends Component{
 
         arr = arr.map((b, i)=>{
             if(b){
-                return <Square key={b.position} id={b.position}  select={this.select}  onClick={this.dropSelected}  >  <BattleUnitSprite battleUnit={b} />  </Square> 
+                return <Square key={b.position} id={b.position}  select={this.select}  /*onClick={this.dropSelected}*/  >  <BattleUnitSprite battleUnit={b} />  </Square> 
             }else{
-                return <Square key={i} id={i}  select={this.select}  onClick={this.addToSelected}  >  </Square>
+                return <Square key={i} id={i}  select={this.select}  onClick={this.onClick}  >  </Square>
             }
         })
 
@@ -66,19 +65,23 @@ export default class HalfChessboard extends Component{
         this.selectedSquare = squareId
     }
 
-    addToSelected = ()=>{
-        let b = this.props.getBattleUnit()  
-        b.position = this.selectedSquare
-        let battleUnits = this.props.battleUnits 
-        battleUnits =  battleUnits.filter(b => b.position!=this.selectedSquare )
-        battleUnits.push(b)
-        this.props.setBattleUnits(battleUnits)
+    onClick = ()=>{
+        this.props.onClickSquare(this.selectedSquare ) //,  this.props.battleUnits.filter(b=>b.position==this.selectedSquare)[0]  )
     }
 
-    dropSelected = ()=>{
-        let bs = this.props.battleUnits.filter(b=>b.position!=this.selectedSquare)
-        this.props.setBattleUnits(bs)
-    }
+    // addToSelected = ()=>{
+    //     let b = this.props.getBattleUnit()  
+    //     b.position = this.selectedSquare
+    //     let battleUnits = this.props.battleUnits 
+    //     battleUnits =  battleUnits.filter(b => b.position!=this.selectedSquare )
+    //     battleUnits.push(b)
+    //     this.props.setBattleUnits(battleUnits)
+    // }
+
+    // dropSelected = ()=>{
+    //     let bs = this.props.battleUnits.filter(b=>b.position!=this.selectedSquare)
+    //     this.props.setBattleUnits(bs)
+    // }
 
 
 }
