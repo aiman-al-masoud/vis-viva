@@ -9,7 +9,7 @@ import Square from "./Square.jsx";
  */
 export default class HalfChessboard extends Component{
 
-    
+
     NUM_COLUMNS = 3
     NUM_ROWS = 3
 
