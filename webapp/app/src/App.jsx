@@ -143,7 +143,11 @@ export default class App extends Component{
                     let gam = this.state.game
                     let enemyBs = gam.getBattleUnits(gam.getOpponent())
                     enemyBs = enemyBs.filter(b=> b.position !=ev.toUnit.position)
-                    enemyBs.push(ev.toUnit)
+                    
+                    if(ev.toUnit.health>0){
+                        enemyBs.push(ev.toUnit)
+                    }
+
                     gam.setBattleUnits(gam.getOpponent(), enemyBs)
                     this.setGame(gam)                
                     break
