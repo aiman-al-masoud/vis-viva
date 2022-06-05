@@ -5,7 +5,7 @@ import Login from "./view/Login.jsx";
 import MainMenu from "./view/MainMenu.jsx";
 import WorldMap from "./view/WorldMap.jsx";
 import Game from "./model/Game.js"
-import Settings from "./model/Settings.js";
+import S from "./model/Settings.js";
 import Server from "./model/Server.js";
 import AcceptChallengePrompt from "./view/AcceptChallengePrompt.jsx";
 import Styles from "./view/Styles.js"
@@ -61,7 +61,7 @@ export default class App extends Component{
                 view = <EditableBattleField game={this.state.game} setGame={this.setGame} onReady={this.onReady} />
                 break
             case App.FIGHT_BATTLE_FIELD:
-                view = <FightBattleField game={this.state.game}/>
+                view = <FightBattleField game={this.state.game}  sendFire={this.sendFire}/>
                 break
         }
 
@@ -86,7 +86,7 @@ export default class App extends Component{
     }
 
     onLogin = (username, password)=>{
-        Settings.getInstance().set(Settings.USERNAME, username)
+        S.getInstance().set(S.USERNAME, username)
         this.switchMode(App.MAIN_MENU, {})
         //start the event loop upon a successful login
         setInterval(this.eventLoop, 1000);
@@ -112,6 +112,19 @@ export default class App extends Component{
                     gm.setBattleUnits(gm.getOpponent(),  ev.battleUnits  )
                     this.setGame(gm)
                     break
+                case RemoteEvents.FIRE: //incoming fire
+                    let ga = this.state.game
+                    let battleUnits = ga.getBattleUnits(S.getInstance().get(S.USERNAME))
+                    
+                    battleUnits.forEach(b=> {
+                        if(b.position==ev.toUnit.position){
+                            b.health-=10
+                        }
+                    } )
+                    
+                    ga.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
+                    this.setGame(ga)
+                    break
 
             }
         })
@@ -129,7 +142,7 @@ export default class App extends Component{
      * @param {string} defender  username 
      */
     challengeUser = (defender)=>{
-        let g = new Game( Settings.getInstance().get(Settings.USERNAME) , defender,   parseInt(999999*Math.random()) )
+        let g = new Game( S.getInstance().get(S.USERNAME) , defender,   parseInt(999999*Math.random()) )
         this.setState({game:g})
         Server.instance().fightInvite(g)
         //go to EditableBattleField 
@@ -148,6 +161,17 @@ export default class App extends Component{
         Server.instance().ready(this.state.game)   
         this.switchMode(App.FIGHT_BATTLE_FIELD)
     }
+
+    /**
+     * 
+     * @param {BattleUnit} fromUnit 
+     * @param {BattleUnit} toUnit 
+     */
+    sendFire = (fromUnit, toUnit)=>{
+        Server.instance().fire(this.state.game, fromUnit, toUnit)
+    }
+
+
 
     /**
      * 

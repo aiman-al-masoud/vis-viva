@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Game from "../model/Game.js";
 import HalfChessboard from "./HalfChessboard.jsx";
 import S from "../model/Settings.js";
+import BattleUnit from "../model/BattleUnit.js";
 
 
 /**
@@ -13,12 +14,18 @@ export default class FightBattleField extends Component {
     * 
     * @param {{
      * game : Game,
-     * setGame:(game:Game)=>Promise<void>
+     * setGame:(game:Game)=>Promise<void>,
+     * sendFire : (fromUnit:BattleUnit, toUnit:BattleUnit) => Promise<void>,
      * }} props 
      */
     constructor(props) {
         super(props)
         this.props = props
+
+        this.state = {
+            myUnit : undefined
+        }
+
     }
 
 
@@ -26,9 +33,29 @@ export default class FightBattleField extends Component {
 
         return (<div>
             <div style={{ display: "grid", gridTemplateColumns: "auto auto" }} >
-                <HalfChessboard battleUnits={  this.props.game.getBattleUnits(S.getInstance().get(S.USERNAME))  }/>
-                <HalfChessboard battleUnits={  this.props.game.getBattleUnits(this.props.game.getOpponent()) }   invertedForEnemy={true}  />
+                <HalfChessboard battleUnits={  this.props.game.getBattleUnits(S.getInstance().get(S.USERNAME))  }  onClickSquare={this.selectMyUnit}  />
+                <HalfChessboard battleUnits={  this.props.game.getBattleUnits(this.props.game.getOpponent()) }   invertedForEnemy={true}   onClickSquare={this.selectEnemyUnit} />
             </div>
         </div>)
     }
+
+    /**
+     * 
+     * @param {number} squareId 
+     * @param {BattleUnit} squareContent 
+     */
+    selectMyUnit = (squareId, squareContent)=>{
+        this.setState({  myUnit : squareContent  })
+    }
+
+    /**
+     * @param {number} squareId 
+     * @param {BattleUnit} squareContent 
+     */
+    selectEnemyUnit = (squareId, squareContent)=>{
+        this.props.sendFire(this.state.myUnit, squareContent)
+    }
+    
+
+
 }

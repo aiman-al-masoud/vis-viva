@@ -29,7 +29,7 @@ export default class Game{
     /**
      * 
      * @param {string} username 
-     * @returns {BattleUnit} 
+     * @returns {[BattleUnit]} 
      */
     getBattleUnits(username){
         return this.__battleUnitsDictionary[username]
