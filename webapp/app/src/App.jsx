@@ -113,17 +113,39 @@ export default class App extends Component{
                     this.setGame(gm)
                     break
                 case RemoteEvents.FIRE: //incoming fire
+
+                    let victimDead =  false
+                    let victim = undefined
                     let ga = this.state.game
                     let battleUnits = ga.getBattleUnits(S.getInstance().get(S.USERNAME))
                     
                     battleUnits.forEach(b=> {
-                        if(b.position==ev.toUnit.position){
+                        if(b.position == ev.toUnit.position){
                             b.health-=10
+                            victim = b
+
+                            if(b.health<=0){
+                                victimDead = true
+                            }
                         }
                     } )
                     
+                    if(victimDead){
+                        battleUnits = battleUnits.filter(b=> b.position !=victim.position)
+                    }
+                    
                     ga.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
                     this.setGame(ga)
+                    Server.instance().fireAck(this.state.game, victim, ev.id, victimDead,  ! battleUnits.some(x=>x) )
+                    break
+                case RemoteEvents.FIRE_ACK:
+
+                    // update remote victim's/toUnit's health
+                    break
+
+                case RemoteEvents.GAME_OVER:
+                    confirm("game is over!!!!!!!!!")
+                    this.switchMode(App.MAIN_MENU)
                     break
 
             }

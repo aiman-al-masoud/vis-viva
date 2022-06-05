@@ -146,7 +146,6 @@ export default class Server {
 
                 body: JSON.stringify({
                     gameId: game.gameId,
-                    fromUnit: fromUnit,
                     toUnit: toUnit,
                     id: id,
                     victimDead: victimDead,
