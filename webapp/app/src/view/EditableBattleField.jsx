@@ -33,16 +33,6 @@ export default class EditableBattleField extends Component{
         return new BattleUnit()
     }
 
-    // /**
-    //  * 
-    //  * @param {[BattleUnit]} battleUnits 
-    //  */
-    // setBattleUnits = (battleUnits)=>{
-    //     let g = this.props.game
-    //     g.setBattleUnits(S.getInstance().get(S.USERNAME),   battleUnits)
-    //     this.props.setGame(g)
-    // }
-
     /**
      * Adds a new BattleUnit in the position/Square referenced in the argument.
      * @param {number} squareId 
@@ -61,9 +51,6 @@ export default class EditableBattleField extends Component{
     createNewBattleUnit = ()=>{
         return new BattleUnit()
     }
-
-
-
-
+    
 
 }

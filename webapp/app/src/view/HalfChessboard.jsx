@@ -4,9 +4,8 @@ import BattleUnitSprite from "./BattleUnitSprite.jsx";
 import Square from "./Square.jsx";
 
 /**
- * Allows player to select and edit BattleUnits on a grid.
- * Half because it pertains only to the player's exor the opponent's half
- * of the chessboard, not both.
+ * Allows to select BattleUnits on a grid.
+ * 'Half' because you need two, to make a full battle field.
  */
 export default class HalfChessboard extends Component{
 
@@ -18,7 +17,7 @@ export default class HalfChessboard extends Component{
      * @param {{
      * battleUnits : [BattleUnit],
      * invertedForEnemy : boolean,
-     * onClickSquare : (squareId:number, contents:BattleUnit?)=>void
+     * onClickSquare : (squareId:number)=>void //, contents:BattleUnit?)=>void
      * }} props 
      */
     constructor(props){
@@ -46,7 +45,6 @@ export default class HalfChessboard extends Component{
             })
         }
 
-
         arr = arr.map((b, i)=>{
             if(b){
                 return <Square key={b.position} id={b.position}  select={this.select}  /*onClick={this.dropSelected}*/  >  <BattleUnitSprite battleUnit={b} />  </Square> 
@@ -68,15 +66,6 @@ export default class HalfChessboard extends Component{
     onClick = ()=>{
         this.props.onClickSquare(this.selectedSquare ) //,  this.props.battleUnits.filter(b=>b.position==this.selectedSquare)[0]  )
     }
-
-    // addToSelected = ()=>{
-    //     let b = this.props.getBattleUnit()  
-    //     b.position = this.selectedSquare
-    //     let battleUnits = this.props.battleUnits 
-    //     battleUnits =  battleUnits.filter(b => b.position!=this.selectedSquare )
-    //     battleUnits.push(b)
-    //     this.props.setBattleUnits(battleUnits)
-    // }
 
     // dropSelected = ()=>{
     //     let bs = this.props.battleUnits.filter(b=>b.position!=this.selectedSquare)
