@@ -18,7 +18,7 @@ export default class HalfChessboard extends Component{
      * @param {{
      * battleUnits : [BattleUnit],
      * invertedForEnemy : boolean,
-     * onClickSquare : (squareId:number)=>void //, contents:BattleUnit?)=>void
+     * onClickSquare : (squareId:number, squareContent:BattleUnit?)=>void
      * }} props 
      */
     constructor(props){
@@ -48,7 +48,7 @@ export default class HalfChessboard extends Component{
 
         arr = arr.map((b, i)=>{
             if(b){
-                return <Square key={b.position} id={b.position}  select={this.select}  /*onClick={this.dropSelected}*/  >  <BattleUnitSprite battleUnit={b} />  </Square> 
+                return <Square key={b.position} id={b.position}  select={this.select}  onClick={this.onClick} >  <BattleUnitSprite battleUnit={b} />  </Square> 
             }else{
                 return <Square key={i} id={i}  select={this.select}  onClick={this.onClick}  >  </Square>
             }
@@ -60,18 +60,15 @@ export default class HalfChessboard extends Component{
     }
 
     select = (squareId)=>{
-        console.log(squareId)
         this.selectedSquare = squareId
     }
 
     onClick = ()=>{
-        this.props.onClickSquare(this.selectedSquare ) //,  this.props.battleUnits.filter(b=>b.position==this.selectedSquare)[0]  )
+        console.log("clicked", this.selectedSquare)
+        this.props.onClickSquare(this.selectedSquare,  this.props.battleUnits.filter(b=>b.position==this.selectedSquare)[0]  )
     }
 
-    // dropSelected = ()=>{
-    //     let bs = this.props.battleUnits.filter(b=>b.position!=this.selectedSquare)
-    //     this.props.setBattleUnits(bs)
-    // }
+  
 
 
 }
