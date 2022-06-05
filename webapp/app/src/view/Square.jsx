@@ -10,8 +10,6 @@ export default class Square extends Component{
      * id : number, 
      * select : (squareId:number) => void,
      * onClick : ()=> void
-    //  * add : (squareId:number) => void
-    //  * drop : (squareId:number) => void
      * }} props 
      */
     constructor(props){
