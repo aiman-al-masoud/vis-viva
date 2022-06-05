@@ -4,11 +4,12 @@ import BattleUnitSprite from "./BattleUnitSprite.jsx";
 import Square from "./Square.jsx";
 
 /**
- * Allows to select BattleUnits on a grid.
- * 'Half' because you need two, to make a full battle field.
+ * Allows to select BattleUnits on a grid and knows how to render them based on their position.
+ *'Half' because you need two, to make a full battle field.
  */
 export default class HalfChessboard extends Component{
 
+    
     NUM_COLUMNS = 3
     NUM_ROWS = 3
 
