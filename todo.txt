@@ -1,7 +1,4 @@
-
-pass generic onClickSquare method down to HalfChessboard and then down to Square
-
-
+Add turns!
 
 
 USE CASE 1:
