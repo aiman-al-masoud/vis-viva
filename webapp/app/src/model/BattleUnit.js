@@ -11,8 +11,8 @@ export default class BattleUnit{
      */
     constructor(type, health, maxHealth, position, faction, icon){
         this.type = type
-        this.health = health
-        this.maxHealth = maxHealth
+        this.maxHealth = maxHealth ?? 100
+        this.health = health ?? this.maxHealth
         this.position = position
         this.faction = faction
         this.icon = icon

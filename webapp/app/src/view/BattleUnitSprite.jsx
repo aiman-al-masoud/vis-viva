@@ -21,6 +21,7 @@ export default class BattleUnitSprite extends Component {
             <div style={{ background: "black", width: "50px" }}>
                 <p>Ciao!</p>
             </div>
+            <p>{this.props.battleUnit.health}</p>
         </div>)
     }
 }
