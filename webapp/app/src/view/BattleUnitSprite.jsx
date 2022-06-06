@@ -12,15 +12,15 @@ export default class BattleUnitSprite extends Component {
     constructor(props) {
         super(props)
         this.props = props
+
+        console.log("BattleUnit", this.props.battleUnit)
     }
 
 
     render() {
         
         return (<div>
-            {/* <div> */}
-                <img src={this.props.battleUnit.getIcon()} className="battle-unit-sprite"  />
-            {/* </div> */}
+            <img src={this.props.battleUnit.getIcon()  } className="battle-unit-sprite"  />
             <p>{this.props.battleUnit.health}</p>
         </div>)
     }

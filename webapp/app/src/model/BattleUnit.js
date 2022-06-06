@@ -36,7 +36,16 @@ export default class BattleUnit{
      * @returns {string} icon
      */
     getIcon = ()=>{
-        switch(this.state){
+
+        let s = this.state
+
+        console.log(" battle unit state", s)
+        
+        // setTimeout(() => {
+            // this.state  = BattleUnit.STATE_IDLING
+        // }, 1000);
+
+        switch(s){
             case BattleUnit.STATE_IDLING:
                 return this.__idling_icon
             case BattleUnit.STATE_DYING:
@@ -44,8 +53,9 @@ export default class BattleUnit{
             case BattleUnit.STATE_TAKING_HIT:
                 return this.__taking_hit_icon
             case BattleUnit.STATE_ATTACKING:
-                return this.attacking_icon
+                return this.__attacking_icon
         }
+
     }
 
     toJSON(){

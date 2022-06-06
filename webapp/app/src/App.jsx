@@ -11,7 +11,8 @@ import AcceptChallengePrompt from "./view/AcceptChallengePrompt.jsx";
 import Styles from "./view/Styles.js"
 import LocalEvents from "./model/LocalEvents.js";
 import RemoteEvents from "./model/RemoteEvents.js";
-
+import BattleUnit from "./model/BattleUnit.js"
+import BattleUnitFactory from "./model/BattleUnitFactory.js";
 
 /**
  * All of the state *everywhere* is managed *solely* by App.
@@ -108,10 +109,14 @@ export default class App extends Component{
 
                     break
                 case RemoteEvents.READY:
+
+                    console.log("ready", )
+
                     let gm = this.state.game
-                    gm.setBattleUnits(gm.getOpponent(),  ev.battleUnits  )
+                    gm.setBattleUnits(gm.getOpponent(),  ev.battleUnits.map(b=>BattleUnitFactory.fromJson(b))  )
                     this.setGame(gm)
                     break
+
                 case RemoteEvents.FIRE: //incoming fire
 
                     let victimDead =  false
@@ -119,11 +124,12 @@ export default class App extends Component{
                     let ga = this.state.game
                     let battleUnits = ga.getBattleUnits(S.getInstance().get(S.USERNAME))
                     
+                    let toUnit = BattleUnitFactory.fromJson(ev.toUnit)
+                    
                     battleUnits.forEach(b=> {
-                        if(b.position == ev.toUnit.position){
+                        if(b.position == toUnit.position){
                             b.health-=10
                             victim = b
-
                             if(b.health<=0){
                                 victimDead = true
                             }
@@ -138,18 +144,25 @@ export default class App extends Component{
                     this.setGame(ga)
                     Server.instance().fireAck(this.state.game, victim, ev.id, victimDead,  ! battleUnits.some(x=>x) )
                     break
+
+
+
+
                 case RemoteEvents.FIRE_ACK:
 
                     let gam = this.state.game
                     let enemyBs = gam.getBattleUnits(gam.getOpponent())
-                    enemyBs = enemyBs.filter(b=> b.position !=ev.toUnit.position)
+                    let toUnit1 = BattleUnitFactory.fromJson(ev.toUnit)
+
+                    enemyBs = enemyBs.filter(b=> b.position !=toUnit1.position)
                     
                     if(ev.toUnit.health>0){
-                        enemyBs.push(ev.toUnit)
+                        enemyBs.push(toUnit1 )
                     }
 
                     gam.setBattleUnits(gam.getOpponent(), enemyBs)
-                    this.setGame(gam)                
+                    this.setGame(gam)     
+
                     break
 
                 case RemoteEvents.GAME_OVER:
@@ -199,6 +212,14 @@ export default class App extends Component{
      */
     sendFire = (fromUnit, toUnit)=>{
         Server.instance().fire(this.state.game, fromUnit, toUnit)
+        
+        let ga = this.state.game
+        let battleUnits = ga.getBattleUnits(S.getInstance().get(S.USERNAME))
+        battleUnits = battleUnits.filter(x => x.position != fromUnit.position)
+        fromUnit.setState(BattleUnit.STATE_ATTACKING)
+        battleUnits.push(fromUnit)
+        ga.setBattleUnits( S.getInstance().get(S.USERNAME), battleUnits )
+        this.setGame(ga)
     }
 
 
