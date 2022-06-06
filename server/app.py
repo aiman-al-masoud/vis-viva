@@ -108,6 +108,8 @@ def ready():
     battleUnits = request.json["battleUnits"]
     gameId = request.json["gameId"]
 
+    print("in ready()", username, battleUnits, gameId)
+
     # fetch and update Game's state
     g = Game.get_game_for(username)
     g.set_battle_units(username, battleUnits)
