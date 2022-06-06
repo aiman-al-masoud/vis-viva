@@ -219,7 +219,7 @@ export default class App extends Component {
         // this.animate(toUnit, BattleUnit.STATE_TAKING_HIT, true)
         let g = this.state.game
         g.animateBattleUnit(fromUnit, BattleUnit.STATE_ATTACKING)
-        g.animateBattleUnit(toUnit, BattleUnit.STATE_TAKING_HIT)
+        g.animateBattleUnit(toUnit, BattleUnit.STATE_TAKING_HIT, true)
         this.setGame(g)
     }
 
