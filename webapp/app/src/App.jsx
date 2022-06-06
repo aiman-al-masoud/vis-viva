@@ -97,7 +97,9 @@ export default class App extends Component {
         //handle events coming from the server
         let remoteEvents = await Server.instance().iAmOnline()
         remoteEvents.forEach(ev => {
-            console.log("LOOK HERE", ev)
+
+            console.log("event:", ev)
+
 
             switch (ev.eventType) {
                 case RemoteEvents.FIGHT_INVITE:
@@ -108,8 +110,7 @@ export default class App extends Component {
 
                     break
                 case RemoteEvents.READY:
-
-                    console.log("ready",)
+                    console.log("ready event", ev)
 
                     let gm = this.state.game
                     gm.setBattleUnits(gm.getOpponent(), ev.battleUnits.map(b => BattleUnitFactory.fromJson(b)))
@@ -143,8 +144,8 @@ export default class App extends Component {
                     ga.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
                     this.setGame(ga)
 
-                    this.animate(fromUnit, BattleUnit.STATE_ATTACKING, true)
-                    this.animate(toUnit, BattleUnit.STATE_TAKING_HIT)
+                    // this.animate(fromUnit, BattleUnit.STATE_ATTACKING, true)
+                    // this.animate(toUnit, BattleUnit.STATE_TAKING_HIT)
 
                     Server.instance().fireAck(this.state.game, victim, ev.id, victimDead, !battleUnits.some(x => x))
                     break
@@ -210,7 +211,8 @@ export default class App extends Component {
      */
     sendFire = (fromUnit, toUnit) => {
         Server.instance().fire(this.state.game, fromUnit, toUnit)
-        this.animate(fromUnit, BattleUnit.STATE_ATTACKING)
+        // this.animate(fromUnit, BattleUnit.STATE_ATTACKING)
+        // this.animate(toUnit, BattleUnit.STATE_TAKING_HIT, true)
     }
 
     /**
