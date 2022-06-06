@@ -145,6 +145,7 @@ export default class App extends Component {
                     this.setGame(ga)
 
                     this.animate(fromUnit, BattleUnit.STATE_ATTACKING, true)
+                    this.animate(toUnit, BattleUnit.STATE_TAKING_HIT)
 
                     Server.instance().fireAck(this.state.game, victim, ev.id, victimDead, !battleUnits.some(x => x))
                     break
