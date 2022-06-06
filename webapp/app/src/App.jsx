@@ -125,6 +125,7 @@ export default class App extends Component {
                     let battleUnits = ga.getBattleUnits(S.getInstance().get(S.USERNAME))
 
                     let toUnit = BattleUnitFactory.fromJson(ev.toUnit)
+                    let fromUnit = BattleUnitFactory.fromJson(ev.fromUnit)
 
                     battleUnits.forEach(b => {
                         if (b.position == toUnit.position) {
@@ -142,6 +143,9 @@ export default class App extends Component {
 
                     ga.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
                     this.setGame(ga)
+
+                    this.animate(fromUnit, BattleUnit.STATE_ATTACKING, true)
+
                     Server.instance().fireAck(this.state.game, victim, ev.id, victimDead, !battleUnits.some(x => x))
                     break
 
@@ -227,30 +231,33 @@ export default class App extends Component {
      * 
      * @param {BattleUnit} battleUnit 
      * @param {string} state 
+     * @param {boolean} enemy
      */
-    animate = (battleUnit, state) => {
+    animate = (battleUnit, state, enemy) => {
+
         let animationDurationMillisecs = 2000  
+        let ga = this.state.game
+        let username = enemy? ga.getOpponent() : S.getInstance().get(S.USERNAME)
 
         //attack animation
-        let ga = this.state.game
-        let battleUnits = ga.getBattleUnits(S.getInstance().get(S.USERNAME))
-        battleUnits = battleUnits.filter(x => x.position != battleUnit.position)
         battleUnit.setState(state)
+        let battleUnits = ga.getBattleUnits(username)
+        battleUnits = battleUnits.filter(x => x.position != battleUnit.position)
         battleUnits.push(battleUnit)
-        ga.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
+        ga.setBattleUnits(username, battleUnits)
         this.setGame(ga)
 
         //stop animation
         setTimeout(() => {
             let ga = this.state.game
-            let battleUnits = ga.getBattleUnits(S.getInstance().get(S.USERNAME))
+            let battleUnits = ga.getBattleUnits(username)
             battleUnits = battleUnits.filter(x => x.position != battleUnit.position)
             battleUnit.setState(BattleUnit.STATE_IDLING)
             battleUnits.push(battleUnit)
-            ga.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
+            ga.setBattleUnits(username, battleUnits)
             this.setGame(ga)
         }, animationDurationMillisecs);
-        
+
     }
 
 
