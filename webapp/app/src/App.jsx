@@ -9,7 +9,6 @@ import S from "./model/Settings.js";
 import Server from "./model/Server.js";
 import AcceptChallengePrompt from "./view/AcceptChallengePrompt.jsx";
 import Styles from "./view/Styles.js"
-import LocalEvents from "./model/LocalEvents.js";
 import RemoteEvents from "./model/RemoteEvents.js";
 import BattleUnit from "./model/BattleUnit.js"
 import BattleUnitFactory from "./model/BattleUnitFactory.js";
@@ -176,12 +175,6 @@ export default class App extends Component {
                     break
 
             }
-        })
-
-        //handle events generated locally
-        let localEvents = LocalEvents.get()
-        localEvents.forEach(ev => {
-            // console.log(ev)
         })
 
     }
