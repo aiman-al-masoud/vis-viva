@@ -51,15 +51,13 @@ export default class Game{
     animateBattleUnit = (battleUnit, animationState, isEnemy)=>{
         let username = isEnemy? this.getOpponent() : S.getInstance().get(S.USERNAME)
         let battleUnits = this.getBattleUnits(username)
+        
         battleUnits.forEach(b=>{
             if(b.position==battleUnit.position){
                 b.setAnimation(animationState)
             }
         })
-        // let bu = battleUnits.filter(x => x.position == battleUnit.position)[0]
-        // bu.setAnimation(animationState)        
-        // battleUnits = battleUnits.filter(x => x.position != battleUnit.position)        
-        // battleUnits.push(bu)
+
         this.setBattleUnits(username, battleUnits)
     }
 
