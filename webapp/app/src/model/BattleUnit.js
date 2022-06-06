@@ -5,7 +5,6 @@ export default class BattleUnit{
     static STATE_TAKING_HIT = "STATE_TAKING_HIT"
     static STATE_ATTACKING = "STATE_ATTACKING"
 
-
     /**
      * 
      * @param {string} type 
@@ -40,10 +39,6 @@ export default class BattleUnit{
         let s = this.state
 
         console.log(" battle unit state", s)
-        
-        // setTimeout(() => {
-            // this.state  = BattleUnit.STATE_IDLING
-        // }, 1000);
 
         switch(s){
             case BattleUnit.STATE_IDLING:

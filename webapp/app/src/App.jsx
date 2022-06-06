@@ -98,7 +98,7 @@ export default class App extends Component{
         //handle events coming from the server
         let remoteEvents = await Server.instance().iAmOnline()
         remoteEvents.forEach(ev=>{
-            console.log(ev)
+            console.log("LOOK HERE", ev)
 
             switch(ev.eventType){
                 case RemoteEvents.FIGHT_INVITE:
@@ -213,6 +213,7 @@ export default class App extends Component{
     sendFire = (fromUnit, toUnit)=>{
         Server.instance().fire(this.state.game, fromUnit, toUnit)
         
+        //attack animation
         let ga = this.state.game
         let battleUnits = ga.getBattleUnits(S.getInstance().get(S.USERNAME))
         battleUnits = battleUnits.filter(x => x.position != fromUnit.position)
@@ -220,6 +221,21 @@ export default class App extends Component{
         battleUnits.push(fromUnit)
         ga.setBattleUnits( S.getInstance().get(S.USERNAME), battleUnits )
         this.setGame(ga)
+
+        //stop attack animation
+        setTimeout(() => {
+            let ga = this.state.game
+            let battleUnits = ga.getBattleUnits(S.getInstance().get(S.USERNAME))
+            battleUnits = battleUnits.filter(x => x.position != fromUnit.position)
+            fromUnit.setState(BattleUnit.STATE_IDLING)
+            battleUnits.push(fromUnit)
+            ga.setBattleUnits( S.getInstance().get(S.USERNAME), battleUnits )
+            this.setGame(ga)
+        }, 2000);
+
+
+
+
     }
 
 
