@@ -7,7 +7,8 @@ export default class BattleUnitSprite extends Component {
 
     /**
      * 
-     * @param {{battleUnit : BattleUnit}} props 
+     * @param {{battleUnit : BattleUnit,
+     * invertedForEnemy:boolean}} props 
      */
     constructor(props) {
         super(props)
@@ -18,10 +19,14 @@ export default class BattleUnitSprite extends Component {
 
 
     render() {
-        
+
         return (<div>
-            <img src={this.props.battleUnit.getIcon()  } className="battle-unit-sprite"  />
-            <p>{this.props.battleUnit.health}</p>
-        </div>)
+
+                <div style={this.props.invertedForEnemy ? { transform: "scaleX(-1)" } : { transform: "scaleX(1)" }} >
+                    <img src={this.props.battleUnit.getIcon()} className="battle-unit-sprite" />
+                </div>
+
+                <p>{this.props.battleUnit.health}</p>
+            </div>)
     }
 }

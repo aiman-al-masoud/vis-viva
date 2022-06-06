@@ -46,9 +46,9 @@ export default class HalfChessboard extends Component{
 
         arr = arr.map((b, i)=>{
             if(b){
-                return <Square key={10000000*Math.random()} id={b.position}  select={this.select}  onClick={this.onClick} >  <BattleUnitSprite battleUnit={b} />  </Square> 
+                return <Square key={10000000*Math.random()} id={b.position}  select={this.select}  onClick={this.onClick}   >  <BattleUnitSprite battleUnit={b} invertedForEnemy={this.props.invertedForEnemy} />  </Square> 
             }else{
-                return <Square key={10000000*Math.random()} id={i}  select={this.select}  onClick={this.onClick}  >  </Square>
+                return <Square key={10000000*Math.random()} id={i}  select={this.select}  onClick={this.onClick}   >  </Square>
             }
         })
 
