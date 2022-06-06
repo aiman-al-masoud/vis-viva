@@ -46,3 +46,8 @@
 .square-highlighted{
     background: yellow;   
 }
+
+.battle-unit-sprite{
+    width: 9vw;
+    height: 9vw;
+}

@@ -18,9 +18,9 @@ export default class BattleUnitSprite extends Component {
     render() {
         
         return (<div>
-            <div style={{ background: "black", width: "50px" }}>
-                <p>Ciao!</p>
-            </div>
+            {/* <div> */}
+                <img src={this.props.battleUnit.getIcon()} className="battle-unit-sprite"  />
+            {/* </div> */}
             <p>{this.props.battleUnit.health}</p>
         </div>)
     }

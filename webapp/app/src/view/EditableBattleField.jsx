@@ -3,6 +3,7 @@ import BattleUnit from "../model/BattleUnit.js";
 import HalfChessboard from "./HalfChessboard.jsx";
 import Game from "../model/Game.js";
 import S from "../model/Settings.js";
+import Samurai from "../model/battle-units/Samurai.js";
 
 /**
  */
@@ -78,7 +79,7 @@ export default class EditableBattleField extends Component {
      * @returns {BattleUnit}
      */
     createNewBattleUnit = () => {
-        return new BattleUnit()
+        return new Samurai()
     }
 
 
