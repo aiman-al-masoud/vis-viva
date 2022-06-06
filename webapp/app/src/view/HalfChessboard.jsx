@@ -37,8 +37,6 @@ export default class HalfChessboard extends Component{
                 let row = parseInt( b.position /this.NUM_COLUMNS)
                 let s = (this.NUM_COLUMNS-1) +row*(2*this.NUM_COLUMNS)
                 arr[s - b.position] =  b
-
-                console.log("calculating pos:", "orig-pos", b.position,  "row", row, "sum", s,  "new-pos", s - b.position)
             })
         }else{
             this.props.battleUnits.forEach((b)=>{
@@ -64,7 +62,6 @@ export default class HalfChessboard extends Component{
     }
 
     onClick = ()=>{
-        console.log("clicked", this.selectedSquare)
         this.props.onClickSquare(this.selectedSquare,  this.props.battleUnits.filter(b=>b.position==this.selectedSquare)[0]  )
     }
 

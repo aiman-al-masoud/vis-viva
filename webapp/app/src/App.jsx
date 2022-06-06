@@ -188,7 +188,6 @@ export default class App extends Component{
     }
 
     onReady = () =>{
-        console.log("in onReady:",this.state.game)
         Server.instance().ready(this.state.game)   
         this.switchMode(App.FIGHT_BATTLE_FIELD)
     }

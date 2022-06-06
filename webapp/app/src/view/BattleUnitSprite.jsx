@@ -16,7 +16,7 @@ export default class BattleUnitSprite extends Component {
 
 
     render() {
-        console.log("battle unit sprite render", this.props.battleUnit)
+        
         return (<div>
             <div style={{ background: "black", width: "50px" }}>
                 <p>Ciao!</p>
