@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import EditableBattleField from "./view/EditableBattleField.jsx";
 import FightBattleField from "./view/FightBattleField.jsx";
 import Login from "./view/Login.jsx";
@@ -23,7 +23,7 @@ import BattleUnitFactory from "./model/BattleUnitFactory.js";
  * App modifies the Game object (passed down to all children of App).
  * 
  */
-export default class App extends Component{
+export default class App extends Component {
 
     //modes or 'pages' of the App
     static LOGIN = "LOGIN"
@@ -32,45 +32,45 @@ export default class App extends Component{
     static EDITABLE_BATTLE_FIELD = "EDITABLE_BATTLE_FIELD"
     static FIGHT_BATTLE_FIELD = "FIGHT_BATTLE_FIELD"
 
-    constructor(props){
+    constructor(props) {
         super(props)
 
 
         this.state = {
-            mode : App.LOGIN,
-            myUsername : undefined,
-            game : new Game(),
-            acceptChallengePrompt : false
+            mode: App.LOGIN,
+            myUsername: undefined,
+            game: new Game(),
+            acceptChallengePrompt: false
         }
     }
 
-    render(){
+    render() {
 
         let view
 
-        switch(this.state.mode){
+        switch (this.state.mode) {
             case App.LOGIN:
-                view =  <Login onLogin={this.onLogin} />
+                view = <Login onLogin={this.onLogin} />
                 break
             case App.MAIN_MENU:
-                view = <MainMenu goToWorldMap={()=>{this.switchMode(App.WORLD_MAP)}} />
+                view = <MainMenu goToWorldMap={() => { this.switchMode(App.WORLD_MAP) }} />
                 break
             case App.WORLD_MAP:
-                view =  <WorldMap getOnlineUsers={Server.instance().onlineUsers}  challengeUser={this.challengeUser} />
+                view = <WorldMap getOnlineUsers={Server.instance().onlineUsers} challengeUser={this.challengeUser} />
                 break
             case App.EDITABLE_BATTLE_FIELD:
                 view = <EditableBattleField game={this.state.game} setGame={this.setGame} onReady={this.onReady} />
                 break
             case App.FIGHT_BATTLE_FIELD:
-                view = <FightBattleField game={this.state.game}  sendFire={this.sendFire}/>
+                view = <FightBattleField game={this.state.game} sendFire={this.sendFire} />
                 break
         }
 
 
         return (<div>
 
-            <div style={this.state.acceptChallengePrompt?Styles.visible: Styles.invisible}>
-            <AcceptChallengePrompt game={this.state.game??{}} acceptChallenge={this.acceptChallenge} />
+            <div style={this.state.acceptChallengePrompt ? Styles.visible : Styles.invisible}>
+                <AcceptChallengePrompt game={this.state.game ?? {}} acceptChallenge={this.acceptChallenge} />
             </div>
 
             {view}
@@ -82,67 +82,67 @@ export default class App extends Component{
      * @param {string} mode 
      * @param {*} args 
      */
-    switchMode = (mode, args)=>{
-        this.setState({mode: mode})
+    switchMode = (mode, args) => {
+        this.setState({ mode: mode })
     }
 
-    onLogin = (username, password)=>{
+    onLogin = (username, password) => {
         S.getInstance().set(S.USERNAME, username)
         this.switchMode(App.MAIN_MENU, {})
         //start the event loop upon a successful login
         setInterval(this.eventLoop, 1000);
     }
 
-    eventLoop = async ()=>{
-       
+    eventLoop = async () => {
+
         //handle events coming from the server
         let remoteEvents = await Server.instance().iAmOnline()
-        remoteEvents.forEach(ev=>{
+        remoteEvents.forEach(ev => {
             console.log("LOOK HERE", ev)
 
-            switch(ev.eventType){
+            switch (ev.eventType) {
                 case RemoteEvents.FIGHT_INVITE:
                     let g = new Game(ev.challenger, ev.defender, ev.gameId)
-                    this.setState({ game: g , acceptChallengePrompt : true})
+                    this.setState({ game: g, acceptChallengePrompt: true })
                     break
                 case RemoteEvents.FIGHT_ACCEPT:
 
                     break
                 case RemoteEvents.READY:
 
-                    console.log("ready", )
+                    console.log("ready",)
 
                     let gm = this.state.game
-                    gm.setBattleUnits(gm.getOpponent(),  ev.battleUnits.map(b=>BattleUnitFactory.fromJson(b))  )
+                    gm.setBattleUnits(gm.getOpponent(), ev.battleUnits.map(b => BattleUnitFactory.fromJson(b)))
                     this.setGame(gm)
                     break
 
                 case RemoteEvents.FIRE: //incoming fire
 
-                    let victimDead =  false
+                    let victimDead = false
                     let victim = undefined
                     let ga = this.state.game
                     let battleUnits = ga.getBattleUnits(S.getInstance().get(S.USERNAME))
-                    
+
                     let toUnit = BattleUnitFactory.fromJson(ev.toUnit)
-                    
-                    battleUnits.forEach(b=> {
-                        if(b.position == toUnit.position){
-                            b.health-=10
+
+                    battleUnits.forEach(b => {
+                        if (b.position == toUnit.position) {
+                            b.health -= 10
                             victim = b
-                            if(b.health<=0){
+                            if (b.health <= 0) {
                                 victimDead = true
                             }
                         }
-                    } )
-                    
-                    if(victimDead){
-                        battleUnits = battleUnits.filter(b=> b.position !=victim.position)
+                    })
+
+                    if (victimDead) {
+                        battleUnits = battleUnits.filter(b => b.position != victim.position)
                     }
-                    
+
                     ga.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
                     this.setGame(ga)
-                    Server.instance().fireAck(this.state.game, victim, ev.id, victimDead,  ! battleUnits.some(x=>x) )
+                    Server.instance().fireAck(this.state.game, victim, ev.id, victimDead, !battleUnits.some(x => x))
                     break
 
 
@@ -154,14 +154,14 @@ export default class App extends Component{
                     let enemyBs = gam.getBattleUnits(gam.getOpponent())
                     let toUnit1 = BattleUnitFactory.fromJson(ev.toUnit)
 
-                    enemyBs = enemyBs.filter(b=> b.position !=toUnit1.position)
-                    
-                    if(ev.toUnit.health>0){
-                        enemyBs.push(toUnit1 )
+                    enemyBs = enemyBs.filter(b => b.position != toUnit1.position)
+
+                    if (ev.toUnit.health > 0) {
+                        enemyBs.push(toUnit1)
                     }
 
                     gam.setBattleUnits(gam.getOpponent(), enemyBs)
-                    this.setGame(gam)     
+                    this.setGame(gam)
 
                     break
 
@@ -175,7 +175,7 @@ export default class App extends Component{
 
         //handle events generated locally
         let localEvents = LocalEvents.get()
-        localEvents.forEach(ev=>{
+        localEvents.forEach(ev => {
             // console.log(ev)
         })
 
@@ -185,23 +185,23 @@ export default class App extends Component{
      * local user challenges remote user
      * @param {string} defender  username 
      */
-    challengeUser = (defender)=>{
-        let g = new Game( S.getInstance().get(S.USERNAME) , defender,   parseInt(999999*Math.random()) )
-        this.setState({game:g})
+    challengeUser = (defender) => {
+        let g = new Game(S.getInstance().get(S.USERNAME), defender, parseInt(999999 * Math.random()))
+        this.setState({ game: g })
         Server.instance().fightInvite(g)
         //go to EditableBattleField 
         this.switchMode(App.EDITABLE_BATTLE_FIELD)
     }
 
-    acceptChallenge = ()=>{
+    acceptChallenge = () => {
         Server.instance().fightAccept(this.state.game)
         //go to EditableBattleField 
         this.switchMode(App.EDITABLE_BATTLE_FIELD)
-        this.setState({acceptChallengePrompt :false})
+        this.setState({ acceptChallengePrompt: false })
     }
 
-    onReady = () =>{
-        Server.instance().ready(this.state.game)   
+    onReady = () => {
+        Server.instance().ready(this.state.game)
         this.switchMode(App.FIGHT_BATTLE_FIELD)
     }
 
@@ -210,43 +210,53 @@ export default class App extends Component{
      * @param {BattleUnit} fromUnit 
      * @param {BattleUnit} toUnit 
      */
-    sendFire = (fromUnit, toUnit)=>{
+    sendFire = (fromUnit, toUnit) => {
         Server.instance().fire(this.state.game, fromUnit, toUnit)
-        
-        //attack animation
-        let ga = this.state.game
-        let battleUnits = ga.getBattleUnits(S.getInstance().get(S.USERNAME))
-        battleUnits = battleUnits.filter(x => x.position != fromUnit.position)
-        fromUnit.setState(BattleUnit.STATE_ATTACKING)
-        battleUnits.push(fromUnit)
-        ga.setBattleUnits( S.getInstance().get(S.USERNAME), battleUnits )
-        this.setGame(ga)
-
-        //stop attack animation
-        setTimeout(() => {
-            let ga = this.state.game
-            let battleUnits = ga.getBattleUnits(S.getInstance().get(S.USERNAME))
-            battleUnits = battleUnits.filter(x => x.position != fromUnit.position)
-            fromUnit.setState(BattleUnit.STATE_IDLING)
-            battleUnits.push(fromUnit)
-            ga.setBattleUnits( S.getInstance().get(S.USERNAME), battleUnits )
-            this.setGame(ga)
-        }, 2000);
-
-
-
-
+        this.animate(fromUnit, BattleUnit.STATE_ATTACKING)
     }
-
-
 
     /**
      * 
      * @param {Game} game 
      */
-    setGame = (game)=>{
-        this.setState({game: game})
+    setGame = (game) => {
+        this.setState({ game: game })
     }
+
+    /**
+     * 
+     * @param {BattleUnit} battleUnit 
+     * @param {string} state 
+     */
+    animate = (battleUnit, state) => {
+        let animationDurationMillisecs = 2000  
+
+        //attack animation
+        let ga = this.state.game
+        let battleUnits = ga.getBattleUnits(S.getInstance().get(S.USERNAME))
+        battleUnits = battleUnits.filter(x => x.position != battleUnit.position)
+        battleUnit.setState(state)
+        battleUnits.push(battleUnit)
+        ga.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
+        this.setGame(ga)
+
+        //stop animation
+        setTimeout(() => {
+            let ga = this.state.game
+            let battleUnits = ga.getBattleUnits(S.getInstance().get(S.USERNAME))
+            battleUnits = battleUnits.filter(x => x.position != battleUnit.position)
+            battleUnit.setState(BattleUnit.STATE_IDLING)
+            battleUnits.push(battleUnit)
+            ga.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
+            this.setGame(ga)
+        }, animationDurationMillisecs);
+        
+    }
+
+
+
+
+
 
 
 
