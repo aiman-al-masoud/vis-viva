@@ -14,9 +14,6 @@ import BattleUnit from "./model/BattleUnit.js"
 import BattleUnitFactory from "./model/BattleUnitFactory.js";
 
 
-// idea: set everything that needs to be set in a copy of game, then setGame once!!!!
-
-
 /**
  * All of the state *everywhere* is managed *solely* by App.
  * 
@@ -146,16 +143,11 @@ export default class App extends Component {
                     }
 
                     ga.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
-                    // this.animate(fromUnit, BattleUnit.STATE_ATTACKING, true)
-                    // this.animate(toUnit, BattleUnit.STATE_TAKING_HIT)
                     ga.animateBattleUnit(fromUnit, BattleUnit.STATE_ATTACKING, true)
                     ga.animateBattleUnit(toUnit, BattleUnit.STATE_TAKING_HIT)
                     this.setGame(ga)
                     Server.instance().fireAck(this.state.game, victim, ev.id, victimDead, !battleUnits.some(x => x))
                     break
-
-
-
 
                 case RemoteEvents.FIRE_ACK:
 
@@ -192,13 +184,11 @@ export default class App extends Component {
         let g = new Game(S.getInstance().get(S.USERNAME), defender, parseInt(999999 * Math.random()) , this.setGame )
         this.setState({ game: g })
         Server.instance().fightInvite(g)
-        //go to EditableBattleField 
         this.switchMode(App.EDITABLE_BATTLE_FIELD)
     }
 
     acceptChallenge = () => {
         Server.instance().fightAccept(this.state.game)
-        //go to EditableBattleField 
         this.switchMode(App.EDITABLE_BATTLE_FIELD)
         this.setState({ acceptChallengePrompt: false })
     }
@@ -215,8 +205,6 @@ export default class App extends Component {
      */
     sendFire = (fromUnit, toUnit) => {
         Server.instance().fire(this.state.game, fromUnit, toUnit)
-        // this.animate(fromUnit, BattleUnit.STATE_ATTACKING)
-        // this.animate(toUnit, BattleUnit.STATE_TAKING_HIT, true)
         let g = this.state.game
         g.animateBattleUnit(fromUnit, BattleUnit.STATE_ATTACKING)
         g.animateBattleUnit(toUnit, BattleUnit.STATE_TAKING_HIT, true)
@@ -230,45 +218,5 @@ export default class App extends Component {
     setGame = (game) => {
         this.setState({ game: game })
     }
-
-    // /**
-    //  * 
-    //  * @param {BattleUnit} battleUnit 
-    //  * @param {string} state 
-    //  * @param {boolean} enemy
-    //  */
-    // animate = (battleUnit, state, enemy) => {
-
-    //     let animationDurationMillisecs = 2000  
-    //     let ga = this.state.game
-    //     let username = enemy? ga.getOpponent() : S.getInstance().get(S.USERNAME)
-
-    //     //attack animation
-    //     battleUnit.setAnimation(state)
-    //     let battleUnits = ga.getBattleUnits(username)
-    //     battleUnits = battleUnits.filter(x => x.position != battleUnit.position)
-    //     battleUnits.push(battleUnit)
-    //     ga.setBattleUnits(username, battleUnits)
-    //     this.setGame(ga)
-
-    //     //stop animation
-    //     setTimeout(() => {
-    //         let ga = this.state.game
-    //         let battleUnits = ga.getBattleUnits(username)
-    //         battleUnits = battleUnits.filter(x => x.position != battleUnit.position)
-    //         battleUnit.setAnimation(BattleUnit.STATE_IDLING)
-    //         battleUnits.push(battleUnit)
-    //         ga.setBattleUnits(username, battleUnits)
-    //         this.setGame(ga)
-    //     }, animationDurationMillisecs);
-
-    // }
-
-
-
-
-
-
-
 
 }

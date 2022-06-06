@@ -63,9 +63,8 @@ export default class Game{
         })
         this.setBattleUnits(username, battleUnits)
 
-
+        // stop animation after some seconds
         setTimeout(() => {
-            
             
             let battleUnits = this.getBattleUnits(username)
 
@@ -82,9 +81,5 @@ export default class Game{
 
 
     }
-
-
-
-
 
 }
