@@ -107,7 +107,7 @@ export default class App extends Component {
 
             switch (ev.eventType) {
                 case RemoteEvents.FIGHT_INVITE:
-                    let g = new Game(ev.challenger, ev.defender, ev.gameId)
+                    let g = new Game(ev.challenger, ev.defender, ev.gameId, this.setGame)
                     this.setState({ game: g, acceptChallengePrompt: true })
                     break
                 case RemoteEvents.FIGHT_ACCEPT:
@@ -189,7 +189,7 @@ export default class App extends Component {
      * @param {string} defender  username 
      */
     challengeUser = (defender) => {
-        let g = new Game(S.getInstance().get(S.USERNAME), defender, parseInt(999999 * Math.random()))
+        let g = new Game(S.getInstance().get(S.USERNAME), defender, parseInt(999999 * Math.random()) , this.setGame )
         this.setState({ game: g })
         Server.instance().fightInvite(g)
         //go to EditableBattleField 

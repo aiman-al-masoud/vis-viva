@@ -8,14 +8,18 @@ export default class Game{
      * @param {string} challenger 
      * @param {string} defender 
      * @param {int} gameId 
+     * @param { (game:Game)=>Promise<void> } setGame 
      */
-    constructor(challenger, defender, gameId){
+    constructor(challenger, defender, gameId, setGame){
         this.challenger = challenger
         this.defender = defender
         this.gameId = gameId 
         this.__battleUnitsDictionary = { }
         this.__battleUnitsDictionary[challenger] = []
         this.__battleUnitsDictionary[defender] = []
+        this.setGame = setGame
+
+        console.log("in constructor of Game", setGame, this.setGame)
     }
 
     /**
@@ -49,16 +53,34 @@ export default class Game{
      * @param {boolean} isEnemy 
      */
     animateBattleUnit = (battleUnit, animationState, isEnemy)=>{
+
         let username = isEnemy? this.getOpponent() : S.getInstance().get(S.USERNAME)
         let battleUnits = this.getBattleUnits(username)
-        
         battleUnits.forEach(b=>{
             if(b.position==battleUnit.position){
                 b.setAnimation(animationState)
             }
         })
-
         this.setBattleUnits(username, battleUnits)
+
+
+        setTimeout(() => {
+            
+            
+            let battleUnits = this.getBattleUnits(username)
+
+            battleUnits.forEach(b=>{
+                if(b.position==battleUnit.position){
+                    b.setAnimation(BattleUnit.STATE_IDLING)
+                }
+            })
+            this.setBattleUnits(username, battleUnits)
+            console.log("this is this:", this)
+            this.setGame(this)
+
+        }, 1000)
+
+
     }
 
 
