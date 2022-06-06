@@ -26,7 +26,7 @@ export default class BattleUnit{
         this.state = BattleUnit.STATE_IDLING
     }
 
-    setState = (state)=>{
+    setAnimation = (state)=>{
         this.state = state
     } 
 

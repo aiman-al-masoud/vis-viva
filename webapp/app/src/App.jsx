@@ -13,6 +13,10 @@ import RemoteEvents from "./model/RemoteEvents.js";
 import BattleUnit from "./model/BattleUnit.js"
 import BattleUnitFactory from "./model/BattleUnitFactory.js";
 
+
+// idea: set everything that needs to be set in a copy of game, then setGame once!!!!
+
+
 /**
  * All of the state *everywhere* is managed *solely* by App.
  * 
@@ -213,6 +217,10 @@ export default class App extends Component {
         Server.instance().fire(this.state.game, fromUnit, toUnit)
         // this.animate(fromUnit, BattleUnit.STATE_ATTACKING)
         // this.animate(toUnit, BattleUnit.STATE_TAKING_HIT, true)
+        let g = this.state.game
+        g.animateBattleUnit(fromUnit, BattleUnit.STATE_ATTACKING)
+        g.animateBattleUnit(toUnit, BattleUnit.STATE_TAKING_HIT)
+        this.setGame(g)
     }
 
     /**
@@ -223,38 +231,38 @@ export default class App extends Component {
         this.setState({ game: game })
     }
 
-    /**
-     * 
-     * @param {BattleUnit} battleUnit 
-     * @param {string} state 
-     * @param {boolean} enemy
-     */
-    animate = (battleUnit, state, enemy) => {
+    // /**
+    //  * 
+    //  * @param {BattleUnit} battleUnit 
+    //  * @param {string} state 
+    //  * @param {boolean} enemy
+    //  */
+    // animate = (battleUnit, state, enemy) => {
 
-        let animationDurationMillisecs = 2000  
-        let ga = this.state.game
-        let username = enemy? ga.getOpponent() : S.getInstance().get(S.USERNAME)
+    //     let animationDurationMillisecs = 2000  
+    //     let ga = this.state.game
+    //     let username = enemy? ga.getOpponent() : S.getInstance().get(S.USERNAME)
 
-        //attack animation
-        battleUnit.setState(state)
-        let battleUnits = ga.getBattleUnits(username)
-        battleUnits = battleUnits.filter(x => x.position != battleUnit.position)
-        battleUnits.push(battleUnit)
-        ga.setBattleUnits(username, battleUnits)
-        this.setGame(ga)
+    //     //attack animation
+    //     battleUnit.setAnimation(state)
+    //     let battleUnits = ga.getBattleUnits(username)
+    //     battleUnits = battleUnits.filter(x => x.position != battleUnit.position)
+    //     battleUnits.push(battleUnit)
+    //     ga.setBattleUnits(username, battleUnits)
+    //     this.setGame(ga)
 
-        //stop animation
-        setTimeout(() => {
-            let ga = this.state.game
-            let battleUnits = ga.getBattleUnits(username)
-            battleUnits = battleUnits.filter(x => x.position != battleUnit.position)
-            battleUnit.setState(BattleUnit.STATE_IDLING)
-            battleUnits.push(battleUnit)
-            ga.setBattleUnits(username, battleUnits)
-            this.setGame(ga)
-        }, animationDurationMillisecs);
+    //     //stop animation
+    //     setTimeout(() => {
+    //         let ga = this.state.game
+    //         let battleUnits = ga.getBattleUnits(username)
+    //         battleUnits = battleUnits.filter(x => x.position != battleUnit.position)
+    //         battleUnit.setAnimation(BattleUnit.STATE_IDLING)
+    //         battleUnits.push(battleUnit)
+    //         ga.setBattleUnits(username, battleUnits)
+    //         this.setGame(ga)
+    //     }, animationDurationMillisecs);
 
-    }
+    // }
 
 
 
