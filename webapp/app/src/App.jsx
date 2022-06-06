@@ -146,11 +146,11 @@ export default class App extends Component {
                     }
 
                     ga.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
-                    this.setGame(ga)
-
                     // this.animate(fromUnit, BattleUnit.STATE_ATTACKING, true)
                     // this.animate(toUnit, BattleUnit.STATE_TAKING_HIT)
-
+                    ga.animateBattleUnit(fromUnit, BattleUnit.STATE_ATTACKING, true)
+                    ga.animateBattleUnit(toUnit, BattleUnit.STATE_TAKING_HIT)
+                    this.setGame(ga)
                     Server.instance().fireAck(this.state.game, victim, ev.id, victimDead, !battleUnits.some(x => x))
                     break
 
