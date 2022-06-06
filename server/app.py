@@ -143,12 +143,16 @@ def fire():
     Id = request.json["id"]
     gameId = request.json["gameId"]
 
-    # fetch and update Game's state    
+    # fetch Game's state    
     g = Game.get_game_for(username)
+
+    if g.get_turn() != username:
+        return f"error: it's not your ({username}) turn to play", 400
 
     # relay fire event to victim
     ev = FireEvent(fromUnit, toUnit, Id, gameId)
     Events.instance().add_event( g.get_other_player(username) , ev)
+    g.change_turn()
 
     return "success"
 

@@ -13,6 +13,7 @@ class Game:
         self.__defender = defender
         self.__gameId = gameId
         self.__battle_units_dict = {}
+        self.__username_current_turn = challenger # challenger gets first move
         Game.GAME_POOL.append(self)
     
     def challenger(self)->str:
@@ -49,6 +50,20 @@ class Game:
             raise ValueError(f"error: specified player '{username}' not in game: {self}")
 
         return self.__challenger if username==self.__defender else self.__defender
+
+
+    def get_turn(self)->str:
+        """
+        Returns the username of the player whose turn it is.
+        """
+        return self.__username_current_turn
+
+    def change_turn(self):
+        """
+        Current player is done playing, it's the other's turn.
+        """
+        self.__username_current_turn = self.get_other_player(self.__username_current_turn)
+
 
     @staticmethod
     def games()->['Game']:
