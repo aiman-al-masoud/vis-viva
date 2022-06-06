@@ -36,6 +36,9 @@ def i_am_online():
 
     # return user's events
     evs = Events.instance().pop_event_queue(username)
+
+    print("i_am_online()", "username:", username, "events:", evs)
+
     return json.dumps({ "events" : evs })
 
 @app.route('/online-users', methods = ["GET", "POST"])                                                                                                 
@@ -108,7 +111,7 @@ def ready():
     battleUnits = request.json["battleUnits"]
     gameId = request.json["gameId"]
 
-    print("in ready()", username, battleUnits, gameId)
+    print("ready()", "username:", username, battleUnits, gameId)
 
     # fetch and update Game's state
     g = Game.get_game_for(username)
