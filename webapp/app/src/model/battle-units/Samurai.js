@@ -1,8 +1,8 @@
 import BattleUnit from "../BattleUnit";
-import IdlingIcon from "../../../res/icons/samurai/idling.gif"
-import DyingIcon from "../../../res/icons/samurai/dying.gif"
-import AttackingIcon from "../../../res/icons/samurai/attacking.gif"
-import TakingHitIcon from "../../../res/icons/samurai/taking-hit.gif"
+import IdlingIcon from "../../../res/icons/samurai/idle.gif"
+import DyingIcon from "../../../res/icons/samurai/die.gif"
+import AttackingIcon from "../../../res/icons/samurai/attack.gif"
+import TakingHitIcon from "../../../res/icons/samurai/take-hit.gif"
 
 
 export default class Samurai  extends BattleUnit{
