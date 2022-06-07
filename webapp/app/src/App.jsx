@@ -158,15 +158,15 @@ export default class App extends Component {
                     let enemyBs = gam.getBattleUnits(gam.getOpponent())
                     let toUnit1 = BattleUnitFactory.fromJson(ev.toUnit)
 
-                    enemyBs = enemyBs.filter(b => b.position != toUnit1.position)
-
                     if (ev.toUnit.health > 0) {
+                        enemyBs = enemyBs.filter(b => b.position != toUnit1.position)
                         enemyBs.push(toUnit1)
+                        gam.setBattleUnits(gam.getOpponent(), enemyBs)
+                    }else{
+                        gam.killBattleUnit(toUnit1,true)
                     }
 
-                    gam.setBattleUnits(gam.getOpponent(), enemyBs)
                     this.setGame(gam)
-
                     break
 
                 case RemoteEvents.GAME_OVER:
