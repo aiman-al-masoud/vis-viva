@@ -74,12 +74,39 @@ export default class Game{
                 }
             })
             this.setBattleUnits(username, battleUnits)
-            console.log("this is this:", this)
             this.setGame(this)
 
         }, 2000)
 
+    }
+
+
+
+
+    killBattleUnit = (battleUnit, isEnemy) =>{
+
+        let username = isEnemy? this.getOpponent() : S.getInstance().get(S.USERNAME)
+        let battleUnits = this.getBattleUnits(username)
+        battleUnits.forEach(b=>{
+            if(b.position==battleUnit.position){
+                b.setAnimation(BattleUnit.STATE_DYING)
+            }
+        })
+        this.setBattleUnits(username, battleUnits)
+
+        // stop animation after some seconds and remove unit
+        setTimeout(() => {
+            
+            let battleUnits = this.getBattleUnits(username)
+            battleUnits = battleUnits.filter(b => b.position != battleUnit.position)
+            this.setBattleUnits(username, battleUnits)
+            this.setGame(this)
+
+        }, 2000)
 
     }
+
+
+
 
 }

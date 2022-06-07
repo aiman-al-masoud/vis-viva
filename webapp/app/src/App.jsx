@@ -139,14 +139,17 @@ export default class App extends Component {
                     })
 
                     if (victimDead) {
-                        battleUnits = battleUnits.filter(b => b.position != victim.position)
+                        console.log("victim is dead")
+                        ga.killBattleUnit(toUnit, false)
+                    }else{
+                        ga.animateBattleUnit(toUnit, BattleUnit.STATE_TAKING_HIT)
+                        ga.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
                     }
 
-                    ga.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
                     ga.animateBattleUnit(fromUnit, BattleUnit.STATE_ATTACKING, true)
-                    ga.animateBattleUnit(toUnit, BattleUnit.STATE_TAKING_HIT)
                     this.setGame(ga)
-                    Server.instance().fireAck(this.state.game, victim, ev.id, victimDead, !battleUnits.some(x => x))
+
+                    Server.instance().fireAck(this.state.game, victim, ev.id, victimDead,   (battleUnits.map(x=> x?1:0 ).reduce((a,b)=>a+b)<=1) && victimDead   )
                     break
 
                 case RemoteEvents.FIRE_ACK:
