@@ -77,7 +77,7 @@ export default class Game{
             console.log("this is this:", this)
             this.setGame(this)
 
-        }, 1000)
+        }, 2000)
 
 
     }
