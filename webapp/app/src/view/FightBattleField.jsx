@@ -32,15 +32,28 @@ export default class FightBattleField extends Component {
     render() {
 
         return (<div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "auto auto", background: "blue" }}>
+
+                <div className="center-container">
+                    <p>{S.getInstance().get(S.USERNAME)}</p>
+                </div>
+
+                <div className="center-container">
+                    <p>{this.props.game.getOpponent()}</p>
+                </div>
+
+            </div>
+
             <div style={{ display: "grid", gridTemplateColumns: "auto auto" }} >
-                
+
                 <div className="center-container">
                     <HalfChessboard battleUnits={this.props.game.getBattleUnits(S.getInstance().get(S.USERNAME))} onClickSquare={this.selectMyUnit} />
                 </div>
                 <div className="center-container">
                     <HalfChessboard battleUnits={this.props.game.getBattleUnits(this.props.game.getOpponent())} invertedForEnemy={true} onClickSquare={this.selectEnemyUnit} />
                 </div>
-                
+
             </div>
         </div>)
     }
