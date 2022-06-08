@@ -17,6 +17,8 @@ export default class Game{
         this.__battleUnitsDictionary = { }
         this.__battleUnitsDictionary[challenger] = []
         this.__battleUnitsDictionary[defender] = []
+        this.__username_current_turn = challenger //challenger begins playing 
+
         this.setGame = setGame
 
         console.log("in constructor of Game", setGame, this.setGame)
@@ -80,9 +82,11 @@ export default class Game{
 
     }
 
-
-
-
+    /**
+     * 
+     * @param {BattleUnit} battleUnit 
+     * @param {boolean} isEnemy 
+     */
     killBattleUnit = (battleUnit, isEnemy) =>{
 
         let username = isEnemy? this.getOpponent() : S.getInstance().get(S.USERNAME)
@@ -104,6 +108,21 @@ export default class Game{
 
         }, 2000)
 
+    }
+
+    /**
+     * 
+     * @returns boolean 
+     */
+    isMyTurn = ()=>{
+        return this.__username_current_turn == S.getInstance().get(S.USERNAME)
+    }
+
+    /**
+     * 
+     */
+    changeTurn = ()=>{
+        this.__username_current_turn = this.__username_current_turn == this.challenger ? this.defender : this.challenger
     }
 
 

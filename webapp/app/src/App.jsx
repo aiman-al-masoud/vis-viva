@@ -147,9 +147,11 @@ export default class App extends Component {
                     }
 
                     ga.animateBattleUnit(fromUnit, BattleUnit.STATE_ATTACKING, true)
+                    ga.changeTurn()
                     this.setGame(ga)
 
                     Server.instance().fireAck(this.state.game, victim, ev.id, victimDead,   (battleUnits.map(x=> x?1:0 ).reduce((a,b)=>a+b)<=1) && victimDead   )
+                    
                     break
 
                 case RemoteEvents.FIRE_ACK:
@@ -207,11 +209,16 @@ export default class App extends Component {
      * @param {BattleUnit} toUnit 
      */
     sendFire = (fromUnit, toUnit) => {
-        Server.instance().fire(this.state.game, fromUnit, toUnit)
-        let g = this.state.game
-        g.animateBattleUnit(fromUnit, BattleUnit.STATE_ATTACKING)
-        g.animateBattleUnit(toUnit, BattleUnit.STATE_TAKING_HIT, true)
-        this.setGame(g)
+
+        if(this.state.game.isMyTurn()){
+            Server.instance().fire(this.state.game, fromUnit, toUnit)
+            let g = this.state.game
+            g.animateBattleUnit(fromUnit, BattleUnit.STATE_ATTACKING)
+            g.animateBattleUnit(toUnit, BattleUnit.STATE_TAKING_HIT, true)
+            g.changeTurn()
+            this.setGame(g)
+        }
+
     }
 
     /**
