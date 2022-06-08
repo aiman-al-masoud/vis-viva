@@ -1,3 +1,15 @@
+# Gameplay
+-> power of hit in fire event and server check
+-> range of hit
+-> turns made clear in FightBattleField
+-> better health indicator
+-> better selected unit indicator
+-> choose background 
+-> center chessboard
+
+
+
+
 Extras:
 -> random challenger button
 
