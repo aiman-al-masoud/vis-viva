@@ -6,6 +6,7 @@
 -> better selected unit indicator
 -> choose background 
 -> center chessboard
+-> gameover popup
 
 
 
