@@ -23,7 +23,7 @@ export default class FightBattleField extends Component {
         this.props = props
 
         this.state = {
-            myUnit : undefined
+            myUnit: undefined
         }
 
     }
@@ -33,8 +33,14 @@ export default class FightBattleField extends Component {
 
         return (<div>
             <div style={{ display: "grid", gridTemplateColumns: "auto auto" }} >
-                <HalfChessboard battleUnits={  this.props.game.getBattleUnits(S.getInstance().get(S.USERNAME))  }  onClickSquare={this.selectMyUnit}  />
-                <HalfChessboard battleUnits={  this.props.game.getBattleUnits(this.props.game.getOpponent()) }   invertedForEnemy={true}   onClickSquare={this.selectEnemyUnit} />
+                
+                <div className="center-container">
+                    <HalfChessboard battleUnits={this.props.game.getBattleUnits(S.getInstance().get(S.USERNAME))} onClickSquare={this.selectMyUnit} />
+                </div>
+                <div className="center-container">
+                    <HalfChessboard battleUnits={this.props.game.getBattleUnits(this.props.game.getOpponent())} invertedForEnemy={true} onClickSquare={this.selectEnemyUnit} />
+                </div>
+                
             </div>
         </div>)
     }
@@ -44,18 +50,18 @@ export default class FightBattleField extends Component {
      * @param {number} squareId 
      * @param {BattleUnit} squareContent 
      */
-    selectMyUnit = (squareId, squareContent)=>{
-        this.setState({  myUnit : squareContent  })
+    selectMyUnit = (squareId, squareContent) => {
+        this.setState({ myUnit: squareContent })
     }
 
     /**
      * @param {number} squareId 
      * @param {BattleUnit} squareContent 
      */
-    selectEnemyUnit = (squareId, squareContent)=>{
+    selectEnemyUnit = (squareId, squareContent) => {
         this.props.sendFire(this.state.myUnit, squareContent)
     }
-    
+
 
 
 }
