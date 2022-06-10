@@ -8,7 +8,7 @@
 -> center chessboard
 -> gameover popup
 -> add select battle unit kind in EditableBattleField
-
+-> user signup and ranking
 
 
 
