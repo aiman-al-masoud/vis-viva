@@ -7,6 +7,7 @@
 -> choose background 
 -> center chessboard
 -> gameover popup
+-> add select battle unit kind in EditableBattleField
 
 
 
