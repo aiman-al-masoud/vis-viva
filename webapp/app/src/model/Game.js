@@ -98,7 +98,7 @@ export default class Game{
         })
         this.setBattleUnits(username, battleUnits)
 
-        // stop animation after some seconds and remove unit
+        //  remove unit after some seconds 
         setTimeout(() => {
             
             let battleUnits = this.getBattleUnits(username)
@@ -106,7 +106,7 @@ export default class Game{
             this.setBattleUnits(username, battleUnits)
             this.setGame(this)
 
-        }, 2000)
+        }, 1200)
 
     }
 
