@@ -4,6 +4,8 @@ import HalfChessboard from "./HalfChessboard.jsx";
 import Game from "../model/Game.js";
 import S from "../model/Settings.js";
 import Samurai from "../model/battle-units/Samurai.js";
+import BackgroundImage from "../../res/icons/backgrounds/bg1.png"
+
 
 /**
  */
@@ -23,7 +25,7 @@ export default class EditableBattleField extends Component {
     }
 
     render() {
-        return (<div>
+        return (<div style={{backgroundImage:  `url(${BackgroundImage})` , backgroundSize:"cover" }}>
             <h1>Field your troops!</h1>
             <button onClick={this.props.onReady}>Ready!</button>
             <HalfChessboard battleUnits={this.props.game.getBattleUnits(S.getInstance().get(S.USERNAME))} onClickSquare={this.onClickSquare} />

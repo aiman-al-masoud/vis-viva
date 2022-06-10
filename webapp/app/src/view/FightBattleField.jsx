@@ -3,7 +3,7 @@ import Game from "../model/Game.js";
 import HalfChessboard from "./HalfChessboard.jsx";
 import S from "../model/Settings.js";
 import BattleUnit from "../model/BattleUnit.js";
-
+import BackgroundImage from "../../res/icons/backgrounds/bg1.png"
 
 /**
  * 
@@ -31,7 +31,7 @@ export default class FightBattleField extends Component {
 
     render() {
 
-        return (<div>
+        return (<div style={{backgroundImage:  `url(${BackgroundImage})` , backgroundSize:"cover" }}>
 
             <div style={{ display: "grid", gridTemplateColumns: "auto auto", background: "blue" }}>
 
