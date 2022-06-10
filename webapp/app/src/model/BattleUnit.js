@@ -36,7 +36,15 @@ export default class BattleUnit{
      */
     getIcon = ()=>{
 
-        let s = this.state
+        let s = this.state 
+        
+        if(s==BattleUnit.STATE_DYING){
+            this.dead = true
+        }
+
+        if(this.dead){
+            return this.__dying_icon
+        }
 
         console.log(" battle unit state", s)
 
