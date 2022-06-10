@@ -60,3 +60,10 @@
     text-align: center;
     align-items: center;
 }
+
+.highlighted-player-name{
+    color: red;
+    font-weight: bold;
+}
+
+

@@ -35,11 +35,11 @@ export default class FightBattleField extends Component {
 
             <div style={{ display: "grid", gridTemplateColumns: "auto auto", background: "blue" }}>
 
-                <div className="center-container">
+                <div className={ this.props.game.isMyTurn()?  "center-container  highlighted-player-name" : "center-container"      }  >
                     <p>{S.getInstance().get(S.USERNAME)}</p>
                 </div>
 
-                <div className="center-container">
+                <div className={ (!this.props.game.isMyTurn())?  "center-container  highlighted-player-name" : "center-container" }>
                     <p>{this.props.game.getOpponent()}</p>
                 </div>
 
