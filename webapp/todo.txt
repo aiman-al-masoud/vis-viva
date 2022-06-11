@@ -1,15 +1,9 @@
 # Gameplay
--> power of hit in fire event and server check
 -> range of hit
--> turns made clear in FightBattleField: in Game.js and fire() in App
 -> better health indicator
 -> better selected unit indicator
--> choose background 
--> center chessboard
 -> gameover popup
--> add select battle unit kind in EditableBattleField
 -> user signup and ranking
-
 
 
 Extras:
