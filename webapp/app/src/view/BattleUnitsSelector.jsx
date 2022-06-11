@@ -23,7 +23,7 @@ export default class BattleUnitsSelector extends Component {
 
         return (<div>
 
-            <img src={this.props.getIcon(this.props.selectedType)} />
+            <img src={this.props.getIcon(this.props.selectedType)} width="200"/>
             <p>{this.props.selectedType}</p>
             <button >Previous</button>
             <button >Next</button>
