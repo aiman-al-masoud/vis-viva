@@ -9,16 +9,16 @@ export default class BattleUnit{
      * 
      * @param {string} type 
      * @param {number} maxHealth 
-    //  * @param {number} position square number in a grid
+     * @param {number} damage attack power of unit
     //  * @param {string} faction username of player
      */
-    constructor(type, maxHealth){
+    constructor(type, maxHealth, damage){
         this.type = type
         this.maxHealth = maxHealth ?? 100
         this.health = this.maxHealth
+        this.damage = damage
         this.position = 0  // or undef 
         // this.faction = faction
-        // this.icon = icon
         this.__idling_icon = undefined
         this.__dying_icon = undefined
         this.__taking_hit_icon = undefined

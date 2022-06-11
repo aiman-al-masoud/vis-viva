@@ -14,7 +14,7 @@ export default class EliteSamurai  extends BattleUnit{
      * @param {number} initialHealth 
      */
     constructor(){
-        super(EliteSamurai.TYPE, 40)
+        super(EliteSamurai.TYPE, 40, 20)
         this.__idling_icon = IdlingIcon
         this.__dying_icon = DyingIcon
         this.__attacking_icon = AttackingIcon

@@ -130,7 +130,7 @@ export default class App extends Component {
 
                     battleUnits.forEach(b => {
                         if (b.position == toUnit.position) {
-                            b.health -= 10
+                            b.health -= fromUnit.damage
                             victim = b
                             if (b.health <= 0) {
                                 victimDead = true
