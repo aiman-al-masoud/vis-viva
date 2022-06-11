@@ -1,13 +1,13 @@
 import BattleUnit from "../BattleUnit";
-import IdlingIcon from "../../../res/icons/samurai/idle.gif"
-import DyingIcon from "../../../res/icons/samurai/die.gif"
-import AttackingIcon from "../../../res/icons/samurai/attack.gif"
-import TakingHitIcon from "../../../res/icons/samurai/take-hit.gif"
+import IdlingIcon from "../../../res/icons/master/idle.gif"
+import DyingIcon from "../../../res/icons/master/die.gif"
+import AttackingIcon from "../../../res/icons/master/attack.gif"
+import TakingHitIcon from "../../../res/icons/master/take-hit.gif"
 
 
 export default class EliteSamurai  extends BattleUnit{
 
-    static TYPE = "Elite Samurai"
+    static TYPE = "Master"
 
     /**
      * 
