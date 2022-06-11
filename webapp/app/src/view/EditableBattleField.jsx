@@ -24,6 +24,10 @@ export default class EditableBattleField extends Component {
     constructor(props) {
         super(props)
         this.props = props
+
+        this.state = {
+            selectedBattleUnitType  : BattleUnitFactory.SAMURAI
+        }
     }
 
     render() {
@@ -33,9 +37,8 @@ export default class EditableBattleField extends Component {
 
             <div style={{ display: "grid", gridTemplateColumns: "auto auto" }} >
                 <HalfChessboard battleUnits={this.props.game.getBattleUnits(S.getInstance().get(S.USERNAME))} onClickSquare={this.onClickSquare} />
-                <BattleUnitsSelector selectedType={BattleUnitFactory.SAMURAI} getIcon={BattleUnitFactory.getIconFor} />
+                <BattleUnitsSelector selectedType={this.state.selectedBattleUnitType} getIcon={BattleUnitFactory.getIconFor} types={BattleUnitFactory.getTypes()}  selectType={ this.selectBattleUnitType } />
             </div>
-
 
         </div>)
     }
@@ -89,8 +92,18 @@ export default class EditableBattleField extends Component {
      * @returns {BattleUnit}
      */
     createNewBattleUnit = () => {
-        return new Samurai()
+        // return new Samurai()
+        return BattleUnitFactory.new(this.state.selectedBattleUnitType)
     }
+
+    /**
+     * 
+     * @param {string} type 
+     */
+    selectBattleUnitType = (type)=>{
+        this.setState({selectedBattleUnitType : type})
+    }
+
 
 
 

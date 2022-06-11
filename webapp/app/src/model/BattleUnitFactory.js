@@ -1,15 +1,16 @@
 import Samurai from "./battle-units/Samurai.js";
+import EliteSamurai from "./battle-units/EliteSamurai.js";
 
 export default class BattleUnitFactory {
 
     /**
-     * Types
+     * BattleUnit Types
      */
     static SAMURAI = Samurai.TYPE
-
+    static ELITE_SAMURAI = EliteSamurai.TYPE
 
     /**
-     * 
+     * Re-create an  existing BattleUnit.
      * @param {{
      * type : string,
      * health :number,
@@ -17,24 +18,22 @@ export default class BattleUnitFactory {
      * }} json 
      */
     static fromJson(json) {
-
-        switch (json.type) {
-            case BattleUnitFactory.SAMURAI:
-                let s = new Samurai()
-                s = {...s, ...json}
-                return s
-        }
-
+        let b = BattleUnitFactory.new(json.type)
+        b = {...b, ...json}
+        return b
     }
 
     /**
-     * 
+     * Create a new BattleUnit.
      * @param {string} type 
+     * @returns {BattleUnit}
      */
     static new(type){
         switch(type){
             case BattleUnitFactory.SAMURAI:
                 return new Samurai()
+            case BattleUnitFactory.ELITE_SAMURAI:
+                return new EliteSamurai()
         }
     }
 
@@ -44,16 +43,16 @@ export default class BattleUnitFactory {
      * @returns {string} url or base64 of icon
      */
     static getIconFor(type){
-        
-        console.log("getIconFor", BattleUnitFactory.SAMURAI, type)
-
-        switch(type){
-            case BattleUnitFactory.SAMURAI:
-                return new Samurai().__idling_icon
-        }
+        return BattleUnitFactory.new(type).__idling_icon
     }
 
-    
+    /**
+     * 
+     * @returns {[string]}
+     */
+    static getTypes(){
+        return [ BattleUnitFactory.SAMURAI, BattleUnitFactory.ELITE_SAMURAI ]
+    }
 
 
 }
