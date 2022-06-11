@@ -5,6 +5,8 @@ import Game from "../model/Game.js";
 import S from "../model/Settings.js";
 import Samurai from "../model/battle-units/Samurai.js";
 import BackgroundImage from "../../res/icons/backgrounds/bg1.png"
+import BattleUnitsSelector from "./BattleUnitsSelector.jsx";
+import BattleUnitFactory from "../model/BattleUnitFactory.js";
 
 
 /**
@@ -25,10 +27,16 @@ export default class EditableBattleField extends Component {
     }
 
     render() {
-        return (<div style={{backgroundImage:  `url(${BackgroundImage})` , backgroundSize:"cover" }}>
+        return (<div style={{ backgroundImage: `url(${BackgroundImage})`, backgroundSize: "cover" }}>
             <h1>Field your troops!</h1>
             <button onClick={this.props.onReady}>Ready!</button>
-            <HalfChessboard battleUnits={this.props.game.getBattleUnits(S.getInstance().get(S.USERNAME))} onClickSquare={this.onClickSquare} />
+
+            <div style={{ display: "grid", gridTemplateColumns: "auto auto" }} >
+                <HalfChessboard battleUnits={this.props.game.getBattleUnits(S.getInstance().get(S.USERNAME))} onClickSquare={this.onClickSquare} />
+                <BattleUnitsSelector selectedType={BattleUnitFactory.SAMURAI} getIcon={BattleUnitFactory.getIconFor} />
+            </div>
+
+
         </div>)
     }
 
@@ -42,9 +50,9 @@ export default class EditableBattleField extends Component {
      * @param {BattleUnit?} squareContent 
      */
     onClickSquare = (squareId, squareContent) => {
-        if(!squareContent){
+        if (!squareContent) {
             this.addBattleUnit(squareId)
-        }else{
+        } else {
             this.removeBattleUnit(squareId)
         }
     }
@@ -83,6 +91,9 @@ export default class EditableBattleField extends Component {
     createNewBattleUnit = () => {
         return new Samurai()
     }
+
+
+
 
 
 }
