@@ -7,6 +7,8 @@ import Samurai from "../model/battle-units/Samurai.js";
 import BackgroundImage from "../../res/icons/backgrounds/bg1.png"
 import BattleUnitsSelector from "./BattleUnitsSelector.jsx";
 import BattleUnitFactory from "../model/BattleUnitFactory.js";
+import Button from "../view/Button.jsx"
+import FightIcon from "../../res/icons/icons/fight.png"
 
 
 /**
@@ -32,8 +34,14 @@ export default class EditableBattleField extends Component {
 
     render() {
         return (<div style={{ backgroundImage: `url(${BackgroundImage})`, backgroundSize: "cover" }}>
+            
             <h1>Field your troops!</h1>
-            <button onClick={this.props.onReady}>Ready!</button>
+            {/* <button onClick={this.props.onReady}>Ready!</button> */}
+            <div style={{float:"right"}}>
+            <Button title="Ready!" onClick={this.props.onReady}  icon={FightIcon}  />
+
+            </div>
+
 
             <div style={{ display: "grid", gridTemplateColumns: "auto auto" }} >
                 <HalfChessboard battleUnits={this.props.game.getBattleUnits(S.getInstance().get(S.USERNAME))} onClickSquare={this.onClickSquare} />
