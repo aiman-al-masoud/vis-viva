@@ -26,11 +26,11 @@ import BattleUnitFactory from "./model/BattleUnitFactory.js";
 export default class App extends Component {
 
     //modes or 'pages' of the App
-    static LOGIN = "LOGIN"
-    static MAIN_MENU = "MAIN_MENU"
-    static WORLD_MAP = "WORLD_MAP"
-    static EDITABLE_BATTLE_FIELD = "EDITABLE_BATTLE_FIELD"
-    static FIGHT_BATTLE_FIELD = "FIGHT_BATTLE_FIELD"
+    static LOGIN = "login"
+    static MAIN_MENU = "main-menu"
+    static WORLD_MAP = "world-map"
+    static EDITABLE_BATTLE_FIELD = "editable-battle-field"
+    static FIGHT_BATTLE_FIELD = "fight-battle-field"
 
     constructor(props) {
         super(props)
@@ -42,6 +42,15 @@ export default class App extends Component {
             game: new Game(),
             acceptChallengePrompt: false
         }
+
+
+
+        //back button
+        this.pagesHistoryStack = [ ]
+        this.baseHref = location.protocol + '//' + location.host + location.pathname
+        this.currentHref = this.baseHref
+
+
     }
 
     render() {
@@ -83,6 +92,15 @@ export default class App extends Component {
      * @param {*} args 
      */
     switchMode = (mode, args) => {
+        
+        // save state before changing
+        this.pagesHistoryStack.push( [this.state.mode] )
+
+        //update location
+        location.href = this.baseHref+"#"+mode
+        this.currentHref = location.href
+        
+
         this.setState({ mode: mode })
     }
 
@@ -227,6 +245,26 @@ export default class App extends Component {
      */
     setGame = (game) => {
         this.setState({ game: game })
+    }
+
+
+    componentDidMount(){
+
+            //detect browser's back button
+            setInterval(() => {
+        
+            if(this.currentHref!=location.href){
+                
+                this.currentHref = location.href
+                let  p = this.pagesHistoryStack.pop()
+
+                if(p){
+                    this.setState({ mode: p[0]})
+                }
+
+            }
+
+        }, 100);
     }
 
 }
