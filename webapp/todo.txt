@@ -1,12 +1,15 @@
-# Gameplay
--> range of hit
--> better health indicator
--> better selected unit indicator
--> gameover popup
+# Finish off by tomorrow
 -> user ranking
 -> cost per battle unit mechanism 
+-> gameover popup
 -> add a couple more battle units
+-> settings page 
+-> info page
 
+# Maybe 
+-> better selected unit indicator
+-> range of hit
+-> better health indicator
 -> user signup (maybe)
 
 
