@@ -29,7 +29,7 @@ export default class WorldMap extends Component {
             <p>Click on a user to challenge them!</p>
 
             <ul>
-                { this.state.onlineUsers.map((u, i) => <li key={i}><button  onClick={()=>{this.props.challengeUser(u)}}  >{u}</button></li>)}
+                { this.state.onlineUsers.map((u, i) => <li key={i}  onClick={()=>{this.props.challengeUser(u)}} >         {u}        </li>)}
             </ul>
         </div>)
     }
