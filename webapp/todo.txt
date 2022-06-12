@@ -5,6 +5,7 @@
 -> add a couple more battle units
 -> settings page 
 -> info page
+-> extract lang  strings
 
 # Maybe 
 -> better selected unit indicator
