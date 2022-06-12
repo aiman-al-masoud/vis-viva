@@ -24,7 +24,7 @@ export default class WorldMap extends Component {
 
 
     render() {
-        return (<div style={{backgroundImage:  `url(${BackgroundImage})` , backgroundSize:"cover", height:"100vh" }}>
+        return (<div style={{backgroundImage:  `url(${BackgroundImage})` , backgroundSize:"cover", height:"100vh", padding:"5px" }}>
             <h1>Online Users</h1>
             <p>Click on a user to challenge them!</p>
 
