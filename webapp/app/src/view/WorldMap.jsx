@@ -1,5 +1,6 @@
 //allows you to browse active players and challenge them
 import React, { Component } from "react";
+import BackgroundImage from "../../res/icons/backgrounds/world-map-bg.png"
 
 /**
  */
@@ -23,12 +24,12 @@ export default class WorldMap extends Component {
 
 
     render() {
-        return (<div>
+        return (<div style={{backgroundImage:  `url(${BackgroundImage})` , backgroundSize:"cover", height:"100vh" }}>
             <h1>Online Users</h1>
             <p>Click on a user to challenge them!</p>
 
             <ul>
-                {this.state.onlineUsers.map((u, i) => <li key={i}><button  onClick={()=>{this.props.challengeUser(u)}}  >{u}</button></li>)}
+                { this.state.onlineUsers.map((u, i) => <li key={i}><button  onClick={()=>{this.props.challengeUser(u)}}  >{u}</button></li>)}
             </ul>
         </div>)
     }

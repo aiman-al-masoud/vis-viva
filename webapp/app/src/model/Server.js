@@ -1,6 +1,7 @@
 import BattleUnit from "./BattleUnit.js"
 import Game from "./Game.js"
-import Settings from "./Settings.js"
+import S from "./Settings.js"
+
 
 export default class Server {
 
@@ -35,8 +36,14 @@ export default class Server {
         return (await res.json()).events
     }
 
+    /**
+     * Get online users except for myself.
+     * @returns {Promise<[string]>}
+     */
     onlineUsers = async () => {
-        return (await fetch('/online-users')).json()
+        let l = (await fetch('/online-users'))
+        l = await l.json()
+        return l.filter(u => u != S.getInstance().get(S.USERNAME) )
     }
 
     /**
@@ -94,7 +101,7 @@ export default class Server {
                 },
                 body: JSON.stringify({
                     gameId: game.gameId,
-                    battleUnits: game.getBattleUnits(Settings.getInstance().get(Settings.USERNAME))
+                    battleUnits: game.getBattleUnits(S.getInstance().get(S.USERNAME))
                 })
             })
 
