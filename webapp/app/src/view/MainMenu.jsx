@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import WorldMapIcon from "../../res/icons/icons/world-map.png"
 
 /**
  */
@@ -17,12 +18,17 @@ export default class MainMenu extends Component{
 
 
     render(){
-        return (<div style={{ display: "grid", gridTemplateColumns: "auto auto" }}>
+        return (<div>
+        
+            <h1>Main Menu</h1>
+
+        <div style={{ display: "grid", gridTemplateColumns: "auto auto" }}>
             
             <div className="center_container">
-                <button onClick={this.props.goToWorldMap}>World Map</button>
+                <button onClick={this.props.goToWorldMap}> <img src={WorldMapIcon} alt="" /> </button>
             </div>
 
+        </div>
         </div>)
     }
 }
