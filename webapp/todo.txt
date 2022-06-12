@@ -6,6 +6,7 @@
 -> settings page 
 -> info page
 -> extract lang  strings
+-> icons everywhere (battleunit selector, )
 
 # Maybe 
 -> better selected unit indicator
