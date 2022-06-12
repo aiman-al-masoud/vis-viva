@@ -3,7 +3,11 @@
 -> better health indicator
 -> better selected unit indicator
 -> gameover popup
--> user signup and ranking
+-> user ranking
+-> cost per battle unit mechanism 
+-> add a couple more battle units
+
+-> user signup (maybe)
 
 
 Extras:
