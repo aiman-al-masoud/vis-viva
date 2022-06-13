@@ -40,7 +40,7 @@ export default class EditableBattleField extends Component {
             <h1>Field your troops!</h1>
 
             <div className="center">
-            <Button title="Ready!" onClick={this.props.onReady}  icon={FightIcon}   />
+            <Button title="Ready!" onClick={this.props.onReady}  icon={FightIcon}  style={{background:"red"}} />
 
             </div>
 
