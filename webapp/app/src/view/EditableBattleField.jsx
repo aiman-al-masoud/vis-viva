@@ -28,30 +28,24 @@ export default class EditableBattleField extends Component {
         this.props = props
 
         this.state = {
-            selectedBattleUnitType  : BattleUnitFactory.SAMURAI
+            selectedBattleUnitType: BattleUnitFactory.SAMURAI
         }
     }
 
     render() {
         return (<div style={{ backgroundImage: `url(${BackgroundImage})`, backgroundSize: "cover" }}>
-            
+
 
             <div style={{ display: "grid", gridTemplateColumns: "auto auto" }} >
-            <h1>Field your troops!</h1>
-
-            <div className="center">
-            <Button title="Ready!" onClick={this.props.onReady}  icon={FightIcon}  style={{background:"red"}} />
-
+                <h1>Field your troops!</h1>
+                <div className="center">
+                    <Button title="Ready!" onClick={this.props.onReady} icon={FightIcon} style={{ background: "red" }} />
+                </div>
             </div>
-
-            </div>
-
-            
-
 
             <div style={{ display: "grid", gridTemplateColumns: "auto auto" }} >
                 <HalfChessboard battleUnits={this.props.game.getBattleUnits(S.getInstance().get(S.USERNAME))} onClickSquare={this.onClickSquare} />
-                <BattleUnitsSelector selectedType={this.state.selectedBattleUnitType} getIcon={BattleUnitFactory.getIconFor} types={BattleUnitFactory.getTypes()}  selectType={ this.selectBattleUnitType } />
+                <BattleUnitsSelector selectedType={this.state.selectedBattleUnitType} getIcon={BattleUnitFactory.getIconFor} types={BattleUnitFactory.getTypes()} selectType={this.selectBattleUnitType} />
             </div>
 
         </div>)
@@ -114,8 +108,8 @@ export default class EditableBattleField extends Component {
      * 
      * @param {string} type 
      */
-    selectBattleUnitType = (type)=>{
-        this.setState({selectedBattleUnitType : type})
+    selectBattleUnitType = (type) => {
+        this.setState({ selectedBattleUnitType: type })
     }
 
 
