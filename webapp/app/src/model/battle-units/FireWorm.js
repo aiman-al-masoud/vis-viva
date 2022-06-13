@@ -1,0 +1,25 @@
+import BattleUnit from "../BattleUnit";
+import IdlingIcon from "../../../res/icons/fire-worm/idle.gif"
+import DyingIcon from "../../../res/icons/fire-worm/die.gif"
+import AttackingIcon from "../../../res/icons/fire-worm/attack.gif"
+import TakingHitIcon from "../../../res/icons/fire-worm/take-hit.gif"
+
+
+export default class FireWorm  extends BattleUnit{
+
+    static TYPE = "Fire Worm"
+
+    /**
+     * 
+     * @param {number} initialHealth 
+     */
+    constructor(){
+        super(FireWorm.TYPE, 100, 15)
+        this.__idling_icon = IdlingIcon
+        this.__dying_icon = DyingIcon
+        this.__attacking_icon = AttackingIcon
+        this.__taking_hit_icon = TakingHitIcon
+    }
+
+
+}

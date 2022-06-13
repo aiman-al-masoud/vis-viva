@@ -1,5 +1,6 @@
 import Samurai from "./battle-units/Samurai.js";
 import EliteSamurai from "./battle-units/EliteSamurai.js";
+import FireWorm from "./battle-units/FireWorm.js";
 
 export default class BattleUnitFactory {
 
@@ -8,6 +9,7 @@ export default class BattleUnitFactory {
      */
     static SAMURAI = Samurai.TYPE
     static ELITE_SAMURAI = EliteSamurai.TYPE
+    static FIRE_WORM = FireWorm.TYPE
 
     /**
      * Re-create an  existing BattleUnit.
@@ -34,6 +36,8 @@ export default class BattleUnitFactory {
                 return new Samurai()
             case BattleUnitFactory.ELITE_SAMURAI:
                 return new EliteSamurai()
+            case BattleUnitFactory.FIRE_WORM:
+                return new FireWorm()
         }
     }
 
@@ -51,7 +55,7 @@ export default class BattleUnitFactory {
      * @returns {[string]}
      */
     static getTypes(){
-        return [ BattleUnitFactory.SAMURAI, BattleUnitFactory.ELITE_SAMURAI ]
+        return [ BattleUnitFactory.SAMURAI, BattleUnitFactory.ELITE_SAMURAI, BattleUnitFactory.FIRE_WORM ]
     }
 
 

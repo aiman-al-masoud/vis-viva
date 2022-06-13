@@ -10,7 +10,12 @@
 -> better health indicator
 -> user signup (maybe)
 -> chance of dodging attacks (param of unit)
+-> poison effect (maybe for Mushroom)
+-> blocking effect/range (can't hit rear)
 
+
+-> fix mesages lost in transit bug 
+-> fix ready message not arriving bug
 
 Extras:
 -> random challenger button
