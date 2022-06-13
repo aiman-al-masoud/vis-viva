@@ -22,12 +22,16 @@ export default class BattleUnitsSelector extends Component {
 
     render(){
 
-        return (<div>
-            <img src={this.props.getIcon(this.props.selectedType)} width="200"/>
-            <p>{this.props.selectedType}</p>
-            <Button onClick={this.prev} title="Previous"  icon={ArrowIcon}  flippedX={true} />
-            <Button onClick={this.next} title="Next"  icon={ArrowIcon}  />
-            
+        return (<div style={{padding:0, margin:0, width:"fit-content"}}>
+
+            <center>
+            <h2>{this.props.selectedType}</h2>
+                <img src={this.props.getIcon(this.props.selectedType)} width="200"/>
+                <br />
+                <Button onClick={this.prev} title="Previous"  icon={ArrowIcon}  flippedX={true} />
+                <Button onClick={this.next} title="Next"  icon={ArrowIcon}  />
+            </center>
+           
         </div>)
     }
 
