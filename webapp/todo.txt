@@ -9,6 +9,7 @@
 -> range of hit
 -> better health indicator
 -> user signup (maybe)
+-> chance of dodging attacks (param of unit)
 
 
 Extras:
