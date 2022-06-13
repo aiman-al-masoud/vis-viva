@@ -14,6 +14,7 @@ import BattleUnit from "./model/BattleUnit.js"
 import BattleUnitFactory from "./model/BattleUnitFactory.js";
 import Settings from "../src/view/Settings.jsx";
 import Info from "./view/Info.jsx";
+import GameOverPopup from "./view/GameOverPopup.jsx";
 
 
 /**
@@ -93,6 +94,9 @@ export default class App extends Component {
                 <AcceptChallengePrompt game={this.state.game ?? {}} acceptChallenge={this.acceptChallenge} />
             </div>
 
+            <GameOverPopup game={this.state.game ?? {}}  onDone={this.afterGameOver} />
+
+            
             {view}
         </div>)
     }
@@ -201,8 +205,11 @@ export default class App extends Component {
                     break
 
                 case RemoteEvents.GAME_OVER:
-                    confirm("game is over!!!!!!!!!")
-                    this.switchMode(App.MAIN_MENU)
+                    // confirm("game is over!!!!!!!!!")
+                    // this.switchMode(App.MAIN_MENU)
+                    let g1 = this.state.game
+                    g1.setGameOver()
+                    this.setGame(g1)
                     break
 
             }
@@ -248,6 +255,11 @@ export default class App extends Component {
             this.setGame(g)
         }
 
+    }
+
+    afterGameOver = ()=>{
+        this.switchMode(App.MAIN_MENU)
+        this.setGame(new Game())
     }
 
     /**

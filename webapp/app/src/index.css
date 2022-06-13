@@ -95,6 +95,12 @@
 }
 
 
+.game-over-popup{
+    text-align: center;
+    font-size: larger;
+    color: red;
+    background: blue;
+}
 
 
 
