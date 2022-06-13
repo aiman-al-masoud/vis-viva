@@ -207,8 +207,9 @@ export default class App extends Component {
                 case RemoteEvents.GAME_OVER:
                     // confirm("game is over!!!!!!!!!")
                     // this.switchMode(App.MAIN_MENU)
+                    
                     let g1 = this.state.game
-                    g1.setGameOver()
+                    g1.setGameOver(ev.winner)
                     this.setGame(g1)
                     break
 

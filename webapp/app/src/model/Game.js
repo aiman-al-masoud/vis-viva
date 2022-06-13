@@ -19,6 +19,7 @@ export default class Game{
         this.__battleUnitsDictionary[defender] = []
         this.__username_current_turn = challenger //challenger begins playing 
         this.gameOver = false
+        this.winner = undefined
 
         this.setGame = setGame
 
@@ -126,19 +127,24 @@ export default class Game{
         this.__username_current_turn = this.__username_current_turn == this.challenger ? this.defender : this.challenger
     }
 
-    /**
+    /**    
+     * @param {string}
      * Call it when the Game is over
      */
-    setGameOver = ()=>{
+    setGameOver = (winner)=>{
+        this.winner = winner
         this.gameOver = true
     }
 
     /**
-     * 
      * @returns {boolean}
      */
     isGameOver = ()=>{
         return this.gameOver
+    }
+
+    amIWinner(){
+        return this.winner==S.getInstance().get(S.USERNAME)
     }
 
 
