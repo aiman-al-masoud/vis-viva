@@ -12,6 +12,8 @@ import Styles from "./view/Styles.js"
 import RemoteEvents from "./model/RemoteEvents.js";
 import BattleUnit from "./model/BattleUnit.js"
 import BattleUnitFactory from "./model/BattleUnitFactory.js";
+import Settings from "../src/view/Settings.jsx";
+import Info from "./view/Info.jsx";
 
 
 /**
@@ -31,6 +33,9 @@ export default class App extends Component {
     static WORLD_MAP = "world-map"
     static EDITABLE_BATTLE_FIELD = "editable-battle-field"
     static FIGHT_BATTLE_FIELD = "fight-battle-field"
+    static SETTINGS = "settings"
+    static INFO = "info"
+
 
     constructor(props) {
         super(props)
@@ -62,7 +67,7 @@ export default class App extends Component {
                 view = <Login onLogin={this.onLogin} />
                 break
             case App.MAIN_MENU:
-                view = <MainMenu goToWorldMap={() => { this.switchMode(App.WORLD_MAP) }} />
+                view = <MainMenu    goToWorldMap={() => { this.switchMode(App.WORLD_MAP) }}  goToSettings={()=>{this.switchMode(App.SETTINGS)}}  goToInfo={()=>{this.switchMode(App.INFO)}}   />
                 break
             case App.WORLD_MAP:
                 view = <WorldMap getOnlineUsers={Server.instance().onlineUsers} challengeUser={this.challengeUser} />
@@ -72,6 +77,12 @@ export default class App extends Component {
                 break
             case App.FIGHT_BATTLE_FIELD:
                 view = <FightBattleField game={this.state.game} sendFire={this.sendFire} />
+                break
+            case App.SETTINGS:
+                view = <Settings />
+                break 
+            case App.INFO:
+                view = <Info />
                 break
         }
 
