@@ -3,8 +3,6 @@
 -> cost per battle unit mechanism 
 -> gameover popup
 -> add a couple more battle units
--> settings page 
--> info page
 -> extract lang  strings
 -> icons everywhere (battleunit selector, )
 
