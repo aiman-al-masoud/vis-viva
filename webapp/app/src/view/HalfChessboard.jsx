@@ -52,7 +52,7 @@ export default class HalfChessboard extends Component{
             }
         })
 
-        return (<div style={{display: "grid",  gridTemplateColumns: "10vw ".repeat(this.NUM_COLUMNS)   }} >
+        return (<div style={{display: "grid",  gridTemplateColumns: "10vw ".repeat(this.NUM_COLUMNS) , width:"fit-content"  }} >
             {arr}                
         </div>)
     }
