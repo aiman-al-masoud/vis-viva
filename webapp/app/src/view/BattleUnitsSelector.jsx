@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import Button from "../view/Button.jsx"
+import ArrowIcon from "../../res/icons/icons/arrow.png"
 
 /**
  */
@@ -24,8 +25,9 @@ export default class BattleUnitsSelector extends Component {
         return (<div>
             <img src={this.props.getIcon(this.props.selectedType)} width="200"/>
             <p>{this.props.selectedType}</p>
-            <button onClick={this.prev}>Previous</button>
-            <button onClick={this.next}>Next</button>
+            <Button onClick={this.prev} title="Previous"  icon={ArrowIcon}  flippedX={true} />
+            <Button onClick={this.next} title="Next"  icon={ArrowIcon}  />
+            
         </div>)
     }
 
