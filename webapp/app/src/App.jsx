@@ -43,7 +43,7 @@ export default class App extends Component {
 
 
         this.state = {
-            mode: App.LOGIN,
+            mode: S.getInstance().get(S.USERNAME)? App.MAIN_MENU : App.LOGIN  ,
             myUsername: undefined,
             game: new Game(),
             acceptChallengePrompt: false

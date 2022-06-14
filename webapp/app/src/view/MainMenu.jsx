@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import WorldMapIcon from "../../res/icons/icons/world-map.png"
 import InfoIcon from "../../res/icons/icons/info.png"
 import SettingsIcon from "../../res/icons/icons/settings.png"
-
-
+import ExitIcon from "../../res/icons/icons/exit.png"
 import Button from "./Button.jsx";
-
+import S from "../model/Settings";
 
 
 /**
@@ -43,6 +42,13 @@ export default class MainMenu extends Component {
 
                 <div className="center_container">
                     <Button title="Settings" icon={SettingsIcon} onClick={this.props.goToSettings} />
+                </div>
+
+
+{/* exit icon */}
+
+                <div className="center_container">
+                    <Button title="Logout" icon={ExitIcon} onClick={()=>{S.getInstance().delete(S.USERNAME); location.reload()  }  } />
                 </div>
 
             </div>
