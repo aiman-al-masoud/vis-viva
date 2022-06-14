@@ -71,7 +71,7 @@ export default class App extends Component {
                 view = <MainMenu    goToWorldMap={() => { this.switchMode(App.WORLD_MAP) }}  goToSettings={()=>{this.switchMode(App.SETTINGS)}}  goToInfo={()=>{this.switchMode(App.INFO)}}   />
                 break
             case App.WORLD_MAP:
-                view = <WorldMap getOnlineUsers={Server.instance().onlineUsers} challengeUser={this.challengeUser} />
+                view = <WorldMap getOnlineUsers={Server.instance().onlineUsers} challengeUser={this.challengeUser}  getUsersXps={Server.instance().usersXps} />
                 break
             case App.EDITABLE_BATTLE_FIELD:
                 view = <EditableBattleField game={this.state.game} setGame={this.setGame} onReady={this.onReady} />

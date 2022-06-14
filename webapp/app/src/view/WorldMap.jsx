@@ -18,7 +18,8 @@ export default class WorldMap extends Component {
         this.props = props
 
         this.state = {
-            onlineUsers: []
+            onlineUsers: [],
+            usersXps : []
         }
     }
 
@@ -31,16 +32,28 @@ export default class WorldMap extends Component {
             <ul>
                 { this.state.onlineUsers.map((u, i) => <li key={i}  onClick={()=>{this.props.challengeUser(u)}} >         {u}        </li>)}
             </ul>
+
+
+         <div style={{float:"right"}}>
+         <ol>
+                { this.state.usersXps.map((u, i) => <li key={i}   >         {u[0]}  - {u[1]}       </li>)}
+            </ol>
+         </div>
+
+
         </div>)
     }
 
 
     componentDidMount() {
         this.props.getOnlineUsers().then(p => this.setState({ onlineUsers: p }))
+        this.props.getUsersXps().then(p => this.setState({ usersXps: p }))
 
         this.interval = setInterval(() => {
             this.props.getOnlineUsers().then(p => this.setState({ onlineUsers: p }))
+            this.props.getUsersXps().then(p => this.setState({ usersXps: p }))
         }, 1000);
+
     }
 
     componentWillUnmount() {
