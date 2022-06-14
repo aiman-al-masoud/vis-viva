@@ -1,5 +1,4 @@
 # Finish off by tomorrow
--> user ranking
 -> cost per battle unit mechanism 
 -> add a couple more battle units
 -> extract lang  strings
