@@ -54,14 +54,7 @@ import Cookies from "./Cookies.js"
 
     delete(key){
 
-        console.log("hello theere")
-
-        delete this.settingsDict[key] 
-        // this.settingsDict[key]  = undefined
-        // localStorage.removeItem(key)
-        // console.log(localStorage)
-        // console.log(this.settingsDict)
-  
+        delete this.settingsDict[key]   
         localStorage.setItem("SETTINGS", JSON.stringify(this.settingsDict))
 
         //settings to be also removed from cookies
