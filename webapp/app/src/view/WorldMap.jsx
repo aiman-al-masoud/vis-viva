@@ -26,15 +26,19 @@ export default class WorldMap extends Component {
 
     render() {
         return (<div style={{backgroundImage:  `url(${BackgroundImage})` , height:"100vh", padding:"5px", backgroundPosition:"center", backgroundRepeat:"no-repeat" }}>
-            <h1>Online Users</h1>
-            <p>Click on a user to challenge them!</p>
+            
+            <h1>World Map</h1>
+
+            <h2>Online Users</h2>
+
+            <p>Click on an online user to challenge them!</p>
 
             <ul>
                 { this.state.onlineUsers.map((u, i) => <li key={i}  onClick={()=>{this.props.challengeUser(u)}} >         {u}        </li>)}
             </ul>
 
-
          <div style={{float:"right"}}>
+             <h2>Global Ranking</h2>
          <ol>
                 { this.state.usersXps.map((u, i) => <li key={i}   >         {u[0]}  - {u[1]}       </li>)}
             </ol>
