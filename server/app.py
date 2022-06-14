@@ -45,6 +45,9 @@ def i_am_online():
 def online_users():
     return json.dumps(Users.instance().online_users())
 
+@app.route('/users-xps', methods = ["GET", "POST"])                                                                                                 
+def user_xps():
+    return json.dumps(Users.instance().user_xps())
 
 @app.route('/fight-invite', methods = ["GET", "POST"])
 def fight_invite():
@@ -202,9 +205,12 @@ def fire_ack():
 
     # eventually terminate Game
     if allDeadGiveUp:
-        ev = GameOverEvent(g.get_other_player(username))
+        winner = g.get_other_player(username)
+        ev = GameOverEvent(winner)
         Events().instance().add_event(username, ev)
-        Events().instance().add_event(g.get_other_player(username), ev)
+        Events().instance().add_event(winner, ev)
         g.game_over()
+        # increment winner's xp
+        Users.instance().add_user_xp(winner, 100)
 
     return "success"
