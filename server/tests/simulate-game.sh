@@ -2,9 +2,6 @@
 
 # assume server is up and running 
 
-
-
-
 # shifts focus back on browser's search bar
 resetFocus(){
     xdotool key Ctrl+l
@@ -57,7 +54,6 @@ xdotool key --repeat 12 Tab
 xdotool key Return 
 resetFocus
 
-
 # add some battle units
 xdotool key Tab
 xdotool key Tab
@@ -91,7 +87,20 @@ xdotool key Return
 sleep 1
 
 
+# back to uno
+xdotool key Ctrl+Alt+Up # switch workspace
+sleep 1
 
+# attack 
+resetFocus
+# choose attacker
+xdotool key Tab
+xdotool key Return 
+
+# choose victim
+resetFocus
+xdotool key --repeat 12 Tab 
+xdotool key Return 
 
 
 
