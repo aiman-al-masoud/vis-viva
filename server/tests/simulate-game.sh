@@ -22,10 +22,18 @@ userLoginChrome(){
 
 
 userLoginChrome uno 
-sleep 3
+sleep 1
+xdotool key Ctrl+Alt+Down # switch workspace
 userLoginChrome due 
-# wait 
-# userLoginFirefox due
+sleep 1
+xdotool key Ctrl+Alt+Up # back to workspace above
+
+
+
+
+
+
+
 
 
 
