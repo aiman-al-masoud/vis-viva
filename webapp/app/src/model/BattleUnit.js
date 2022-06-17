@@ -46,7 +46,6 @@ export default class BattleUnit{
             return this.__dying_icon
         }
 
-        console.log(" battle unit state", s)
 
         switch(s){
             case BattleUnit.STATE_IDLING:

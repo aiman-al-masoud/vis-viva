@@ -23,7 +23,6 @@ export default class Game{
 
         this.setGame = setGame
 
-        console.log("in constructor of Game", setGame, this.setGame)
     }
 
     /**

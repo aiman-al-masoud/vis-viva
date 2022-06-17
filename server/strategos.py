@@ -39,6 +39,11 @@ class Strategos:
             e.set_sent_by_strategos(True)
             Events.instance().add_event(self.game.challenger(), e)
 
+            print("add_event()", "human player has fielded:", self.game.get_battle_units(self.game.challenger()))
+
+        
+
+
         
 
         

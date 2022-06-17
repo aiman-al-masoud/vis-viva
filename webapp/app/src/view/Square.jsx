@@ -38,7 +38,6 @@ export default class Square extends Component {
         if(!this.keyListener){
             window.addEventListener("keypress", this.keyListener = (e)=>{
                 if(e.code=="Enter"){
-                    console.log("clicked")
                     this.props.onClick()
                 }
             })

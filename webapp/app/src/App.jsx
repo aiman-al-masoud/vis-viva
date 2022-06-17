@@ -55,8 +55,11 @@ export default class App extends Component {
         this.pagesHistoryStack = [ ]
         this.baseHref = location.protocol + '//' + location.host + location.pathname
         this.currentHref = this.baseHref
-
-
+        
+        //start the event loop if logged in 
+        if(S.getInstance().get(S.USERNAME)){
+            setInterval(this.eventLoop, 1000)
+        }
 
 
     }
@@ -125,7 +128,7 @@ export default class App extends Component {
         S.getInstance().set(S.USERNAME, username)
         this.switchMode(App.MAIN_MENU, {})
         //start the event loop upon a successful login
-        setInterval(this.eventLoop, 1000);
+        setInterval(this.eventLoop, 1000)
     }
 
     eventLoop = async () => {
@@ -134,8 +137,7 @@ export default class App extends Component {
         let remoteEvents = await Server.instance().iAmOnline()
         remoteEvents.forEach(ev => {
 
-            console.log("event:", ev)
-
+            console.log("eventLoop()", "received event from server",  ev)
 
             switch (ev.eventType) {
                 case RemoteEvents.FIGHT_INVITE:
@@ -146,7 +148,6 @@ export default class App extends Component {
 
                     break
                 case RemoteEvents.READY:
-                    console.log("ready event", ev)
 
                     let gm = this.state.game
                     gm.setBattleUnits(gm.getOpponent(), ev.battleUnits.map(b => BattleUnitFactory.fromJson(b)))
@@ -174,7 +175,6 @@ export default class App extends Component {
                     })
 
                     if (victimDead) {
-                        console.log("victim is dead")
                         ga.killBattleUnit(toUnit, false)
                     }else{
                         ga.animateBattleUnit(toUnit, BattleUnit.STATE_TAKING_HIT)
@@ -273,7 +273,6 @@ export default class App extends Component {
 
 
     challengeServer = ()=>{
-        console.log("challenge Server called")
         let gameId = parseInt(999999 * Math.random())
         let g = new Game(S.getInstance().get(S.USERNAME), gameId, gameId, this.setGame)
         this.setState({ game: g })

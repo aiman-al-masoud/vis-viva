@@ -14,7 +14,6 @@ export default class BattleUnitSprite extends Component {
         super(props)
         this.props = props
 
-        console.log("BattleUnit", this.props.battleUnit)
     }
 
 
