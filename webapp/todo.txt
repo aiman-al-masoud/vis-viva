@@ -20,6 +20,9 @@
 don't create new Game as soon as challenge arrives, wait till player accepts it.
 
 
+
+implement PVC by listening on add_event().
+
 Extras:
 -> random challenger button
 
