@@ -117,39 +117,12 @@
 }
 
 
-
-/* Game over box */
-/* .gameover{
-    border: solid black 5px;
-    padding: 10px;
-    width: 30vw;
-    height: 30vw;
-    font-size: large;
-    background: yellow;
-    color: red;
-    z-index: 100000;
-    text-align: center;      
-    position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;   
-    margin: auto;
-    animation-name: pulse;
-    animation-duration: 3s;
-    animation-iteration-count:infinite;
-} */
-
-
 @keyframes pulse {
    
     0%{}
     50%{transform: scale(0.9)}
     100%{}
 }
-
-
-
 
 
 /* https://designshack.net/articles/css/5-simple-and-practical-css-list-styles-you-can-copy-and-paste/ */
@@ -164,6 +137,12 @@ ul {
 li {
     font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
     border-bottom: 1px solid black;
+}
+
+li button{
+    background: transparent;
+    border: none;
+    font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
 }
 
 li:last-child {
