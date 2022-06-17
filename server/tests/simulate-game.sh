@@ -3,6 +3,8 @@
 # assume server is up and running 
 
 
+
+
 # shifts focus back on browser's search bar
 resetFocus(){
     xdotool key Ctrl+l
@@ -48,6 +50,13 @@ sleep 0.5
 xdotool key Tab
 xdotool key Return 
 sleep 0.5
+
+# change battle unit to Samurai
+resetFocus
+xdotool key --repeat 12 Tab 
+xdotool key Return 
+resetFocus
+
 
 # add some battle units
 xdotool key Tab
