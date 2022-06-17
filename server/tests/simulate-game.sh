@@ -54,11 +54,6 @@ xdotool key Tab
 xdotool key Tab
 xdotool key Return
 sleep 1
-xdotool key Tab
-xdotool key Tab
-xdotool key Tab
-xdotool key Return 
-sleep 1
 
 # send challenge 
 resetFocus
@@ -73,6 +68,20 @@ sleep 1
 resetFocus
 xdotool key Tab 
 xdotool key Return 
+
+# add battle unit
+sleep 1
+xdotool key Tab 
+xdotool key Tab 
+xdotool key Return 
+
+# accept challenge 
+resetFocus
+xdotool key Tab
+xdotool key Return 
+sleep 1
+
+
 
 
 
