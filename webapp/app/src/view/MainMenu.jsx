@@ -16,7 +16,8 @@ export default class MainMenu extends Component {
      * @param {{
      * goToWorldMap : (args)=>Promise<void>,
      * goToSettings ,
-     * goToInfo
+     * goToInfo,
+     * challengeServer : ()=>void
      * }} props 
      */
     constructor(props) {
@@ -44,12 +45,19 @@ export default class MainMenu extends Component {
                     <Button title="Settings" icon={SettingsIcon} onClick={this.props.goToSettings} />
                 </div>
 
-
-{/* exit icon */}
-
                 <div className="center_container">
                     <Button title="Logout" icon={ExitIcon} onClick={()=>{S.getInstance().delete(S.USERNAME); location.reload()  }  } />
                 </div>
+
+
+
+
+{/*  */}
+                <div className="center_container">
+                    <Button title="PVC" icon={InfoIcon} onClick={this.props.challengeServer  } />
+                </div>
+
+
 
             </div>
         </div>)

@@ -176,4 +176,24 @@ export default class Server {
         return res.text()
     }
 
+    /**
+     * 
+     * @param {Game} game 
+     */
+    pvc = async (game) =>{
+        let res = await fetch('/pvc',
+            {
+                method: 'POST', headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+
+                body: JSON.stringify({
+                    gameId: game.gameId,
+                })
+            })
+    }
+
+
+
 }

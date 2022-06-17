@@ -57,6 +57,8 @@ export default class App extends Component {
         this.currentHref = this.baseHref
 
 
+
+
     }
 
     render() {
@@ -68,7 +70,7 @@ export default class App extends Component {
                 view = <Login onLogin={this.onLogin} />
                 break
             case App.MAIN_MENU:
-                view = <MainMenu    goToWorldMap={() => { this.switchMode(App.WORLD_MAP) }}  goToSettings={()=>{this.switchMode(App.SETTINGS)}}  goToInfo={()=>{this.switchMode(App.INFO)}}   />
+                view = <MainMenu    goToWorldMap={() => { this.switchMode(App.WORLD_MAP) }}  goToSettings={()=>{this.switchMode(App.SETTINGS)}}  goToInfo={()=>{this.switchMode(App.INFO)}}    challengeServer={this.challengeServer}   />
                 break
             case App.WORLD_MAP:
                 view = <WorldMap getOnlineUsers={Server.instance().onlineUsers} challengeUser={this.challengeUser}  getUsersXps={Server.instance().usersXps} />
@@ -267,6 +269,18 @@ export default class App extends Component {
     setGame = (game) => {
         this.setState({ game: game })
     }
+
+
+
+    challengeServer = ()=>{
+        console.log("challenge Server called")
+        let gameId = parseInt(999999 * Math.random())
+        let g = new Game(S.getInstance().get(S.USERNAME), gameId, gameId, this.setGame)
+        this.setState({ game: g })
+        Server.instance().pvc(g)
+        this.switchMode(App.EDITABLE_BATTLE_FIELD)
+    }
+    
 
 
     componentDidMount(){
