@@ -1,4 +1,5 @@
 from .classes.event import Event
+from strategos import Strategos
 
 class Events:
 
@@ -16,7 +17,7 @@ class Events:
     def add_event(self, username:str, event:Event):
 
         """
-        Add an event to a player's queue.
+        Add an event to a player's or Strategos's queue.
         """
         
         if username not in self.__player_queues:
@@ -24,8 +25,15 @@ class Events:
         else:
             events = self.__player_queues[username]
 
-        events.append(event)
-        self.__player_queues[username] = events
+        # message is for Strategos
+        s = Strategos.get_strategos(event["gameId"] if  "gameId" in event else "")
+        if s and not event.is_sent_by_strategos():
+            s.add_event(event)
+        else:
+        # message is for client
+            events.append(event)
+            print("Events.add_event()", "sending to client", event)
+            self.__player_queues[username] = events
 
     def pop_event_queue(self, username:str)->[Event]:
 

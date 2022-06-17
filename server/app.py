@@ -12,6 +12,7 @@ from events.classes.fire_ack_event import *
 from events.classes.fire_event import *
 from events.classes.ready_event import *
 from events.classes.game_over_event import *
+from strategos import Strategos
 
 app = Flask(__name__)
 CORS(app)
@@ -214,3 +215,38 @@ def fire_ack():
         Users.instance().add_user_xp(winner, 100)
 
     return "success"
+
+
+
+@app.route('/pvc', methods = ["GET", "POST"])
+def pvc():
+    
+    """
+    Start a new PVC game with this server 
+    """
+
+    print("pvc()")
+
+    if "username" not in request.cookies:
+        return "error: no username provided", 400
+
+    print("pvc()", 2)
+
+
+    # if "serverInstanceId" not in request.json:
+    #     return  "error: 'serverInstanceId' not specified in json", 400
+
+    if "gameId" not in request.json:
+        return "error: 'gameId' not specified in json", 400
+
+    username = request.cookies["username"]
+    gameId = request.json["gameId"]
+    print("pvc()", username, gameId)
+    # serverInstanceId = request.json["serverInstanceId"]
+
+    g = Game(username, gameId, gameId)
+    s = Strategos(g)
+    s.add_event(  FightInviteEvent(username, gameId, gameId) )
+
+    return "success"
+    
