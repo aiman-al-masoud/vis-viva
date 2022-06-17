@@ -21,12 +21,24 @@ userLoginChrome(){
 }
 
 
+
+pkill chromium
+xdotool key Ctrl+Alt+Down # switch workspace
+sleep 1
 userLoginChrome uno 
 sleep 1
 xdotool key Ctrl+Alt+Down # switch workspace
 userLoginChrome due 
 sleep 1
 xdotool key Ctrl+Alt+Up # back to workspace above
+sleep 1
+# uno challenges due
+xdotool key Tab
+xdotool key Return 
+sleep 0.5
+xdotool key Tab
+xdotool key Return 
+
 
 
 
