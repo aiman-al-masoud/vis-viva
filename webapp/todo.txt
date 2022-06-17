@@ -16,6 +16,10 @@
 -> fix mesages lost in transit bug 
 -> fix ready message not arriving bug
 
+# Improve
+don't create new Game as soon as challenge arrives, wait till player accepts it.
+
+
 Extras:
 -> random challenger button
 
