@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import L from "../model/Language.js";
+import LogoImage from "../../res/icons/logo.png"
 
 /**
  */
@@ -22,6 +23,9 @@ export default class Login extends Component{
     render(){
         return (<div className="center">
             <div>
+
+            <img src={LogoImage} width="200"  />
+
             <h1>{L.login}</h1>
             <input type="text" className="text-box" ref={this.usernameTextBox} />
             <br />
