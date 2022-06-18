@@ -28,11 +28,6 @@ export default class WorldMap extends Component {
 
         return (<div>
 
-            {/* <center> */}
-
-
-            {/* <div style={{ display: "grid", gridTemplateColumns: "auto auto " }}  > */}
-
             <div style={{display:"flex",  justifyContent:"center"}}>
                
                 <div style={{background:"rgba(255, 255, 255, 0.318)", width:"fit-content"}}>
@@ -53,11 +48,6 @@ export default class WorldMap extends Component {
                 </div>
 
             </div>
-
-            {/* </div> */}
-
-            {/* </center> */}
-
 
         </div>)
     }

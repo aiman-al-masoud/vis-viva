@@ -28,11 +28,13 @@ export default class MainMenu extends Component {
 
 
     render() {
-        return (<div>
+        return (<div >
 
             <h1 className="center">Welcome back {S.getInstance().get(S.USERNAME)}!</h1>
+        
 
-            <div style={{ display: "grid", gridTemplateColumns: "auto auto" }}>
+            <center>
+            <div  style={{ display: "grid", gridTemplateColumns: "auto auto", background:"rgba(255, 255, 255, 0.318)", width:"70vw", height:"60vh" }}>
 
                 <div className="center_container">
                     <Button title="Player Versus Player" onClick={this.props.goToWorldMap} icon={WorldMapIcon} />
@@ -54,10 +56,11 @@ export default class MainMenu extends Component {
                     <Button title="Logout" icon={ExitIcon} onClick={()=>{S.getInstance().delete(S.USERNAME); location.reload()  }  } />
                 </div>
 
-            
-
-
             </div>
+
+            </center>
+
+
         </div>)
     }
 }
