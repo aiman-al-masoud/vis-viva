@@ -28,12 +28,14 @@ export default class WorldMap extends Component {
 
         return (<div>
 
-            <center>
+            {/* <center> */}
 
 
-            <div style={{ display: "grid", gridTemplateColumns: "auto auto" }}  >
+            {/* <div style={{ display: "grid", gridTemplateColumns: "auto auto " }}  > */}
+
+            <div style={{display:"flex",  justifyContent:"center"}}>
                
-                <div>
+                <div style={{background:"rgba(255, 255, 255, 0.318)", width:"fit-content"}}>
                     <h2>Online Users</h2>
                     <p>Click on a user in the list to challenge them!</p>
 
@@ -42,7 +44,7 @@ export default class WorldMap extends Component {
                     </ul>
                 </div>
 
-                <div>
+                <div style={{background:"rgba(255, 255, 255, 0.318)", width:"fit-content", float:"right"  }}>
                     <h2>Global Ranking</h2>
                     <img src={BackgroundImage} width="200" />
                     <ol >
@@ -52,7 +54,9 @@ export default class WorldMap extends Component {
 
             </div>
 
-            </center>
+            {/* </div> */}
+
+            {/* </center> */}
 
 
         </div>)
