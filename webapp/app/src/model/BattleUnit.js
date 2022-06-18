@@ -65,7 +65,8 @@ export default class BattleUnit{
             type: this.type,
             maxHealth : this.maxHealth,
             health : this.health,
-            position : this.position
+            position : this.position, 
+            damage : this.damage
         }
     }
 
