@@ -5,6 +5,9 @@ import "./index.css"
 import Favicon from "../res/icons/logo.png"
 import Background from "../res/icons/backgrounds/background.jpg"
 
+// set title
+document.title = "Vis Viva"
+
 //set favicon
 let link = document.createElement('link')
 link.rel = 'shortcut icon';
