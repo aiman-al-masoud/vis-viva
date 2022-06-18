@@ -1,7 +1,6 @@
 # TODO 
 -> add a couple more battle units
 -> extract lang  strings
--> favicon and logo 
 -> description and rules
 -> attributions
 
