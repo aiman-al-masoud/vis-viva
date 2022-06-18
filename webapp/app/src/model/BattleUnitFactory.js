@@ -21,7 +21,9 @@ export default class BattleUnitFactory {
      */
     static fromJson(json) {
         let b = BattleUnitFactory.new(json.type)
-        b = {...b, ...json}
+        // b = {...b, ...json}
+        b.health = json.health
+        b.position = json.position
         return b
     }
 
