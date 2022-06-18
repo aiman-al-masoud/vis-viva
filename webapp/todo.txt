@@ -5,7 +5,6 @@
 -> description and rules
 -> sound effects
 -> attributions
--> remove pass from "login" and fix auto-test
 
 # Maybe 
 -> cost per battle unit mechanism 
