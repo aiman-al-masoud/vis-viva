@@ -54,7 +54,6 @@ export default class Server {
      usersXps = async () => {
         let l = (await fetch('/users-xps'))
         l = await l.json()
-        l.push(["tre", 50])
         l = l.sort((u1, u2)=>{return u2[1]-u1[1]})
         return l
     }
