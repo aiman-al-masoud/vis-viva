@@ -39,16 +39,22 @@ class Strategos:
         
         elif isinstance(event, FireEvent):
             from_unit = event["fromUnit"]
-            to_unit = event["fromUnit"]
+            to_unit = event["toUnit"]
 
             print("Strategos.add_event()", from_unit, to_unit)
 
             battle_units = self.game.get_battle_units(self.game.defender())
             
-            for b in battle_units:
-                if b["position"]==to_unit["position"]:
-                    b["health"]-=from_unit["damage"]
-                    victim = b
+            # for b in battle_units:
+            #     if b["position"]==to_unit["position"]:
+            #         b["health"]-=from_unit["damage"]
+            #         victim = b
+
+            battle_units = [b for b in battle_units if b["position"]!=to_unit["position"]]
+            to_unit["health"]-=from_unit["damage"]
+            victim = to_unit
+            battle_units.append(victim)
+
             
             battle_units = [b for b in battle_units if b["health"] > 0]
 
@@ -63,6 +69,7 @@ class Strategos:
                 e = GameOverEvent(self.game.challenger())
                 e.set_sent_by_strategos(True)
                 Events.instance().add_event(self.game.challenger(),e )
+                self.game.game_over()
                 return 
 
             # fire back
@@ -89,6 +96,7 @@ class Strategos:
                 e = GameOverEvent(self.game.defender())
                 e.set_sent_by_strategos(True)
                 Events.instance().add_event(self.game.challenger(),e )
+                self.game.game_over()
                 return 
 
 
