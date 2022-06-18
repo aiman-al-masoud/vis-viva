@@ -31,7 +31,7 @@ export default class WorldMap extends Component {
             <center>
 
 
-            <div style={{ display: "grid", gridTemplateColumns: "auto auto", width: "fit-content" }}  >
+            <div style={{ display: "grid", gridTemplateColumns: "auto auto" }}  >
                
                 <div>
                     <h2>Online Users</h2>
@@ -49,6 +49,7 @@ export default class WorldMap extends Component {
                         {this.state.usersXps.map((u, i) => <li key={i}    >         {u[0]}  - {u[1]}       </li>)}
                     </ol>
                 </div>
+
             </div>
 
             </center>
