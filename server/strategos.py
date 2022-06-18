@@ -58,6 +58,13 @@ class Strategos:
             e.set_sent_by_strategos(True)
             Events.instance().add_event(self.game.challenger(), e)
 
+            # if player wins
+            if len(battle_units)==0:
+                e = GameOverEvent(self.game.challenger())
+                e.set_sent_by_strategos(True)
+                Events.instance().add_event(self.game.challenger(),e )
+                return 
+
             # fire back
             from_unit = battle_units[0]
             to_unit = self.game.get_battle_units(self.game.challenger())[0]
@@ -68,7 +75,23 @@ class Strategos:
 
         
         elif isinstance(event, FireAckEvent):
-            pass
+            
+            to_unit = event["toUnit"]
+
+            battle_units = self.game.get_battle_units(self.game.challenger())
+            battle_units = [b for b in battle_units if b["position"]!=to_unit["position"]]
+
+            if to_unit["health"]>0:
+                battle_units.append(to_unit)
+
+            # if server wins
+            if len(battle_units)==0:
+                e = GameOverEvent(self.game.defender())
+                e.set_sent_by_strategos(True)
+                Events.instance().add_event(self.game.challenger(),e )
+                return 
+
+
 
 
         
