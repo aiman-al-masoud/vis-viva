@@ -20,7 +20,7 @@ userLoginChrome(){
     xdotool key Tab
     xdotool type "$username"
     sleep 1
-    xdotool key Tab
+    # xdotool key Tab
     xdotool key Tab
     xdotool key Return 
 }
