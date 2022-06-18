@@ -31,32 +31,33 @@ export default class MainMenu extends Component {
         return (<div >
 
             <h1 className="center">Welcome back {S.getInstance().get(S.USERNAME)}!</h1>
-        
+
 
             <center>
-            <div  style={{ display: "grid", gridTemplateColumns: "auto auto", background:"rgba(255, 255, 255, 0.318)", width:"70vw", height:"60vh" }}>
-
-                <div className="center_container">
-                    <Button title="Player Versus Player" onClick={this.props.goToWorldMap} icon={WorldMapIcon} />
-                </div>
-
-                <div className="center_container">
-                    <Button title="Player Versus Computer" icon={PvcIcon} onClick={this.props.challengeServer  } />
-                </div>
                 
-                <div className="center_container">
-                    <Button title="Info" icon={InfoIcon}  onClick={this.props.goToInfo}  />
-                </div>
+                <div style={{ display: "grid", gridTemplateColumns: "auto auto", background: "rgba(255, 255, 255, 0.318)", width: "70vw", height: "60vh" }}>
 
-                <div className="center_container">
-                    <Button title="Settings" icon={SettingsIcon} onClick={this.props.goToSettings} />
-                </div>
+                    <div className="center_container">
+                        <Button title="Player Versus Player" onClick={this.props.goToWorldMap} icon={WorldMapIcon} />
+                    </div>
 
-                <div className="center_container">
-                    <Button title="Logout" icon={ExitIcon} onClick={()=>{S.getInstance().delete(S.USERNAME); location.reload()  }  } />
-                </div>
+                    <div className="center_container">
+                        <Button title="Player Versus Computer" icon={PvcIcon} onClick={this.props.challengeServer} />
+                    </div>
 
-            </div>
+                    <div className="center_container">
+                        <Button title="Info" icon={InfoIcon} onClick={this.props.goToInfo} />
+                    </div>
+
+                    <div className="center_container">
+                        <Button title="Settings" icon={SettingsIcon} onClick={this.props.goToSettings} />
+                    </div>
+
+                    <div className="center_container">
+                        <Button title="Logout" icon={ExitIcon} onClick={() => { S.getInstance().delete(S.USERNAME); location.reload() }} />
+                    </div>
+
+                </div>
 
             </center>
 
