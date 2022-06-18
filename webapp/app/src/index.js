@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import reactDom from "react-dom";
 import App from "./App.jsx";
 import "./index.css"
-import Favicon from "../res/icons/logo.png"
+import Favicon from "../res/icons/favicon.png"
 import Background from "../res/icons/backgrounds/background.jpg"
 
 // set title
