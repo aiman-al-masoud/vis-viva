@@ -3,7 +3,6 @@
 -> extract lang  strings
 -> favicon and logo 
 -> description and rules
--> sound effects
 -> attributions
 
 # Maybe 
