@@ -43,12 +43,10 @@ export default class App extends Component {
 
 
         this.state = {
-            mode: S.getInstance().get(S.USERNAME)? App.MAIN_MENU : App.LOGIN  ,
-            myUsername: undefined,
+            mode: S.getInstance().get(S.USERNAME)? App.MAIN_MENU : App.LOGIN,
             game: new Game(),
             acceptChallengePrompt: false
         }
-
 
 
         //back button

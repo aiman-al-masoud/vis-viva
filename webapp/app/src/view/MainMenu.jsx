@@ -30,7 +30,7 @@ export default class MainMenu extends Component {
     render() {
         return (<div>
 
-            <h1>Main Menu</h1>
+            <h1 className="center">Welcome back {S.getInstance().get(S.USERNAME)}!</h1>
 
             <div style={{ display: "grid", gridTemplateColumns: "auto auto" }}>
 
