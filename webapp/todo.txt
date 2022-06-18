@@ -14,7 +14,7 @@
 -> poison effect (maybe for Mushroom)
 -> blocking effect/range (can't hit rear)
 -> random challenger button
-
+-> add fancy real Component previews in "tutorial part of info"
 
 # Improve
 
