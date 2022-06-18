@@ -1,3 +1,5 @@
+import Audio from "./Audio.js"
+
 export default class BattleUnit{
 
     static STATE_IDLING =  "STATE_IDLING"
@@ -10,7 +12,6 @@ export default class BattleUnit{
      * @param {string} type 
      * @param {number} maxHealth 
      * @param {number} damage attack power of unit
-    //  * @param {string} faction username of player
      */
     constructor(type, maxHealth, damage){
         this.type = type
@@ -18,17 +19,23 @@ export default class BattleUnit{
         this.health = this.maxHealth
         this.damage = damage
         this.position = 0  // or undef 
-        // this.faction = faction
         this.__idling_icon = undefined
         this.__dying_icon = undefined
         this.__taking_hit_icon = undefined
         this.__attacking_icon = undefined
+        this.__attacking_sound = undefined
         this.state = BattleUnit.STATE_IDLING
     }
 
     setAnimation = (state)=>{
         this.state = state
-    } 
+
+        switch(state){
+            case BattleUnit.STATE_ATTACKING:
+                Audio.playBase64(this.__attacking_sound)
+                break
+        }
+    }
 
     /**
      * 
@@ -45,7 +52,6 @@ export default class BattleUnit{
         if(this.dead){
             return this.__dying_icon
         }
-
 
         switch(s){
             case BattleUnit.STATE_IDLING:
