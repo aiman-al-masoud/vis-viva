@@ -1,9 +1,14 @@
-# Finish off by tomorrow
--> cost per battle unit mechanism 
+# TODO 
 -> add a couple more battle units
 -> extract lang  strings
+-> favicon and logo 
+-> description and rules
+-> sound effects
+-> attributions
+-> remove pass from "login" and fix auto-test
 
 # Maybe 
+-> cost per battle unit mechanism 
 -> better selected unit indicator
 -> range of hit
 -> better health indicator
@@ -11,20 +16,14 @@
 -> chance of dodging attacks (param of unit)
 -> poison effect (maybe for Mushroom)
 -> blocking effect/range (can't hit rear)
+-> random challenger button
 
-
--> fix mesages lost in transit bug 
--> fix ready message not arriving bug
 
 # Improve
-don't create new Game as soon as challenge arrives, wait till player accepts it.
 
-
-
-implement PVC by listening on add_event().
-
-Extras:
--> random challenger button
+-> don't create new Game as soon as challenge arrives, wait till player accepts it.
+-> fix problems in PVC
+-> fix mesages lost in transit bug (redundant sends with idempotency)
 
 DATABASE:
 
