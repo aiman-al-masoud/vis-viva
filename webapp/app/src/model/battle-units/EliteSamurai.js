@@ -4,7 +4,7 @@ import DyingIcon from "../../../res/icons/master/die.gif"
 import AttackingIcon from "../../../res/icons/master/attack.gif"
 import TakingHitIcon from "../../../res/icons/master/take-hit.gif"
 import AttackingSound from "../../../res/attack.mp3"
-
+import TakingHitSound from "../../../res/damage1.mp3"
 
 export default class EliteSamurai  extends BattleUnit{
 
@@ -21,6 +21,7 @@ export default class EliteSamurai  extends BattleUnit{
         this.__attacking_icon = AttackingIcon
         this.__taking_hit_icon = TakingHitIcon
         this.__attacking_sound = AttackingSound
+        this.__taking_hit_sound = TakingHitSound
     }
 
 

@@ -4,6 +4,7 @@ import DyingIcon from "../../../res/icons/fire-worm/die.gif"
 import AttackingIcon from "../../../res/icons/fire-worm/attack.gif"
 import TakingHitIcon from "../../../res/icons/fire-worm/take-hit.gif"
 import AttackingSound from "../../../res/attack2.mp3"
+import TakingHitSound from "../../../res/damage2.mp3"
 
 
 export default class FireWorm  extends BattleUnit{
@@ -21,7 +22,7 @@ export default class FireWorm  extends BattleUnit{
         this.__attacking_icon = AttackingIcon
         this.__taking_hit_icon = TakingHitIcon
         this.__attacking_sound = AttackingSound
-
+        this.__taking_hit_sound = TakingHitSound
     }
 
 

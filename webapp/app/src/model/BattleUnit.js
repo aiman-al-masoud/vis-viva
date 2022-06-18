@@ -24,18 +24,29 @@ export default class BattleUnit{
         this.__taking_hit_icon = undefined
         this.__attacking_icon = undefined
         this.__attacking_sound = undefined
+        this.__dying_sound = undefined
+        this.__taking_hit_sound = undefined
         this.state = BattleUnit.STATE_IDLING
     }
 
     setAnimation = (state)=>{
-        this.state = state
 
-        switch(state){
-            case BattleUnit.STATE_ATTACKING:
-                Audio.playBase64(this.__attacking_sound)
-                break
-        }
+        this.state = state;
+
+        (async (state)=>{
+            switch(state){
+                case BattleUnit.STATE_ATTACKING:
+                    Audio.playBase64(this.__attacking_sound)
+                    break
+                case BattleUnit.STATE_TAKING_HIT:
+                case BattleUnit.STATE_DYING:
+                    Audio.playBase64(this.__taking_hit_sound)
+                    break
+            }
+        })(state)
+
     }
+
 
     /**
      * 
