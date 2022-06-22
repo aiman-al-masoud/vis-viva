@@ -6,7 +6,7 @@ import S from "./Settings.js"
  * Component with access to a props.game object, first call all of the 
  * required methods, then call game.update() only once.
  */
-export default class Game{
+export default class Game {
 
     /**
      * 
@@ -15,11 +15,11 @@ export default class Game{
      * @param {int} gameId 
      * @param { (game:Game)=>Promise<void> } setGame 
      */
-    constructor(challenger, defender, gameId, setGame){
+    constructor(challenger, defender, gameId, setGame) {
         this.challenger = challenger
         this.defender = defender
-        this.gameId = gameId 
-        this.__battleUnitsDictionary = { }
+        this.gameId = gameId
+        this.__battleUnitsDictionary = {}
         this.__battleUnitsDictionary[challenger] = []
         this.__battleUnitsDictionary[defender] = []
         this.__username_current_turn = challenger //challenger begins playing 
@@ -32,8 +32,8 @@ export default class Game{
      * 
      * @param {[BattleUnit]} battleUnits 
      */
-    setBattleUnits(username, battleUnits){
-        this.__battleUnitsDictionary[username] = battleUnits 
+    setBattleUnits(username, battleUnits) {
+        this.__battleUnitsDictionary[username] = battleUnits
     }
 
     /**
@@ -41,14 +41,14 @@ export default class Game{
      * @param {string} username 
      * @returns {[BattleUnit]} 
      */
-    getBattleUnits(username){
+    getBattleUnits(username) {
         return this.__battleUnitsDictionary[username]
     }
 
     /**
      * @returns {string}
      */
-    getOpponent(){
+    getOpponent() {
         return this.challenger == S.getInstance().get(S.USERNAME) ? this.defender : this.challenger
     }
 
@@ -57,13 +57,13 @@ export default class Game{
      * @param {BattleUnit} battleUnit 
      * @param {string} animationState 
      */
-    animateBattleUnit = (battleUnit, animationState)=>{
+    animateBattleUnit = (battleUnit, animationState) => {
 
         let username = battleUnit.getFaction()
 
         let battleUnits = this.getBattleUnits(username)
-        battleUnits.forEach(b=>{
-            if(b.position==battleUnit.position){
+        battleUnits.forEach(b => {
+            if (b.position == battleUnit.position) {
                 b.setAnimation(animationState)
             }
         })
@@ -71,11 +71,11 @@ export default class Game{
 
         // stop animation after some seconds
         setTimeout(() => {
-            
+
             let battleUnits = this.getBattleUnits(username)
 
-            battleUnits.forEach(b=>{
-                if(b.position==battleUnit.position){
+            battleUnits.forEach(b => {
+                if (b.position == battleUnit.position) {
                     b.setAnimation(BattleUnit.STATE_IDLING)
                 }
             })
@@ -90,13 +90,13 @@ export default class Game{
      * Remove BattleUnit
      * @param {BattleUnit} battleUnit 
      */
-    killBattleUnit = (battleUnit) =>{
+    killBattleUnit = (battleUnit) => {
 
         let username = battleUnit.getFaction()
 
         let battleUnits = this.getBattleUnits(username)
-        battleUnits.forEach(b=>{
-            if(b.position==battleUnit.position){
+        battleUnits.forEach(b => {
+            if (b.position == battleUnit.position) {
                 b.setAnimation(BattleUnit.STATE_DYING)
             }
         })
@@ -104,7 +104,7 @@ export default class Game{
 
         //  remove unit after some seconds 
         setTimeout(() => {
-            
+
             let battleUnits = this.getBattleUnits(username)
             battleUnits = battleUnits.filter(b => b.position != battleUnit.position)
             this.setBattleUnits(username, battleUnits)
@@ -118,14 +118,14 @@ export default class Game{
      * Checks if it's the local player's turn to play.
      * @returns boolean 
      */
-    isMyTurn = ()=>{
+    isMyTurn = () => {
         return this.__username_current_turn == S.getInstance().get(S.USERNAME)
     }
 
     /**
      * Switch turns between local and remote players.
      */
-    changeTurn = ()=>{
+    changeTurn = () => {
         this.__username_current_turn = this.__username_current_turn == this.challenger ? this.defender : this.challenger
     }
 
@@ -133,7 +133,7 @@ export default class Game{
      * @param {string}
      * Call it when the Game is over
      */
-    setGameOver = (winner)=>{
+    setGameOver = (winner) => {
         this.winner = winner
         this.gameOver = true
     }
@@ -141,7 +141,7 @@ export default class Game{
     /**
      * @returns {boolean}
      */
-    isGameOver = ()=>{
+    isGameOver = () => {
         return this.gameOver
     }
 
@@ -149,14 +149,14 @@ export default class Game{
      * Check if local player is the winner of this Game.
      * @returns {boolean}
      */
-    amIWinner(){
-        return this.winner==S.getInstance().get(S.USERNAME)
+    amIWinner() {
+        return this.winner == S.getInstance().get(S.USERNAME)
     }
 
     /**
      * Calls back parent/owner/observer passing it updated Game state .
      */
-    update(){
+    update() {
         this.setGame(this)
     }
 

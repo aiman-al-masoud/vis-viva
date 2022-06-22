@@ -41,13 +41,18 @@ export default class App extends Component {
     constructor(props) {
         super(props)
 
-
+        /**
+         * @type {{   
+         * mode:string,
+         * game:Game, 
+         * acceptChallengePrompt:boolean
+         * }}
+         */
         this.state = {
             mode: S.getInstance().get(S.USERNAME)? App.MAIN_MENU : App.LOGIN,
             game: undefined,
             acceptChallengePrompt: false
         }
-
 
         //back button
         this.pagesHistoryStack = [ ]
