@@ -139,7 +139,6 @@ export default class App extends Component {
 
             switch (ev.eventType) {
                 case RemoteEvents.FIGHT_INVITE:
-                    // let g = new Game(ev.challenger, ev.defender, ev.gameId, this.setGame)
                     let g = this.newGame(ev.challenger, ev.defender, ev.gameId)
                     this.setState({ game: g, acceptChallengePrompt: true })
                     break
@@ -221,7 +220,6 @@ export default class App extends Component {
      * @param {string} defender  username 
      */
     challengeUser = (defender) => {
-        // let g = new Game(S.getInstance().get(S.USERNAME), defender, parseInt(999999 * Math.random()) , this.setGame )
         let g = this.newGame(S.getInstance().get(S.USERNAME), defender, parseInt(999999 * Math.random()))
         this.setState({ game: g })
         Server.instance().fightInvite(g)
@@ -284,7 +282,6 @@ export default class App extends Component {
 
     challengeServer = ()=>{
         let gameId = parseInt(999999 * Math.random())
-        // let g = new Game(S.getInstance().get(S.USERNAME), gameId, gameId, this.setGame)
         let g =  this.newGame(S.getInstance().get(S.USERNAME), gameId, gameId)
         this.setState({ game: g })
         Server.instance().pvc(g)
