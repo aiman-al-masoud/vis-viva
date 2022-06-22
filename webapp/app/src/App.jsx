@@ -44,7 +44,7 @@ export default class App extends Component {
 
         this.state = {
             mode: S.getInstance().get(S.USERNAME)? App.MAIN_MENU : App.LOGIN,
-            game: new Game(),
+            game: undefined,
             acceptChallengePrompt: false
         }
 
@@ -97,7 +97,7 @@ export default class App extends Component {
                 <AcceptChallengePrompt game={this.state.game ?? {}} acceptChallenge={this.acceptChallenge} />
             </div>
 
-            <GameOverPopup game={this.state.game ?? {}}  onDone={this.afterGameOver} />
+            <GameOverPopup game={this.state.game}  onDone={this.afterGameOver} />
 
             
             {view}
@@ -257,7 +257,7 @@ export default class App extends Component {
 
     afterGameOver = ()=>{
         this.switchMode(App.MAIN_MENU)
-        this.setGame(new Game())
+        this.setGame(undefined)
     }
 
     /**
