@@ -116,16 +116,7 @@ export default class Game {
      * @param {BattleUnit} battleUnit 
      */
     killBattleUnit = (battleUnit) => {
-
-        // let username = battleUnit.getFaction()
-
-        // let battleUnits = this.getBattleUnits(username)
-        // battleUnits.forEach(b => {
-        //     if (b.position == battleUnit.position) {
-        //         b.setAnimation(BattleUnit.STATE_DYING)
-        //     }
-        // })
-        // this.setBattleUnits(username, battleUnits)
+        
         this.animateBattleUnit(battleUnit, BattleUnit.STATE_DYING)
 
         //  remove unit after some seconds 
