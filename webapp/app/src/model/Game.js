@@ -1,6 +1,11 @@
 import BattleUnit from "./BattleUnit.js"
 import S from "./Settings.js"
 
+/**
+ * Holds all of the state associated to a Game. To modify the state from a 
+ * Component with access to a props.game object, first call all of the 
+ * required methods, then call game.update() only once.
+ */
 export default class Game{
 
     /**
