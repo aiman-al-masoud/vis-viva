@@ -77,7 +77,7 @@ export default class App extends Component {
                 view = <WorldMap getOnlineUsers={Server.instance().onlineUsers} challengeUser={this.challengeUser}  getUsersXps={Server.instance().usersXps} />
                 break
             case App.EDITABLE_BATTLE_FIELD:
-                view = <EditableBattleField game={this.state.game} setGame={this.setGame} onReady={this.onReady} />
+                view = <EditableBattleField game={this.state.game} onReady={this.onReady} />
                 break
             case App.FIGHT_BATTLE_FIELD:
                 view = <FightBattleField game={this.state.game} sendFire={this.sendFire} />

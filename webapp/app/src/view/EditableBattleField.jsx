@@ -19,7 +19,6 @@ export default class EditableBattleField extends Component {
      * 
      * @param {{
      * game:Game,
-     * setGame:(game:Game)=>Promise<void>,
      * onReady : ()=> Promise<void>
      * }} props 
      */
@@ -80,7 +79,7 @@ export default class EditableBattleField extends Component {
         battleUnits = battleUnits.filter(b => b.position != squareId)
         battleUnits.push(b)
         g.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
-        this.props.setGame(g)
+        g.update()
     }
 
     /**
@@ -92,7 +91,7 @@ export default class EditableBattleField extends Component {
         let battleUnits = g.getBattleUnits(S.getInstance().get(S.USERNAME))
         battleUnits = battleUnits.filter(b => b.position != squareId)
         g.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
-        this.props.setGame(g)
+        g.update()
     }
 
     /**
