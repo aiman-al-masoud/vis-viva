@@ -91,20 +91,24 @@ export default class Game {
         this.setBattleUnits(username, battleUnits)
 
         // stop animation after some seconds
-        setTimeout(() => {
+        // no need to stop animation if dying: gonna get removed anyway
+        if(animationState!=BattleUnit.STATE_DYING){
 
-            let battleUnits = this.getBattleUnits(username)
+            setTimeout(() => {
 
-            battleUnits.forEach(b => {
-                if (b.position == battleUnit.position) {
-                    b.setAnimation(BattleUnit.STATE_IDLING)
-                }
-            })
-            this.setBattleUnits(username, battleUnits)
-            this.setGame(this)
+                let battleUnits = this.getBattleUnits(username)
+    
+                battleUnits.forEach(b => {
+                    if (b.position == battleUnit.position) {
+                        b.setAnimation(BattleUnit.STATE_IDLING)
+                    }
+                })
+                this.setBattleUnits(username, battleUnits)
+                this.setGame(this)
+    
+            }, 2000)
 
-        }, 2000)
-
+        }       
     }
 
     /**
@@ -113,15 +117,16 @@ export default class Game {
      */
     killBattleUnit = (battleUnit) => {
 
-        let username = battleUnit.getFaction()
+        // let username = battleUnit.getFaction()
 
-        let battleUnits = this.getBattleUnits(username)
-        battleUnits.forEach(b => {
-            if (b.position == battleUnit.position) {
-                b.setAnimation(BattleUnit.STATE_DYING)
-            }
-        })
-        this.setBattleUnits(username, battleUnits)
+        // let battleUnits = this.getBattleUnits(username)
+        // battleUnits.forEach(b => {
+        //     if (b.position == battleUnit.position) {
+        //         b.setAnimation(BattleUnit.STATE_DYING)
+        //     }
+        // })
+        // this.setBattleUnits(username, battleUnits)
+        this.animateBattleUnit(battleUnit, BattleUnit.STATE_DYING)
 
         //  remove unit after some seconds 
         setTimeout(() => {
