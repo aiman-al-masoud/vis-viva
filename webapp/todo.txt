@@ -1,3 +1,8 @@
+# Refactoring
+-> move game business logic code into Game
+-> call Game.setGame from anywhere in children components (setGame passed to game in App).
+-> faction attribute in BattleUnit.
+
 # TODO 
 -> add a couple more battle units
 -> extract lang  strings
