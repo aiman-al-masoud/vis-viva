@@ -24,7 +24,7 @@ export default class Samurai  extends BattleUnit{
         this.__attacking_sound = AttackingSound
         this.__taking_hit_sound = TakingHitSound
         this.__attack_duration = 800
-        this.__die_duration = 1400
+        this.__die_duration = 1300
         this.__take_hit_duration = 600
     }
 

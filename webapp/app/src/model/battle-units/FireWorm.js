@@ -24,7 +24,7 @@ export default class FireWorm  extends BattleUnit{
         this.__attacking_sound = AttackingSound
         this.__taking_hit_sound = TakingHitSound
         this.__attack_duration = 1600
-        this.__die_duration = 1600
+        this.__die_duration = 1500
         this.__take_hit_duration = 600
     }
 

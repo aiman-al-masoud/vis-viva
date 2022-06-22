@@ -131,8 +131,8 @@ export default class Game {
         this.animateBattleUnit(battleUnit, BattleUnit.STATE_DYING)
 
         //  remove unit after some seconds 
-        let animationDuration = 1200
-        // let animationDuration = battleUnit.getAnimationDuration(BattleUnit.STATE_DYING)
+        // let animationDuration = 1200
+        let animationDuration = battleUnit.getAnimationDuration(BattleUnit.STATE_DYING)
         setTimeout(() => {
             this.removeBattleUnit(battleUnit)
             this.update()
