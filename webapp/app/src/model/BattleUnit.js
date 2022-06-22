@@ -39,7 +39,7 @@ export default class BattleUnit{
     }
 
     /**
-     * 
+     * Returns the username of the player who owns this BattleUnit.
      * @returns {string}
      */
     getFaction = ()=>{

@@ -60,7 +60,10 @@ export default class Game{
      */
     animateBattleUnit = (battleUnit, animationState, isEnemy)=>{
 
-        let username = isEnemy? this.getOpponent() : S.getInstance().get(S.USERNAME)
+        // let username = isEnemy? this.getOpponent() : S.getInstance().get(S.USERNAME)
+        
+        let username = battleUnit.getFaction()
+
         let battleUnits = this.getBattleUnits(username)
         battleUnits.forEach(b=>{
             if(b.position==battleUnit.position){
@@ -93,7 +96,9 @@ export default class Game{
      */
     killBattleUnit = (battleUnit, isEnemy) =>{
 
-        let username = isEnemy? this.getOpponent() : S.getInstance().get(S.USERNAME)
+        // let username = isEnemy? this.getOpponent() : S.getInstance().get(S.USERNAME)
+        let username = battleUnit.getFaction()
+
         let battleUnits = this.getBattleUnits(username)
         battleUnits.forEach(b=>{
             if(b.position==battleUnit.position){
