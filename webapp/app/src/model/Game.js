@@ -20,9 +20,7 @@ export default class Game{
         this.__username_current_turn = challenger //challenger begins playing 
         this.gameOver = false
         this.winner = undefined
-
         this.setGame = setGame
-
     }
 
     /**
@@ -84,7 +82,7 @@ export default class Game{
     }
 
     /**
-     * 
+     * Remove BattleUnit
      * @param {BattleUnit} battleUnit 
      * @param {boolean} isEnemy 
      */
@@ -112,7 +110,7 @@ export default class Game{
     }
 
     /**
-     * 
+     * Checks if it's the local player's turn to play.
      * @returns boolean 
      */
     isMyTurn = ()=>{
@@ -120,7 +118,7 @@ export default class Game{
     }
 
     /**
-     * 
+     * Switch turns between local and remote players.
      */
     changeTurn = ()=>{
         this.__username_current_turn = this.__username_current_turn == this.challenger ? this.defender : this.challenger
@@ -142,8 +140,19 @@ export default class Game{
         return this.gameOver
     }
 
+    /**
+     * Check if local player is the winner of this Game.
+     * @returns {boolean}
+     */
     amIWinner(){
         return this.winner==S.getInstance().get(S.USERNAME)
+    }
+
+    /**
+     * Calls back parent/owner/observer passing it updated Game state .
+     */
+    update(){
+        this.setGame(this)
     }
 
 
