@@ -108,7 +108,7 @@ export default class Game {
     }
 
     /**
-     * Remove BattleUnit
+     * Remove BattleUnit during a fight
      * @param {BattleUnit} battleUnit 
      */
     killBattleUnit = (battleUnit) => {
@@ -126,10 +126,11 @@ export default class Game {
         //  remove unit after some seconds 
         setTimeout(() => {
 
-            let battleUnits = this.getBattleUnits(username)
-            battleUnits = battleUnits.filter(b => b.position != battleUnit.position)
-            this.setBattleUnits(username, battleUnits)
-            this.setGame(this)
+            // let battleUnits = this.getBattleUnits(username)
+            // battleUnits = battleUnits.filter(b => b.position != battleUnit.position)
+            // this.setBattleUnits(username, battleUnits)
+            // this.setGame(this)
+            this.removeBattleUnit(battleUnit)
 
         }, 1200)
 
