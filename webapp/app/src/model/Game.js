@@ -130,9 +130,10 @@ export default class Game {
         this.animateBattleUnit(battleUnit, BattleUnit.STATE_DYING)
 
         //  remove unit after some seconds 
+        let animationDuration = 1200
         setTimeout(() => {
             this.removeBattleUnit(battleUnit)
-        }, 1200)
+        }, animationDuration)
 
     }
 
