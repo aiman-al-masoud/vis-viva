@@ -125,13 +125,7 @@ export default class Game {
 
         //  remove unit after some seconds 
         setTimeout(() => {
-
-            // let battleUnits = this.getBattleUnits(username)
-            // battleUnits = battleUnits.filter(b => b.position != battleUnit.position)
-            // this.setBattleUnits(username, battleUnits)
-            // this.setGame(this)
             this.removeBattleUnit(battleUnit)
-
         }, 1200)
 
     }
