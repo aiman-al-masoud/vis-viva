@@ -49,7 +49,7 @@ export default class Game {
      * Add a BattleUnit, overwriting based on faction and position.
      * @param {BattleUnit} battleUnit 
      */
-    addBattleUnit = (battleUnit)=>{
+    addBattleUnit = (battleUnit) => {
         let bs = this.getBattleUnits(battleUnit.getFaction())
         bs = bs.filter(b => b.position != battleUnit.position)
         bs.push(battleUnit)
@@ -60,7 +60,7 @@ export default class Game {
      * Based on faction and position.
      * @param {BattleUnit} battleUnit 
      */
-    removeBattleUnit = (battleUnit)=>{
+    removeBattleUnit = (battleUnit) => {
         let bs = this.getBattleUnits(battleUnit.getFaction())
         bs = bs.filter(b => b.position != battleUnit.position)
         this.setBattleUnits(battleUnit.getFaction(), bs)
@@ -81,8 +81,8 @@ export default class Game {
     animateBattleUnit = (battleUnit, animationState) => {
 
         let username = battleUnit.getFaction()
-
         let battleUnits = this.getBattleUnits(username)
+
         battleUnits.forEach(b => {
             if (b.position == battleUnit.position) {
                 b.setAnimation(animationState)
@@ -92,31 +92,41 @@ export default class Game {
 
         // stop animation after some seconds
         // no need to stop animation if dying: gonna get removed anyway
-        if(animationState!=BattleUnit.STATE_DYING){
-
-            setTimeout(() => {
-
-                let battleUnits = this.getBattleUnits(username)
-    
-                battleUnits.forEach(b => {
-                    if (b.position == battleUnit.position) {
-                        b.setAnimation(BattleUnit.STATE_IDLING)
-                    }
-                })
-                this.setBattleUnits(username, battleUnits)
-                this.setGame(this)
-    
-            }, 2000)
-
-        }       
+        if (animationState != BattleUnit.STATE_DYING) {
+            this.stopAnimation(battleUnit)
+        }
     }
+
+    /**
+     * Stop the animation after a predefined amount of time.
+     * @param {BattleUnit} battleUnit 
+     */
+    stopAnimation = (battleUnit) => {
+
+        let animationDuration = 2000 //millisecs
+
+        setTimeout(() => {
+
+            let username = battleUnit.getFaction()
+            let battleUnits = this.getBattleUnits(username)
+
+            battleUnits.forEach(b => {
+                if (b.position == battleUnit.position) {
+                    b.setAnimation(BattleUnit.STATE_IDLING)
+                }
+            })
+            this.setBattleUnits(username, battleUnits)
+            this.setGame(this)
+        }, animationDuration)
+    }
+
 
     /**
      * Remove BattleUnit during a fight
      * @param {BattleUnit} battleUnit 
      */
     killBattleUnit = (battleUnit) => {
-        
+
         this.animateBattleUnit(battleUnit, BattleUnit.STATE_DYING)
 
         //  remove unit after some seconds 
