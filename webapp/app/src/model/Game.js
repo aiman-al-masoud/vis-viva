@@ -46,6 +46,27 @@ export default class Game {
     }
 
     /**
+     * Add a BattleUnit, overwriting based on faction and position.
+     * @param {BattleUnit} battleUnit 
+     */
+    addBattleUnit = (battleUnit)=>{
+        let bs = this.getBattleUnits(battleUnit.getFaction())
+        bs = bs.filter(b => b.position != battleUnit.position)
+        bs.push(battleUnit)
+        this.setBattleUnits(battleUnit.getFaction(), bs)
+    }
+
+    /**
+     * Based on faction and position.
+     * @param {BattleUnit} battleUnit 
+     */
+    removeBattleUnit = (battleUnit)=>{
+        let bs = this.getBattleUnits(battleUnit.getFaction())
+        bs = bs.filter(b => b.position != battleUnit.position)
+        this.setBattleUnits(battleUnit.getFaction(), bs)
+    }
+
+    /**
      * @returns {string}
      */
     getOpponent() {

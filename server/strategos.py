@@ -31,7 +31,7 @@ class Strategos:
             Events.instance().add_event(event["challenger"], e)
         
         elif isinstance(event, ReadyEvent):
-            battle_units = [BattleUnit(None, 2, "Samurai", 20, 20), BattleUnit(None, 3, "Master", 20, 20)]
+            battle_units = [BattleUnit(self.game.game_id(), 2, "Samurai", 20, 20), BattleUnit(self.game.game_id(), 3, "Master", 20, 20)]
             self.game.set_battle_units( self.game.defender() , battle_units)
             e = ReadyEvent(battle_units, event["gameId"])
             e.set_sent_by_strategos(True)

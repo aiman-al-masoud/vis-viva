@@ -9,8 +9,8 @@ import BattleUnitFactory from "../model/BattleUnitFactory.js";
 import Button from "../view/Button.jsx"
 import FightIcon from "../../res/icons/icons/fight.png"
 
-
 /**
+ * Lets the user prepare his/her HalfChessboard before a battle.
  */
 export default class EditableBattleField extends Component {
 
@@ -32,7 +32,6 @@ export default class EditableBattleField extends Component {
 
     render() {
         return (<div style={{ backgroundImage: `url(${BackgroundImage})`, backgroundSize: "cover" }}>
-
 
             <div style={{ display: "grid", gridTemplateColumns: "auto auto" }} >
                 <h1>Field your troops!</h1>
@@ -62,7 +61,8 @@ export default class EditableBattleField extends Component {
         if (!squareContent) {
             this.addBattleUnit(squareId)
         } else {
-            this.removeBattleUnit(squareId)
+            // this.removeBattleUnit(squareId)
+            this.removeBattleUnit(squareContent)
         }
     }
 
@@ -75,22 +75,24 @@ export default class EditableBattleField extends Component {
         let b = this.createNewBattleUnit()
         b.setFaction(S.getInstance().get(S.USERNAME))
         b.position = squareId
-        let battleUnits = g.getBattleUnits(S.getInstance().get(S.USERNAME))
-        battleUnits = battleUnits.filter(b => b.position != squareId)
-        battleUnits.push(b)
-        g.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
+        // let battleUnits = g.getBattleUnits(S.getInstance().get(S.USERNAME))
+        // battleUnits = battleUnits.filter(b => b.position != squareId)
+        // battleUnits.push(b)
+        // g.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
+        g.addBattleUnit(b)
         g.update()
     }
-
+    
     /**
      * 
-     * @param {number} squareId 
+     * @param {BattleUnit} battleUnit 
      */
-    removeBattleUnit = (squareId) => {
+    removeBattleUnit = (battleUnit) => {
         let g = this.props.game
-        let battleUnits = g.getBattleUnits(S.getInstance().get(S.USERNAME))
-        battleUnits = battleUnits.filter(b => b.position != squareId)
-        g.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
+        // let battleUnits = g.getBattleUnits(S.getInstance().get(S.USERNAME))
+        // battleUnits = battleUnits.filter(b => b.position != squareId)
+        // g.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
+        g.removeBattleUnit(battleUnit)
         g.update()
     }
 
