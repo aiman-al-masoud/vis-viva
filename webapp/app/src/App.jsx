@@ -179,7 +179,7 @@ export default class App extends Component {
                         ga.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
                     }
 
-                    ga.animateBattleUnit(fromUnit, BattleUnit.STATE_ATTACKING, true)
+                    ga.animateBattleUnit(fromUnit, BattleUnit.STATE_ATTACKING)
                     ga.changeTurn()
                     this.setGame(ga)
 
@@ -248,7 +248,7 @@ export default class App extends Component {
             Server.instance().fire(this.state.game, fromUnit, toUnit)
             let g = this.state.game
             g.animateBattleUnit(fromUnit, BattleUnit.STATE_ATTACKING)
-            g.animateBattleUnit(toUnit, BattleUnit.STATE_TAKING_HIT, true)
+            g.animateBattleUnit(toUnit, BattleUnit.STATE_TAKING_HIT)
             g.changeTurn()
             this.setGame(g)
         }
