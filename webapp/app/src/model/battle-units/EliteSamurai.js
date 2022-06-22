@@ -22,6 +22,9 @@ export default class EliteSamurai  extends BattleUnit{
         this.__taking_hit_icon = TakingHitIcon
         this.__attacking_sound = AttackingSound
         this.__taking_hit_sound = TakingHitSound
+        this.__attack_duration = 1200
+        this.__die_duration = 1200
+        this.__take_hit_duration = 800
     }
 
 

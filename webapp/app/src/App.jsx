@@ -178,7 +178,7 @@ export default class App extends Component {
                     })
 
                     if (victimDead) {
-                        ga.killBattleUnit(toUnit, false)
+                        ga.killBattleUnit(toUnit)
                     }else{
                         ga.animateBattleUnit(toUnit, BattleUnit.STATE_TAKING_HIT)
                         ga.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)

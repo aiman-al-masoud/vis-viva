@@ -1,8 +1,8 @@
 import Audio from "./Audio.js"
 
-export default class BattleUnit{
+export default class BattleUnit {
 
-    static STATE_IDLING =  "STATE_IDLING"
+    static STATE_IDLING = "STATE_IDLING"
     static STATE_DYING = "STATE_DYING"
     static STATE_TAKING_HIT = "STATE_TAKING_HIT"
     static STATE_ATTACKING = "STATE_ATTACKING"
@@ -13,7 +13,7 @@ export default class BattleUnit{
      * @param {number} maxHealth 
      * @param {number} damage attack power of unit
      */
-    constructor(type, maxHealth, damage){
+    constructor(type, maxHealth, damage) {
         this.type = type
         this.maxHealth = maxHealth ?? 100
         this.health = this.maxHealth
@@ -27,6 +27,10 @@ export default class BattleUnit{
         this.__attacking_sound = undefined
         this.__dying_sound = undefined
         this.__taking_hit_sound = undefined
+        // this.__attack_duration = 2000
+        // this.__die_duration = 2000
+        // this.__take_hit_duration = 2000
+
         this.state = BattleUnit.STATE_IDLING
     }
 
@@ -34,7 +38,7 @@ export default class BattleUnit{
      * 
      * @param {string} faction 
      */
-    setFaction = (faction)=>{
+    setFaction = (faction) => {
         this.faction = faction
     }
 
@@ -42,16 +46,20 @@ export default class BattleUnit{
      * Returns the username of the player who owns this BattleUnit.
      * @returns {string}
      */
-    getFaction = ()=>{
+    getFaction = () => {
         return this.faction
     }
 
-    setAnimation = (state)=>{
+    setAnimation = (state) => {
+
+        if(this.state==BattleUnit.STATE_DYING){
+            return
+        }
 
         this.state = state;
 
-        (async (state)=>{
-            switch(state){
+        (async (state) => {
+            switch (state) {
                 case BattleUnit.STATE_ATTACKING:
                     Audio.playBase64(this.__attacking_sound)
                     break
@@ -69,19 +77,9 @@ export default class BattleUnit{
      * 
      * @returns {string} icon
      */
-    getIcon = ()=>{
-
-        let s = this.state 
+    getIcon = () => {
         
-        if(s==BattleUnit.STATE_DYING){
-            this.dead = true
-        }
-
-        if(this.dead){
-            return this.__dying_icon
-        }
-
-        switch(s){
+        switch (this.state) {
             case BattleUnit.STATE_IDLING:
                 return this.__idling_icon
             case BattleUnit.STATE_DYING:
@@ -94,14 +92,30 @@ export default class BattleUnit{
 
     }
 
-    toJSON(){
+
+    /**
+     * Get the duration of an animation
+     * @returns {number}
+     */
+    getAnimationDuration = (animation) => {
+        switch (animation) {
+            case BattleUnit.STATE_ATTACKING:
+                return this.__attack_duration
+            case BattleUnit.STATE_DYING:
+                return this.__die_duration
+            case BattleUnit.STATE_TAKING_HIT:
+                return this.__take_hit_duration
+        }
+    }
+
+    toJSON() {
         return {
             type: this.type,
-            maxHealth : this.maxHealth,
-            health : this.health,
-            position : this.position, 
-            damage : this.damage,
-            faction : this.faction
+            maxHealth: this.maxHealth,
+            health: this.health,
+            position: this.position,
+            damage: this.damage,
+            faction: this.faction
         }
     }
 
