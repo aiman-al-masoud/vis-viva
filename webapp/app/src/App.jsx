@@ -139,7 +139,8 @@ export default class App extends Component {
 
             switch (ev.eventType) {
                 case RemoteEvents.FIGHT_INVITE:
-                    let g = new Game(ev.challenger, ev.defender, ev.gameId, this.setGame)
+                    // let g = new Game(ev.challenger, ev.defender, ev.gameId, this.setGame)
+                    let g = this.newGame(ev.challenger, ev.defender, ev.gameId)
                     this.setState({ game: g, acceptChallengePrompt: true })
                     break
                 case RemoteEvents.FIGHT_ACCEPT:
@@ -220,7 +221,8 @@ export default class App extends Component {
      * @param {string} defender  username 
      */
     challengeUser = (defender) => {
-        let g = new Game(S.getInstance().get(S.USERNAME), defender, parseInt(999999 * Math.random()) , this.setGame )
+        // let g = new Game(S.getInstance().get(S.USERNAME), defender, parseInt(999999 * Math.random()) , this.setGame )
+        let g = this.newGame(S.getInstance().get(S.USERNAME), defender, parseInt(999999 * Math.random()))
         this.setState({ game: g })
         Server.instance().fightInvite(g)
         this.switchMode(App.EDITABLE_BATTLE_FIELD)
@@ -261,24 +263,33 @@ export default class App extends Component {
     }
 
     /**
-     * 
+     * Sets or updates the current Game in App's state.
      * @param {Game} game 
      */
     setGame = (game) => {
         this.setState({ game: game })
     }
 
+    /**
+     * Creates a new Game with App's setGame callback.
+     * @param {string} challenger player who sends fight-invite
+     * @param {string} defender player who sends back fight-accept
+     * @param {int} gameId unique game id on server
+     * @returns 
+     */
+    newGame = (challenger, defender, gameId)=>{
+        return new Game(challenger, defender, gameId, this.setGame)
+    }
 
 
     challengeServer = ()=>{
         let gameId = parseInt(999999 * Math.random())
-        let g = new Game(S.getInstance().get(S.USERNAME), gameId, gameId, this.setGame)
+        // let g = new Game(S.getInstance().get(S.USERNAME), gameId, gameId, this.setGame)
+        let g =  this.newGame(S.getInstance().get(S.USERNAME), gameId, gameId)
         this.setState({ game: g })
         Server.instance().pvc(g)
         this.switchMode(App.EDITABLE_BATTLE_FIELD)
     }
-    
-
 
     componentDidMount(){
 
