@@ -19,6 +19,7 @@ export default class BattleUnit{
         this.health = this.maxHealth
         this.damage = damage
         this.position = 0  // or undef 
+        this.faction = undefined
         this.__idling_icon = undefined
         this.__dying_icon = undefined
         this.__taking_hit_icon = undefined
@@ -27,6 +28,22 @@ export default class BattleUnit{
         this.__dying_sound = undefined
         this.__taking_hit_sound = undefined
         this.state = BattleUnit.STATE_IDLING
+    }
+
+    /**
+     * 
+     * @param {string} faction 
+     */
+    setFaction = (faction)=>{
+        this.faction = faction
+    }
+
+    /**
+     * 
+     * @returns {string}
+     */
+    getFaction = ()=>{
+        return this.faction
     }
 
     setAnimation = (state)=>{
@@ -83,7 +100,8 @@ export default class BattleUnit{
             maxHealth : this.maxHealth,
             health : this.health,
             position : this.position, 
-            damage : this.damage
+            damage : this.damage,
+            faction : this.faction
         }
     }
 

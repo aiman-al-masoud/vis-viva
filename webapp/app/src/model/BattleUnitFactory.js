@@ -1,6 +1,7 @@
 import Samurai from "./battle-units/Samurai.js";
 import EliteSamurai from "./battle-units/EliteSamurai.js";
 import FireWorm from "./battle-units/FireWorm.js";
+import BattleUnit from "./BattleUnit.js";
 
 export default class BattleUnitFactory {
 
@@ -16,12 +17,14 @@ export default class BattleUnitFactory {
      * @param {{
      * type : string,
      * health :number,
-     * position : number 
+     * position : number,
+     * faction : string
      * }} json 
      */
     static fromJson(json) {
         let b = BattleUnitFactory.new(json.type)
-        // b = {...b, ...json}
+        // b = {...b, ...json} //nope: overrides methods!
+        b.setFaction(json.faction)
         b.health = json.health
         b.position = json.position
         return b

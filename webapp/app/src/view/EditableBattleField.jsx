@@ -73,6 +73,7 @@ export default class EditableBattleField extends Component {
     addBattleUnit = (squareId) => {
         let g = this.props.game
         let b = this.createNewBattleUnit()
+        b.setFaction(S.getInstance().get(S.USERNAME))
         b.position = squareId
         let battleUnits = g.getBattleUnits(S.getInstance().get(S.USERNAME))
         battleUnits = battleUnits.filter(b => b.position != squareId)
