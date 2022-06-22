@@ -56,12 +56,9 @@ export default class Game{
      * 
      * @param {BattleUnit} battleUnit 
      * @param {string} animationState 
-     * @param {boolean} isEnemy 
      */
-    animateBattleUnit = (battleUnit, animationState, isEnemy)=>{
+    animateBattleUnit = (battleUnit, animationState)=>{
 
-        // let username = isEnemy? this.getOpponent() : S.getInstance().get(S.USERNAME)
-        
         let username = battleUnit.getFaction()
 
         let battleUnits = this.getBattleUnits(username)
@@ -92,11 +89,9 @@ export default class Game{
     /**
      * Remove BattleUnit
      * @param {BattleUnit} battleUnit 
-     * @param {boolean} isEnemy 
      */
-    killBattleUnit = (battleUnit, isEnemy) =>{
+    killBattleUnit = (battleUnit) =>{
 
-        // let username = isEnemy? this.getOpponent() : S.getInstance().get(S.USERNAME)
         let username = battleUnit.getFaction()
 
         let battleUnits = this.getBattleUnits(username)
