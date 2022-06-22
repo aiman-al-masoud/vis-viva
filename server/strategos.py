@@ -74,7 +74,8 @@ class Strategos:
 
             # fire back
             from_unit = battle_units[0]
-            to_unit = self.game.get_battle_units(self.game.challenger())[0]
+            to_unit = event["fromUnit"]
+            # to_unit = self.game.get_battle_units(self.game.challenger())[0]
             e = FireEvent(from_unit, to_unit, randint(1, 999999999), self.game.game_id())
             e.set_sent_by_strategos(True)
             Events.instance().add_event(self.game.challenger(), e)

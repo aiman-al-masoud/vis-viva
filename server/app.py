@@ -38,8 +38,6 @@ def i_am_online():
     # return user's events
     evs = Events.instance().pop_event_queue(username)
 
-    print("i_am_online()", "username:", username, "events:", evs)
-
     return json.dumps({ "events" : evs })
 
 @app.route('/online-users', methods = ["GET", "POST"])                                                                                                 
@@ -114,8 +112,6 @@ def ready():
     username = request.cookies["username"]
     battleUnits = request.json["battleUnits"]
     gameId = request.json["gameId"]
-
-    print("ready()", "username:", username, battleUnits, gameId)
 
     # fetch and update Game's state
     g = Game.get_game_for(username)
@@ -217,7 +213,6 @@ def fire_ack():
     return "success"
 
 
-
 @app.route('/pvc', methods = ["GET", "POST"])
 def pvc():
     
@@ -225,28 +220,17 @@ def pvc():
     Start a new PVC game with this server 
     """
 
-    print("pvc()")
-
     if "username" not in request.cookies:
         return "error: no username provided", 400
-
-    print("pvc()", 2)
-
-
-    # if "serverInstanceId" not in request.json:
-    #     return  "error: 'serverInstanceId' not specified in json", 400
 
     if "gameId" not in request.json:
         return "error: 'gameId' not specified in json", 400
 
     username = request.cookies["username"]
     gameId = request.json["gameId"]
-    print("pvc()", username, gameId)
-    # serverInstanceId = request.json["serverInstanceId"]
 
     g = Game(username, gameId, gameId)
     s = Strategos(g)
     s.add_event(  FightInviteEvent(username, gameId, gameId) )
 
     return "success"
-    
