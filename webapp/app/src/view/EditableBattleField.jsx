@@ -61,7 +61,6 @@ export default class EditableBattleField extends Component {
         if (!squareContent) {
             this.addBattleUnit(squareId)
         } else {
-            // this.removeBattleUnit(squareId)
             this.removeBattleUnit(squareContent)
         }
     }
@@ -75,10 +74,6 @@ export default class EditableBattleField extends Component {
         let b = this.createNewBattleUnit()
         b.setFaction(S.getInstance().get(S.USERNAME))
         b.position = squareId
-        // let battleUnits = g.getBattleUnits(S.getInstance().get(S.USERNAME))
-        // battleUnits = battleUnits.filter(b => b.position != squareId)
-        // battleUnits.push(b)
-        // g.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
         g.addBattleUnit(b)
         g.update()
     }
@@ -89,9 +84,6 @@ export default class EditableBattleField extends Component {
      */
     removeBattleUnit = (battleUnit) => {
         let g = this.props.game
-        // let battleUnits = g.getBattleUnits(S.getInstance().get(S.USERNAME))
-        // battleUnits = battleUnits.filter(b => b.position != squareId)
-        // g.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
         g.removeBattleUnit(battleUnit)
         g.update()
     }
@@ -111,10 +103,6 @@ export default class EditableBattleField extends Component {
     selectBattleUnitType = (type) => {
         this.setState({ selectedBattleUnitType: type })
     }
-
-
-
-
 
 
 }
