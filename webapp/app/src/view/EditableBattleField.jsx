@@ -98,7 +98,6 @@ export default class EditableBattleField extends Component {
      * @returns {BattleUnit}
      */
     createNewBattleUnit = () => {
-        // return new Samurai()
         return BattleUnitFactory.new(this.state.selectedBattleUnitType)
     }
 
