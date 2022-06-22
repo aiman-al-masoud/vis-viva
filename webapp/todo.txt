@@ -7,6 +7,7 @@
 -> extract lang  strings
 -> description and rules
 -> attributions
+-> fix you lost arriving twice from server in PVC
 
 # Maybe 
 -> cost per battle unit mechanism 
