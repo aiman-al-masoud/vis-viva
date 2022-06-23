@@ -161,40 +161,10 @@ export default class App extends Component {
 
                 case RemoteEvents.FIRE: //incoming fire
 
-                    // let victimDead = false
-                    // let victim = undefined
-                    // let ga = this.state.game
-                    // let battleUnits = ga.getBattleUnits(S.getInstance().get(S.USERNAME))
-
-                    // let toUnit = BattleUnitFactory.fromJson(ev.toUnit)
-                    // let fromUnit = BattleUnitFactory.fromJson(ev.fromUnit)
-
-                    // battleUnits.forEach(b => {
-                    //     if (b.position == toUnit.position) {
-                    //         b.health -= fromUnit.damage
-                    //         victim = b
-                    //         if (b.health <= 0) {
-                    //             victimDead = true
-                    //         }
-                    //     }
-                    // })
-
-                    // if (victimDead) {
-                    //     ga.killBattleUnit(toUnit)
-                    // }else{
-                    //     ga.animateBattleUnit(toUnit, BattleUnit.STATE_TAKING_HIT)
-                    //     ga.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
-                    // }
-
-                    // ga.animateBattleUnit(fromUnit, BattleUnit.STATE_ATTACKING)
-                    // ga.changeTurn()
-                    // this.setGame(ga)
-
                     let ga = this.state.game
                     let fireRes = ga.fireEvent(new FireEvent(ev))
                     ga.update()
                     Server.instance().fireAck(this.state.game, fireRes.victim, ev.id, fireRes.victimDead, ga.allDead() )
-                    
                     break
 
                 case RemoteEvents.FIRE_ACK:
@@ -202,26 +172,11 @@ export default class App extends Component {
                     let gam = this.state.game
                     gam.fireAckEvent(new FireAckEvent(ev))
                     gam.update()
-
-                    // let enemyBs = gam.getBattleUnits(gam.getOpponent())
-                    // let toUnit1 = BattleUnitFactory.fromJson(ev.toUnit)
-
-                    // if (ev.toUnit.health > 0) {
-                    //     enemyBs = enemyBs.filter(b => b.position != toUnit1.position)
-                    //     enemyBs.push(toUnit1)
-                    //     gam.setBattleUnits(gam.getOpponent(), enemyBs)
-                    // }else{
-                    //     gam.killBattleUnit(toUnit1,true)
-                    // }
-
-                    // this.setGame(gam)
-
                     break
 
                 case RemoteEvents.GAME_OVER:
                     let g1 = this.state.game
                     g1.setGameOver(ev.winner)
-                    // this.setGame(g1)
                     g1.update()
                     break
 
