@@ -4,9 +4,11 @@ import FireEvent from "./events/FireEvent.js"
 import S from "./Settings.js"
 
 /**
- * Holds all of the state associated to a Game. To modify the state from a 
- * Component with access to a props.game object, first call all of the 
- * required methods, then call game.update() only once.
+ * Holds all of the state associated to a game. It acts as a context object
+ * and it's passed from App (root) down to all children Components.
+ * 
+ * To modify the state from a Component with access to a props.game object, 
+ * first call all of the required methods, then call game.update() only once.
  */
 export default class Game {
 
@@ -28,6 +30,13 @@ export default class Game {
         this.gameOver = false
         this.winner = undefined
         this.setGame = setGame
+    }
+
+    /**
+      * Calls back parent/owner/observer passing it updated Game state .
+      */
+    update() {
+        this.setGame(this)
     }
 
     /**
@@ -180,13 +189,6 @@ export default class Game {
     }
 
     /**
-     * Calls back parent/owner/observer passing it updated Game state .
-     */
-    update() {
-        this.setGame(this)
-    }
-
-    /**
      * Updates Game upon receiving a fire-ack event.
      * @param {FireAckEvent} e 
      */
@@ -216,7 +218,7 @@ export default class Game {
         let victim = e.toUnit
         victim.health -= e.fromUnit.damage
         let victimDead = victim.health <= 0
-        this.addBattleUnit(victim) 
+        this.addBattleUnit(victim)
 
         if (victimDead) {
             this.killBattleUnit(victim)
@@ -227,14 +229,14 @@ export default class Game {
         this.animateBattleUnit(e.fromUnit, BattleUnit.STATE_ATTACKING)
         this.changeTurn()
 
-        this._allDead = ( this.getBattleUnits(S.getInstance().get(S.USERNAME)).map(x=> x?1:0 ).reduce((a,b)=>a+b)<=1) && victimDead 
-        return {"victim" :victim, "victimDead":victimDead}
+        this._allDead = (this.getBattleUnits(S.getInstance().get(S.USERNAME)).map(x => x ? 1 : 0).reduce((a, b) => a + b) <= 1) && victimDead
+        return { "victim": victim, "victimDead": victimDead }
     }
 
     /**
      * Are all of the local player's BattleUnits dead?
      */
-    allDead = ()=>{
+    allDead = () => {
         return this._allDead
     }
 

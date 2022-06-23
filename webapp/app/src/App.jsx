@@ -51,18 +51,18 @@ export default class App extends Component {
          * }}
          */
         this.state = {
-            mode: S.getInstance().get(S.USERNAME)? App.MAIN_MENU : App.LOGIN,
+            mode: S.getInstance().get(S.USERNAME) ? App.MAIN_MENU : App.LOGIN,
             game: undefined,
             acceptChallengePrompt: false
         }
 
         //back button
-        this.pagesHistoryStack = [ ]
+        this.pagesHistoryStack = []
         this.baseHref = location.protocol + '//' + location.host + location.pathname
         this.currentHref = this.baseHref
-        
+
         //start the event loop if logged in 
-        if(S.getInstance().get(S.USERNAME)){
+        if (S.getInstance().get(S.USERNAME)) {
             setInterval(this.eventLoop, 1000)
         }
 
@@ -78,10 +78,10 @@ export default class App extends Component {
                 view = <Login onLogin={this.onLogin} />
                 break
             case App.MAIN_MENU:
-                view = <MainMenu    goToWorldMap={() => { this.switchMode(App.WORLD_MAP) }}  goToSettings={()=>{this.switchMode(App.SETTINGS)}}  goToInfo={()=>{this.switchMode(App.INFO)}}    challengeServer={this.challengeServer}   />
+                view = <MainMenu goToWorldMap={() => { this.switchMode(App.WORLD_MAP) }} goToSettings={() => { this.switchMode(App.SETTINGS) }} goToInfo={() => { this.switchMode(App.INFO) }} challengeServer={this.challengeServer} />
                 break
             case App.WORLD_MAP:
-                view = <WorldMap getOnlineUsers={Server.instance().onlineUsers} challengeUser={this.challengeUser}  getUsersXps={Server.instance().usersXps} />
+                view = <WorldMap getOnlineUsers={Server.instance().onlineUsers} challengeUser={this.challengeUser} getUsersXps={Server.instance().usersXps} />
                 break
             case App.EDITABLE_BATTLE_FIELD:
                 view = <EditableBattleField game={this.state.game} onReady={this.onReady} />
@@ -91,7 +91,7 @@ export default class App extends Component {
                 break
             case App.SETTINGS:
                 view = <Settings />
-                break 
+                break
             case App.INFO:
                 view = <Info />
                 break
@@ -104,9 +104,9 @@ export default class App extends Component {
                 <AcceptChallengePrompt game={this.state.game ?? {}} acceptChallenge={this.acceptChallenge} />
             </div>
 
-            <GameOverPopup game={this.state.game}  onDone={this.afterGameOver} />
+            <GameOverPopup game={this.state.game} onDone={this.afterGameOver} />
 
-            
+
             {view}
         </div>)
     }
@@ -117,14 +117,14 @@ export default class App extends Component {
      * @param {*} args 
      */
     switchMode = (mode, args) => {
-        
+
         // save state before changing
-        this.pagesHistoryStack.push( [this.state.mode] )
+        this.pagesHistoryStack.push([this.state.mode])
 
         //update location
-        location.href = this.baseHref+"#"+mode
+        location.href = this.baseHref + "#" + mode
         this.currentHref = location.href
-        
+
 
         this.setState({ mode: mode })
     }
@@ -142,7 +142,7 @@ export default class App extends Component {
         let remoteEvents = await Server.instance().iAmOnline()
         remoteEvents.forEach(ev => {
 
-            console.log("eventLoop()", "received event from server",  ev)
+            console.log("eventLoop()", "received event from server", ev)
 
             switch (ev.eventType) {
                 case RemoteEvents.FIGHT_INVITE:
@@ -164,7 +164,7 @@ export default class App extends Component {
                     let ga = this.state.game
                     let fireRes = ga.fireEvent(new FireEvent(ev))
                     ga.update()
-                    Server.instance().fireAck(this.state.game, fireRes.victim, ev.id, fireRes.victimDead, ga.allDead() )
+                    Server.instance().fireAck(this.state.game, fireRes.victim, ev.id, fireRes.victimDead, ga.allDead())
                     break
 
                 case RemoteEvents.FIRE_ACK:
@@ -214,7 +214,7 @@ export default class App extends Component {
      */
     sendFire = (fromUnit, toUnit) => {
 
-        if(this.state.game.isMyTurn()){
+        if (this.state.game.isMyTurn()) {
             Server.instance().fire(this.state.game, fromUnit, toUnit)
             let g = this.state.game
             g.animateBattleUnit(fromUnit, BattleUnit.STATE_ATTACKING)
@@ -225,7 +225,10 @@ export default class App extends Component {
 
     }
 
-    afterGameOver = ()=>{
+    /**
+     * Procedure to execute when a Game comes to its close.
+     */
+    afterGameOver = () => {
         this.switchMode(App.MAIN_MENU)
         this.setGame(undefined)
     }
@@ -245,31 +248,31 @@ export default class App extends Component {
      * @param {int} gameId unique game id on server
      * @returns 
      */
-    newGame = (challenger, defender, gameId)=>{
+    newGame = (challenger, defender, gameId) => {
         return new Game(challenger, defender, gameId, this.setGame)
     }
 
 
-    challengeServer = ()=>{
+    challengeServer = () => {
         let gameId = parseInt(999999 * Math.random())
-        let g =  this.newGame(S.getInstance().get(S.USERNAME), gameId, gameId)
+        let g = this.newGame(S.getInstance().get(S.USERNAME), gameId, gameId)
         this.setState({ game: g })
         Server.instance().pvc(g)
         this.switchMode(App.EDITABLE_BATTLE_FIELD)
     }
 
-    componentDidMount(){
+    componentDidMount() {
 
-            //detect browser's back button
-            setInterval(() => {
-        
-            if(this.currentHref!=location.href){
-                
+        //detect browser's back button
+        setInterval(() => {
+
+            if (this.currentHref != location.href) {
+
                 this.currentHref = location.href
-                let  p = this.pagesHistoryStack.pop()
+                let p = this.pagesHistoryStack.pop()
 
-                if(p){
-                    this.setState({ mode: p[0]})
+                if (p) {
+                    this.setState({ mode: p[0] })
                 }
 
             }
