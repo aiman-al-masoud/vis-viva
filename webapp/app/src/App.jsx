@@ -15,6 +15,7 @@ import BattleUnitFactory from "./model/BattleUnitFactory.js";
 import Settings from "../src/view/Settings.jsx";
 import Info from "./view/Info.jsx";
 import GameOverPopup from "./view/GameOverPopup.jsx";
+import FireAckEvent from "./model/events/FireAckEvent.js";
 
 
 /**
@@ -195,24 +196,29 @@ export default class App extends Component {
                 case RemoteEvents.FIRE_ACK:
 
                     let gam = this.state.game
-                    let enemyBs = gam.getBattleUnits(gam.getOpponent())
-                    let toUnit1 = BattleUnitFactory.fromJson(ev.toUnit)
+                    gam.fireAckEvent(new FireAckEvent(ev))
+                    gam.update()
 
-                    if (ev.toUnit.health > 0) {
-                        enemyBs = enemyBs.filter(b => b.position != toUnit1.position)
-                        enemyBs.push(toUnit1)
-                        gam.setBattleUnits(gam.getOpponent(), enemyBs)
-                    }else{
-                        gam.killBattleUnit(toUnit1,true)
-                    }
+                    // let enemyBs = gam.getBattleUnits(gam.getOpponent())
+                    // let toUnit1 = BattleUnitFactory.fromJson(ev.toUnit)
 
-                    this.setGame(gam)
+                    // if (ev.toUnit.health > 0) {
+                    //     enemyBs = enemyBs.filter(b => b.position != toUnit1.position)
+                    //     enemyBs.push(toUnit1)
+                    //     gam.setBattleUnits(gam.getOpponent(), enemyBs)
+                    // }else{
+                    //     gam.killBattleUnit(toUnit1,true)
+                    // }
+
+                    // this.setGame(gam)
+
                     break
 
                 case RemoteEvents.GAME_OVER:
                     let g1 = this.state.game
                     g1.setGameOver(ev.winner)
-                    this.setGame(g1)
+                    // this.setGame(g1)
+                    g1.update()
                     break
 
             }

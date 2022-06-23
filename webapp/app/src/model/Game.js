@@ -1,4 +1,5 @@
 import BattleUnit from "./BattleUnit.js"
+import FireAckEvent from "./events/FireAckEvent.js"
 import S from "./Settings.js"
 
 /**
@@ -46,7 +47,7 @@ export default class Game {
     }
 
     /**
-     * Add a BattleUnit, overwriting based on faction and position.
+     * Add a BattleUnit, **OVERWRITING** based on faction and position.
      * @param {BattleUnit} battleUnit 
      */
     addBattleUnit = (battleUnit) => {
@@ -182,6 +183,29 @@ export default class Game {
      */
     update() {
         this.setGame(this)
+    }
+
+    /**
+     * Updates Game upon receiving a fire-ack event.
+     * @param {FireAckEvent} e 
+     */
+    fireAckEvent = (e)=>{
+
+        // let enemyBs = gam.getBattleUnits(gam.getOpponent())
+        // let toUnit1 = BattleUnitFactory.fromJson(ev.toUnit)
+        // if (ev.toUnit.health > 0) {
+        
+        //check event id!!!!!!
+
+        if (e.toUnit.health > 0){
+            // enemyBs = enemyBs.filter(b => b.position != toUnit1.position)
+            // enemyBs.push(toUnit1)
+            // gam.setBattleUnits(gam.getOpponent(), enemyBs)
+            this.addBattleUnit(e.toUnit)
+        }else{
+            // gam.killBattleUnit(toUnit1,true)
+            this.killBattleUnit(e.toUnit)
+        }
     }
 
 
