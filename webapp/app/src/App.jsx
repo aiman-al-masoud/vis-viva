@@ -16,6 +16,7 @@ import Settings from "../src/view/Settings.jsx";
 import Info from "./view/Info.jsx";
 import GameOverPopup from "./view/GameOverPopup.jsx";
 import FireAckEvent from "./model/events/FireAckEvent.js";
+import FireEvent from "./model/events/FireEvent.js";
 
 
 /**
@@ -160,36 +161,39 @@ export default class App extends Component {
 
                 case RemoteEvents.FIRE: //incoming fire
 
-                    let victimDead = false
-                    let victim = undefined
+                    // let victimDead = false
+                    // let victim = undefined
+                    // let ga = this.state.game
+                    // let battleUnits = ga.getBattleUnits(S.getInstance().get(S.USERNAME))
+
+                    // let toUnit = BattleUnitFactory.fromJson(ev.toUnit)
+                    // let fromUnit = BattleUnitFactory.fromJson(ev.fromUnit)
+
+                    // battleUnits.forEach(b => {
+                    //     if (b.position == toUnit.position) {
+                    //         b.health -= fromUnit.damage
+                    //         victim = b
+                    //         if (b.health <= 0) {
+                    //             victimDead = true
+                    //         }
+                    //     }
+                    // })
+
+                    // if (victimDead) {
+                    //     ga.killBattleUnit(toUnit)
+                    // }else{
+                    //     ga.animateBattleUnit(toUnit, BattleUnit.STATE_TAKING_HIT)
+                    //     ga.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
+                    // }
+
+                    // ga.animateBattleUnit(fromUnit, BattleUnit.STATE_ATTACKING)
+                    // ga.changeTurn()
+                    // this.setGame(ga)
+
                     let ga = this.state.game
-                    let battleUnits = ga.getBattleUnits(S.getInstance().get(S.USERNAME))
-
-                    let toUnit = BattleUnitFactory.fromJson(ev.toUnit)
-                    let fromUnit = BattleUnitFactory.fromJson(ev.fromUnit)
-
-                    battleUnits.forEach(b => {
-                        if (b.position == toUnit.position) {
-                            b.health -= fromUnit.damage
-                            victim = b
-                            if (b.health <= 0) {
-                                victimDead = true
-                            }
-                        }
-                    })
-
-                    if (victimDead) {
-                        ga.killBattleUnit(toUnit)
-                    }else{
-                        ga.animateBattleUnit(toUnit, BattleUnit.STATE_TAKING_HIT)
-                        ga.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
-                    }
-
-                    ga.animateBattleUnit(fromUnit, BattleUnit.STATE_ATTACKING)
-                    ga.changeTurn()
-                    this.setGame(ga)
-
-                    Server.instance().fireAck(this.state.game, victim, ev.id, victimDead,   (battleUnits.map(x=> x?1:0 ).reduce((a,b)=>a+b)<=1) && victimDead   )
+                    let fireRes = ga.fireEvent(new FireEvent(ev))
+                    ga.update()
+                    Server.instance().fireAck(this.state.game, fireRes.victim, ev.id, fireRes.victimDead, ga.allDead() )
                     
                     break
 

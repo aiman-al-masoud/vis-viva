@@ -1,5 +1,6 @@
 import BattleUnit from "./BattleUnit.js"
 import FireAckEvent from "./events/FireAckEvent.js"
+import FireEvent from "./events/FireEvent.js"
 import S from "./Settings.js"
 
 /**
@@ -189,24 +190,80 @@ export default class Game {
      * Updates Game upon receiving a fire-ack event.
      * @param {FireAckEvent} e 
      */
-    fireAckEvent = (e)=>{
+    fireAckEvent = (e) => {
 
         // let enemyBs = gam.getBattleUnits(gam.getOpponent())
         // let toUnit1 = BattleUnitFactory.fromJson(ev.toUnit)
         // if (ev.toUnit.health > 0) {
-        
+
         //check event id!!!!!!
 
-        if (e.toUnit.health > 0){
+        if (e.toUnit.health > 0) {
             // enemyBs = enemyBs.filter(b => b.position != toUnit1.position)
             // enemyBs.push(toUnit1)
             // gam.setBattleUnits(gam.getOpponent(), enemyBs)
             this.addBattleUnit(e.toUnit)
-        }else{
+        } else {
             // gam.killBattleUnit(toUnit1,true)
             this.killBattleUnit(e.toUnit)
         }
     }
+
+    /**
+     * Updates Game upon receiving a fire event.
+     * @param {FireEvent} e 
+     */
+    fireEvent = (e) => {
+
+        // let victimDead = false
+        // let victim = undefined
+        // let ga = this.state.game
+        // let battleUnits = ga.getBattleUnits(S.getInstance().get(S.USERNAME))
+
+        // let toUnit = BattleUnitFactory.fromJson(ev.toUnit)
+        // let fromUnit = BattleUnitFactory.fromJson(ev.fromUnit)
+        let victim = e.toUnit
+        victim.health -= e.fromUnit.damage
+        let victimDead = victim.health <= 0
+        this.addBattleUnit(victim) 
+
+        if (victimDead) {
+            // ga.killBattleUnit(toUnit)
+            this.killBattleUnit(victim)
+        } else {
+            // ga.animateBattleUnit(toUnit, BattleUnit.STATE_TAKING_HIT)
+            // ga.setBattleUnits(S.getInstance().get(S.USERNAME), battleUnits)
+            this.animateBattleUnit(victim, BattleUnit.STATE_TAKING_HIT)
+        }
+
+        this.animateBattleUnit(e.fromUnit, BattleUnit.STATE_ATTACKING)
+        this.changeTurn()
+
+        // this.getBattleUnits(S.getInstance().get())
+
+        // battleUnits.forEach(b => {
+        //     if (b.position == toUnit.position) {
+        //         b.health -= fromUnit.damage
+        //         victim = b
+        //         if (b.health <= 0) {
+        //             victimDead = true
+        //         }
+        //     }
+        // })
+
+        this._allDead = ( this.getBattleUnits(S.getInstance().get(S.USERNAME)).map(x=> x?1:0 ).reduce((a,b)=>a+b)<=1) && victimDead 
+
+
+        return {"victim" :victim, "victimDead":victimDead}
+    }
+
+    /**
+     * 
+     */
+    allDead = ()=>{
+        return this._allDead
+    }
+
 
 
 
