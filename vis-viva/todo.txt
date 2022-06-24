@@ -2,7 +2,6 @@
 -> move game business logic code into Game
 
 # TODO 
--> getter for animation timing on BattleUnit
 -> add a couple more battle units
 -> extract lang  strings
 -> description and rules
