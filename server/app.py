@@ -20,7 +20,7 @@ CORS(app)
 
 @app.route('/')                                                                                                 
 def index():     
-    path=app.root_path+"/../webapp/dist/index.html"                                                              
+    path=app.root_path+"/../vis-viva/dist/index.html"                                                              
     with open(path) as f:
         homepage=f.read()
     return homepage
