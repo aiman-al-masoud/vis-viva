@@ -1,3 +1,3 @@
 # Vis Viva
 
-<img src="./webapp/app/res/icons/logo.png">
+<img src="./vis-viva/app/res/icons/logo.png">
