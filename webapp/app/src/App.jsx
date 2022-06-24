@@ -1,22 +1,22 @@
 import React, { Component } from "react";
-import EditableBattleField from "./view/EditableBattleField.jsx";
-import FightBattleField from "./view/FightBattleField.jsx";
-import Login from "./view/Login.jsx";
-import MainMenu from "./view/MainMenu.jsx";
-import WorldMap from "./view/WorldMap.jsx";
-import Game from "./model/Game.js"
-import S from "./model/Settings.js";
-import Server from "./model/Server.js";
-import AcceptChallengePrompt from "./view/AcceptChallengePrompt.jsx";
-import Styles from "./view/Styles.js"
-import RemoteEvents from "./model/RemoteEvents.js";
-import BattleUnit from "./model/BattleUnit.js"
-import BattleUnitFactory from "./model/BattleUnitFactory.js";
-import Settings from "../src/view/Settings.jsx";
-import Info from "./view/Info.jsx";
-import GameOverPopup from "./view/GameOverPopup.jsx";
-import FireAckEvent from "./model/events/FireAckEvent.js";
-import FireEvent from "./model/events/FireEvent.js";
+import EditableBattleField from "./view/pages/editable-battle-field/EditableBattleField.jsx";
+import FightBattleField from "./view/pages/fight-battle-field/FightBattleField.jsx";
+import Login from "./view/pages/login/Login.jsx";
+import MainMenu from "./view/pages/main-menu/MainMenu.jsx";
+import WorldMap from "./view/pages/world-map/WorldMap.jsx";
+import Game from "./model/Game.js";
+import Settings from "./view/pages/settings/Settings.jsx";
+import Info from "./view/pages/info/Info.jsx";
+import S from "./model/utils/Settings.js"
+import Server from "./model/events/Server.js";
+import AcceptChallengePrompt from "./view/popups/AcceptChallengePrompt.jsx";
+import GameOverPopup from "./view/popups/GameOverPopup.jsx"
+import Styles from "./view/Styles.js";
+import RemoteEvents from "./model/events/RemoteEvents.js";
+import BattleUnit from "./model/battle-units/BattleUnit.js";
+import BattleUnitFactory from "./model/battle-units/BattleUnitFactory.js"
+import FireAckEvent from "./model/events/classes/FireAckEvent.js"
+import FireEvent from "./model/events/classes/FireEvent.js"
 
 
 /**

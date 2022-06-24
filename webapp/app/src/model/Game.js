@@ -1,7 +1,8 @@
-import BattleUnit from "./BattleUnit.js"
-import FireAckEvent from "./events/FireAckEvent.js"
-import FireEvent from "./events/FireEvent.js"
-import S from "./Settings.js"
+import BattleUnit from "./battle-units/BattleUnit.js"
+import FireAckEvent from "./events/classes/FireAckEvent.js"
+import FireEvent from "./events/classes/FireEvent.js"
+import S from "./utils/Settings.js"
+
 
 /**
  * Holds all of the state associated to a game. It acts as a context object
