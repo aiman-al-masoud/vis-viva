@@ -6,16 +6,17 @@ import TakingHitIcon from "../../../../res/icons/master/take-hit.gif"
 import AttackingSound from "../../../../res/attack.mp3"
 import TakingHitSound from "../../../../res/damage1.mp3"
 
-export default class EliteSamurai  extends BattleUnit{
+export default class Master extends BattleUnit {
 
     static TYPE = "Master"
+    static LIST_RANK = 1
 
     /**
      * 
      * @param {number} initialHealth 
      */
-    constructor(){
-        super(EliteSamurai.TYPE, 40, 20)
+    constructor() {
+        super(Master.TYPE, 40, 20)
         this.__idling_icon = IdlingIcon
         this.__dying_icon = DyingIcon
         this.__attacking_icon = AttackingIcon

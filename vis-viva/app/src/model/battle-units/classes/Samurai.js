@@ -10,6 +10,7 @@ import TakingHitSound from "../../../../res/damage1.mp3"
 export default class Samurai  extends BattleUnit{
 
     static TYPE = "Samurai"
+    static LIST_RANK = 0
 
     /**
      * 

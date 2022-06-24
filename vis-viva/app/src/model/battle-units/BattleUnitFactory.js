@@ -1,6 +1,7 @@
 import BattleUnit from "./BattleUnit.js"
 import Samurai from "./classes/Samurai.js"
 const battleUnits = Object.fromEntries(require.context("./classes", false, /.js$/).keys().map(require.context("./classes", false, /.js$/)).map(s => { return [s.default.TYPE, s.default] }))
+const battleUnitTypes = Object.keys(battleUnits).sort((b1, b2)=> battleUnits[b1].LIST_RANK - battleUnits[b2].LIST_RANK )
 
 export default class BattleUnitFactory {
 
@@ -28,7 +29,7 @@ export default class BattleUnitFactory {
      * @returns {BattleUnit}
      */
     static new(type){
-        return new battleUnits[type??Samurai.TYPE]()
+        return new battleUnits[type]()
     }
 
     /**
@@ -45,7 +46,15 @@ export default class BattleUnitFactory {
      * @returns {[string]}
      */
     static getTypes(){
-        return Object.keys(battleUnits)
+        return battleUnitTypes
+    }
+
+    /**
+     * 
+     * @returns {string}
+     */
+    static getDefaultType(){
+        return battleUnitTypes[0]
     }
 
 

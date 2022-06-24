@@ -10,6 +10,7 @@ import TakingHitSound from "../../../../res/damage2.mp3"
 export default class FireWorm  extends BattleUnit{
 
     static TYPE = "Fire Worm"
+    static LIST_RANK = 2
 
     /**
      * 

@@ -28,7 +28,7 @@ export default class EditableBattleField extends Component {
         this.props = props
 
         this.state = {
-            selectedBattleUnitType: undefined
+            selectedBattleUnitType: BattleUnitFactory.getDefaultType()
         }
     }
 
