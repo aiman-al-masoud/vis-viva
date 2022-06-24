@@ -1,17 +1,8 @@
 import BattleUnit from "./BattleUnit.js"
 import Samurai from "./classes/Samurai.js"
-import EliteSamurai from "./classes/EliteSamurai.js"
-import FireWorm from "./classes/FireWorm.js"
-
+const battleUnits = Object.fromEntries(require.context("./classes", false, /.js$/).keys().map(require.context("./classes", false, /.js$/)).map(s => { return [s.default.TYPE, s.default] }))
 
 export default class BattleUnitFactory {
-
-    /**
-     * BattleUnit Types
-     */
-    static SAMURAI = Samurai.TYPE
-    static ELITE_SAMURAI = EliteSamurai.TYPE
-    static FIRE_WORM = FireWorm.TYPE
 
     /**
      * Re-create an  existing BattleUnit.
@@ -37,14 +28,7 @@ export default class BattleUnitFactory {
      * @returns {BattleUnit}
      */
     static new(type){
-        switch(type){
-            case BattleUnitFactory.SAMURAI:
-                return new Samurai()
-            case BattleUnitFactory.ELITE_SAMURAI:
-                return new EliteSamurai()
-            case BattleUnitFactory.FIRE_WORM:
-                return new FireWorm()
-        }
+        return new battleUnits[type??Samurai.TYPE]()
     }
 
     /**
@@ -61,7 +45,7 @@ export default class BattleUnitFactory {
      * @returns {[string]}
      */
     static getTypes(){
-        return [ BattleUnitFactory.SAMURAI, BattleUnitFactory.ELITE_SAMURAI, BattleUnitFactory.FIRE_WORM ]
+        return Object.keys(battleUnits)
     }
 
 

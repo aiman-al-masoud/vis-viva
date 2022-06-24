@@ -3,11 +3,8 @@ import BattleUnit from "../../../model/battle-units/BattleUnit.js";
 import HalfChessboard from "../../recycled/HalfChessboard.jsx";
 import Game from "../../../model/Game.js";
 import S from "../../../model/utils/Settings.js";
-// import BattleUnitsSelector from "../../editable-battle-field/BattleUnitsSelector.jsx";
 import BattleUnitsSelector from "./BattleUnitsSelector.jsx";
-// import BattleUnitFactory from "../../../model/battle-units/BattleUnitFactory.js";
 import BattleUnitFactory from "../../../model/battle-units/BattleUnitFactory.js";
-
 import Button from "../../recycled/Button.jsx"
 
 import FightIcon from "../../../../res/icons/icons/fight.png"
@@ -31,7 +28,7 @@ export default class EditableBattleField extends Component {
         this.props = props
 
         this.state = {
-            selectedBattleUnitType: BattleUnitFactory.SAMURAI
+            selectedBattleUnitType: undefined
         }
     }
 
