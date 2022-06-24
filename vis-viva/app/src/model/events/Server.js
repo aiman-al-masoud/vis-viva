@@ -142,6 +142,7 @@ export default class Server {
                 })
             })
 
+
         return res.text()
     }
 
@@ -171,6 +172,7 @@ export default class Server {
                 })
             })
 
+
         return res.text()
     }
 
@@ -190,6 +192,14 @@ export default class Server {
                     gameId: game.gameId,
                 })
             })
+    }
+
+
+    /**
+     * 
+     */
+    abortGame = async () => {
+        let res = await fetch('/abort-game')
     }
 
 

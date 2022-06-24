@@ -166,11 +166,12 @@ export default class Game {
     }
 
     /**    
-     * @param {string}
+     * @param {*}
      * Call it when the Game is over
      */
-    setGameOver = (winner) => {
-        this.winner = winner
+    setGameOver = (ev) => {
+        this.winner = ev.winner
+        this.opponentLeft = ev.opponentLeft
         this.gameOver = true
     }
 

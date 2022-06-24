@@ -27,6 +27,7 @@ export default class GameOverPopup extends Component {
             <div  className="game-over-popup" /*style={  {    position:"absolute", top: window.screen.height/2, left : window.screen.width/2  }} */ >
             <h1>Game Over</h1>
             {this.props.game?.amIWinner()? "You Won!" : "You Lost!"}
+            {this.props.game?.opponentLeft? "(Your Opponent Left the Game)":""}
             <br />
             <button onClick={this.props.onDone}>Ok</button>
         </div></div>)

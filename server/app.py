@@ -64,6 +64,9 @@ def fight_invite():
     defender = request.json["defender"]
     gameId = request.json["gameId"]
 
+    if Game.get_game_for(challenger) or Game.get_game_for(defender):
+        return  "error: at least one of the players requested is already busy", 400
+
     # create a new Game
     Game(challenger, defender, gameId)
          
@@ -232,5 +235,29 @@ def pvc():
     g = Game(username, gameId, gameId)
     s = Strategos(g)
     s.add_event(  FightInviteEvent(username, gameId, gameId) )
+
+    return "success"
+
+@app.route('/abort-game', methods = ["GET", "POST"])
+def abort_game():
+    """
+    Tells the server that the player wants to abort current Game if any.
+    """
+
+    if "username" not in request.cookies:
+        return  "error: no username provided", 400
+
+    username = request.cookies["username"]
+
+    game = Game.get_game_for(username)
+    print(game)    
+
+    # the other guy wins
+    if game:
+        winner = game.get_other_player(username)
+        Events().instance().add_event(winner, GameOverEvent(winner, opponentLeft=True))
+        game.game_over()
+
+    print("after removing", Game.games())
 
     return "success"

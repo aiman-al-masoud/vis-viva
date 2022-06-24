@@ -176,7 +176,7 @@ export default class App extends Component {
 
                 case RemoteEvents.GAME_OVER:
                     let g1 = this.state.game
-                    g1.setGameOver(ev.winner)
+                    g1.setGameOver(ev)
                     g1.update()
                     break
 
@@ -261,6 +261,11 @@ export default class App extends Component {
         this.switchMode(App.EDITABLE_BATTLE_FIELD)
     }
 
+    abortGame = ()=>{
+        Server.instance().abortGame()
+        this.setGame(undefined)
+    }
+
     componentDidMount() {
 
         //detect browser's back button
@@ -278,6 +283,14 @@ export default class App extends Component {
             }
 
         }, 100);
+
+
+        // abort game upon reload
+        window.addEventListener('beforeunload', (e) => {
+            this.abortGame()
+        })
+
+
     }
 
 }

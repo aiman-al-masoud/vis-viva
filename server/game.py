@@ -14,8 +14,7 @@ class Game:
         self.__gameId = gameId
         self.__battle_units_dict = {}
         self.__username_current_turn = challenger # challenger gets first move
-        # Game.GAME_POOL.append(self)
-        Game.add_game(self)
+        Game.GAME_POOL.append(self)
     
     def challenger(self)->str:
         return self.__challenger
@@ -88,9 +87,3 @@ class Game:
         li = [g for g in Game.GAME_POOL if (g.challenger()==username) or (g.defender()==username)]
         return li[0] if len(li)!=0 else None
 
-    @staticmethod
-    def add_game(game:'Game'):
-        # TODO: this is a problem if a user challenges another user that is already playing!
-        Game.GAME_POOL = [g for g in Game.GAME_POOL if len( set(g.players()) & set(game.players()) ) == 0 ]
-        Game.GAME_POOL.append(game)
-        
