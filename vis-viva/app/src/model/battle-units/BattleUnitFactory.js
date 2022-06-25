@@ -1,5 +1,4 @@
 import BattleUnit from "./BattleUnit.js"
-import Samurai from "./classes/Samurai.js"
 const battleUnits = Object.fromEntries(require.context("./classes", false, /.js$/).keys().map(require.context("./classes", false, /.js$/)).map(s => { return [s.default.TYPE, s.default] }))
 const battleUnitTypes = Object.keys(battleUnits).sort((b1, b2)=> battleUnits[b1].LIST_RANK - battleUnits[b2].LIST_RANK )
 
