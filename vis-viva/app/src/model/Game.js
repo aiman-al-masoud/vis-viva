@@ -1,6 +1,7 @@
 import BattleUnit from "./battle-units/BattleUnit.js"
 import FireAckEvent from "./events/classes/FireAckEvent.js"
 import FireEvent from "./events/classes/FireEvent.js"
+import GameOverEvent from "./events/classes/GameOverEvent.js"
 import S from "./utils/Settings.js"
 
 
@@ -165,9 +166,9 @@ export default class Game {
         this.__username_current_turn = this.__username_current_turn == this.challenger ? this.defender : this.challenger
     }
 
-    /**    
-     * @param {*}
-     * Call it when the Game is over
+    /** 
+     * Call it when the Game is over, passing it a GameOverEvent.
+     * @param {GameOverEvent} ev
      */
     setGameOver = (ev) => {
         this.winner = ev.winner

@@ -17,6 +17,7 @@ import BattleUnit from "./model/battle-units/BattleUnit.js";
 import BattleUnitFactory from "./model/battle-units/BattleUnitFactory.js"
 import FireAckEvent from "./model/events/classes/FireAckEvent.js"
 import FireEvent from "./model/events/classes/FireEvent.js"
+import GameOverEvent from "./model/events/classes/GameOverEvent.js";
 
 
 /**
@@ -176,7 +177,7 @@ export default class App extends Component {
 
                 case RemoteEvents.GAME_OVER:
                     let g1 = this.state.game
-                    g1.setGameOver(ev)
+                    g1.setGameOver(new GameOverEvent(ev))
                     g1.update()
                     break
 
