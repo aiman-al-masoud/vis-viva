@@ -197,6 +197,7 @@ export default class Game {
 
     /**
      * Updates Game upon receiving a fire-ack event.
+     * The "result of a hit" on a victim is handled here.
      * @param {FireAckEvent} e 
      */
     fireAckEvent = (e) => {
@@ -232,16 +233,13 @@ export default class Game {
         if(probability(e.fromUnit.missRate)){
             //nothing
             miss = true
-            console.log("miss!")
         }else if(probability(e.toUnit.dodgeRate)){
             //nothing
             dodge = true
-            console.log("dodge!")
         }else if (probability(e.fromUnit.criticalHitRate)){
             criticalHit = true
             victim.health -= e.fromUnit.criticalHitMultiplier*e.fromUnit.damage
             victimDead = victim.health <= 0
-            console.log("critical!")
         }else{
             victim.health -= e.fromUnit.damage
             victimDead = victim.health <= 0
