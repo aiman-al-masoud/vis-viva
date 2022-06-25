@@ -201,28 +201,6 @@ export default class Game {
      */
     fireAckEvent = (e) => {
 
-        //check event id!!!!!!
-
-        // if(e.miss){
-        //     console.log("miss!")
-        // }else if(e.dodge){
-        //     console.log("dodge!")
-        // }else if(e.criticalHit){
-        //     console.log("critical!")
-        // }
-
-        // if (e.toUnit.health > 0) {
-        //     this.addBattleUnit(e.toUnit)
-            
-
-        //     if(! e.miss && !e.dodge && !e.victimDead){
-        //         this.animateBattleUnit(e.toUnit, BattleUnit.STATE_TAKING_HIT)
-        //     }
-
-        // } else {
-        //     this.killBattleUnit(e.toUnit)
-        // }
-
         if(!e.miss && !e.dodge){
             if(e.victimDead){
                 this.killBattleUnit(e.toUnit)
@@ -244,8 +222,6 @@ export default class Game {
     fireEvent = (e) => {
 
         //check event id!!!!!!
-
-        
 
         let victim = e.toUnit
         let victimDead = false
@@ -284,7 +260,6 @@ export default class Game {
         this.changeTurn()
 
         this._allDead = (this.getBattleUnits(S.getInstance().get(S.USERNAME)).map(x => x ? 1 : 0).reduce((a, b) => a + b) <= 1) && victimDead
-        // return { "victim": victim, "victimDead": victimDead, "miss":miss, "dodge":dodge, "critical": criticalHit }
         return new FireResults(victim, victimDead, this._allDead, miss, dodge, criticalHit)
     }
 
@@ -295,7 +270,5 @@ export default class Game {
         return this._allDead
     }
 
-   
 
 }
-

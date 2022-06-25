@@ -219,11 +219,10 @@ export default class App extends Component {
             Server.instance().fire(this.state.game, fromUnit, toUnit)
             let g = this.state.game
             g.animateBattleUnit(fromUnit, BattleUnit.STATE_ATTACKING)
-            // g.animateBattleUnit(toUnit, BattleUnit.STATE_TAKING_HIT)
             g.changeTurn()
             this.setGame(g)
         }
-
+    
     }
 
     /**

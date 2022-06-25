@@ -1,6 +1,18 @@
 #!/bin/bash
 
-# assume server is up and running 
+# check if server is up and running 
+SERVER="http://127.0.0.1:5000"
+x=$(curl $SERVER > tmp1 2> tmp2; cat tmp2 | egrep -o 'Failed to connect')
+if [[ -z "$x" ]]
+then 
+echo ""
+else 
+echo "Server is down!"
+exit 
+fi
+rm tmp1 tmp2
+
+
 
 # shifts focus back on browser's search bar
 resetFocus(){
@@ -15,7 +27,7 @@ userLoginChrome(){
     user-dir="${config-dir}/$username"
     rm -r ${user-dir}
     sleep 1
-    chromium  --incognito --new-window  --user-data-dir=${user-dir}  http://127.0.0.1:5000 &
+    chromium  --incognito --new-window  --user-data-dir=${user-dir}  $SERVER &
     sleep 3
     xdotool key Tab
     xdotool type "$username"
@@ -101,18 +113,4 @@ xdotool key Return
 resetFocus
 xdotool key --repeat 12 Tab 
 xdotool key Return 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
