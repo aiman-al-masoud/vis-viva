@@ -7,8 +7,10 @@ import BattleUnitsSelector from "./BattleUnitsSelector.jsx";
 import BattleUnitFactory from "../../../model/battle-units/BattleUnitFactory.js";
 import Button from "../../recycled/Button.jsx"
 
-import FightIcon from "../../../../res/icons/icons/fight.png"
-import BackgroundImage from "../../../../res/icons/backgrounds/bg1.png"
+// import FightIcon from "../../../../res/icons/icons/fight.png"
+// import BackgroundImage from "../../../../res/icons/backgrounds/bg1.png"
+import FightIcon from "../../../../res/icons/fight.png"
+import BackgroundImage from "../../../../res/backgrounds/bg1.png"
 
 
 /**

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Audio from "../../model/utils/Audio.js";
-import SelectSound from "../../../res/select.mp3"
+import SelectSound from "../../../res/sounds/select.mp3"
 
 /**
  * A rounded, transparent menu button.

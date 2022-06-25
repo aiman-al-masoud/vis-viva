@@ -3,7 +3,9 @@ import Game from "../../../model/Game.js";
 import HalfChessboard from "../../recycled/HalfChessboard.jsx";
 import S from "../../../model/utils/Settings.js";
 import BattleUnit from "../../../model/battle-units/BattleUnit.js";
-import BackgroundImage from  "../../../../res/icons/backgrounds/bg1.png"
+
+
+import BackgroundImage from "../../../../res/backgrounds/bg1.png"
 
 /**
  * 

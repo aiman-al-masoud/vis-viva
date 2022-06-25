@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import WorldMapIcon from "../../../../res/icons/icons/world-map.png"
-import InfoIcon from "../../../../res/icons/icons/info.png"
-import SettingsIcon from "../../../../res/icons/icons/settings.png"
-import ExitIcon from "../../../../res/icons/icons/exit.png"
-import PvcIcon from "../../../../res/icons/icons/pvc.png"
 import Button from "../../recycled/Button.jsx";
 import S from "../../../model/utils/Settings";
+
+
+import WorldMapIcon from "../../../../res/icons/world-map.png"
+import InfoIcon from "../../../../res/icons/info.png"
+import SettingsIcon from "../../../../res/icons/settings.png"
+import ExitIcon from "../../../../res/icons/exit.png"
+import PvcIcon from "../../../../res/icons/pvc.png"
 
 /**
  */

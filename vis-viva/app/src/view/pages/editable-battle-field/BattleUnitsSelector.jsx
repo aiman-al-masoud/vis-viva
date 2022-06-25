@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Button from "../../recycled/Button.jsx";
-import ArrowIcon from "../../../../res/icons/icons/arrow.png"
+// import ArrowIcon from "../../../../res/icons/icons/arrow.png"
+import ArrowIcon from "../../../../res/icons/arrow.png"
 
 /**
  */

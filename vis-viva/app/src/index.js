@@ -3,7 +3,8 @@ import reactDom from "react-dom";
 import App from "./App.jsx";
 import "./index.css"
 import Favicon from "../res/icons/favicon.png"
-import Background from "../res/icons/backgrounds/background.jpg"
+// import Background from "../res/icons/backgrounds/background.jpg"
+import Background from "../res/backgrounds/background.jpg"
 
 // set title
 document.title = "Vis Viva"

@@ -1,6 +1,6 @@
 //allows you to browse active players and challenge them
 import React, { Component } from "react";
-import BackgroundImage from "../../../../res/icons/backgrounds/world-map-bg.gif"
+import BackgroundImage from "../../../../res/backgrounds/world-map-bg.gif"
 
 /**
  */
