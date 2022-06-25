@@ -6,12 +6,9 @@ export default class Samurai  extends BattleUnit{
     static TYPE = "Samurai"
     static LIST_RANK = 0
 
-    /**
-     * 
-     * @param {number} initialHealth 
-     */
+
     constructor(){
-        super(Samurai.TYPE,20, 5)
+        super(Samurai.TYPE, 20, 5)
         this.importResources(res)
         this.__attack_duration = 800
         this.__die_duration = 1300

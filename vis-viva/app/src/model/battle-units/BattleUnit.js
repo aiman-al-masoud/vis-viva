@@ -119,21 +119,17 @@ export default class BattleUnit {
 
 
     importResources = (r)=>{
-
-        console.log("res object", r)
-        console.log("keys", r.keys())
         
         let images = {}
-        r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); })
-        this.__idling_icon = images["idle.gif"].default
-        this.__dying_icon = images["die.gif"].default
-        this.__taking_hit_icon = images["take-hit.gif"].default
-        this.__attacking_icon = images["attack.gif"].default
-        this.__attacking_sound = images["attack.mp3"].default
-        this.__dying_sound = images["take-hit.mp3"].default
-        this.__taking_hit_sound = images["take-hit.mp3"].default
+        r.keys().map(item => { images[item.replace('./', '')] = r(item).default; })
+        this.__idling_icon = images["idle.gif"]
+        this.__dying_icon = images["die.gif"]
+        this.__taking_hit_icon = images["take-hit.gif"]
+        this.__attacking_icon = images["attack.gif"]
+        this.__attacking_sound = images["attack.mp3"]
+        this.__dying_sound = images["take-hit.mp3"]
+        this.__taking_hit_sound = images["take-hit.mp3"]
     }   
-
 
 }
 

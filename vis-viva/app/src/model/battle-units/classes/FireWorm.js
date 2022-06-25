@@ -1,16 +1,12 @@
 import BattleUnit from "../BattleUnit.js";
 const res = require.context('../../../../res/battle-units/fire-worm', false, /\.(png|jpe?g|svg|mp3|gif)$/)
 
-
 export default class FireWorm  extends BattleUnit{
 
     static TYPE = "Fire Worm"
     static LIST_RANK = 2
 
-    /**
-     * 
-     * @param {number} initialHealth 
-     */
+
     constructor(){
         super(FireWorm.TYPE, 100, 15)
         this.importResources(res)
@@ -18,6 +14,5 @@ export default class FireWorm  extends BattleUnit{
         this.__die_duration = 1500
         this.__take_hit_duration = 600
     }
-
 
 }

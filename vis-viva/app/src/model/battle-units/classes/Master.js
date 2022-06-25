@@ -6,10 +6,7 @@ export default class Master extends BattleUnit {
     static TYPE = "Master"
     static LIST_RANK = 1
 
-    /**
-     * 
-     * @param {number} initialHealth 
-     */
+
     constructor() {
         super(Master.TYPE, 40, 20)
         this.importResources(res)
@@ -17,6 +14,5 @@ export default class Master extends BattleUnit {
         this.__die_duration = 1100
         this.__take_hit_duration = 800
     }
-
 
 }
