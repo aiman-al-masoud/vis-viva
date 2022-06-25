@@ -1,4 +1,5 @@
 import BattleUnit from "../battle-units/BattleUnit.js"
+import FireResults from "../FireResults.js"
 import Game from "../Game.js"
 import S from "../utils/Settings.js"
 
@@ -149,13 +150,10 @@ export default class Server {
     /**
      * 
      * @param {Game} game 
-     * @param {BattleUnit} toUnit 
-     * @param {number} id 
-     * @param {boolean} victimDead 
-     * @param {boolean} allDeadGiveUp 
+     * @param {FireResults} fireRes
      * @returns 
      */
-    fireAck = async (game, toUnit, id, victimDead, allDeadGiveUp) => {
+    fireAck = async (game, id,  fireRes) => {
         let res = await fetch('/fire-ack',
             {
                 method: 'POST', headers: {
@@ -165,10 +163,13 @@ export default class Server {
 
                 body: JSON.stringify({
                     gameId: game.gameId,
-                    toUnit: toUnit,
+                    toUnit: fireRes.victim,
                     id: id,
-                    victimDead: victimDead,
-                    allDeadGiveUp: allDeadGiveUp
+                    victimDead: fireRes.victimDead,
+                    allDeadGiveUp: fireRes.allDead,
+                    miss : fireRes.miss,
+                    dodge: fireRes.dodge,
+                    criticalHit : fireRes.criticalHit
                 })
             })
 

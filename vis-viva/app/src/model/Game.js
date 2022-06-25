@@ -2,6 +2,8 @@ import BattleUnit from "./battle-units/BattleUnit.js"
 import FireAckEvent from "./events/classes/FireAckEvent.js"
 import FireEvent from "./events/classes/FireEvent.js"
 import GameOverEvent from "./events/classes/GameOverEvent.js"
+import FireResults from "./FireResults.js"
+import { probability } from "./utils/Functions.js"
 import S from "./utils/Settings.js"
 
 
@@ -201,33 +203,80 @@ export default class Game {
 
         //check event id!!!!!!
 
-        if (e.toUnit.health > 0) {
-            this.addBattleUnit(e.toUnit)
-        } else {
-            this.killBattleUnit(e.toUnit)
+        // if(e.miss){
+        //     console.log("miss!")
+        // }else if(e.dodge){
+        //     console.log("dodge!")
+        // }else if(e.criticalHit){
+        //     console.log("critical!")
+        // }
+
+        // if (e.toUnit.health > 0) {
+        //     this.addBattleUnit(e.toUnit)
+            
+
+        //     if(! e.miss && !e.dodge && !e.victimDead){
+        //         this.animateBattleUnit(e.toUnit, BattleUnit.STATE_TAKING_HIT)
+        //     }
+
+        // } else {
+        //     this.killBattleUnit(e.toUnit)
+        // }
+
+        if(!e.miss && !e.dodge){
+            if(e.victimDead){
+                this.killBattleUnit(e.toUnit)
+            }else{
+                this.addBattleUnit(e.toUnit)
+                this.animateBattleUnit(e.toUnit, BattleUnit.STATE_TAKING_HIT)
+            }
         }
+
+        console.log("miss:", e.miss, "dodge:",e.dodge, "critical:",e.criticalHit)
+
     }
 
     /**
      * Updates Game upon receiving a fire event.
      * @param {FireEvent} e 
-     * @returns {{
-     * victim :BattleUnit, 
-     * victimDead :boolean
-     * }} 
+     * @returns {FireResults}
      */
     fireEvent = (e) => {
 
         //check event id!!!!!!
 
+        
+
         let victim = e.toUnit
-        victim.health -= e.fromUnit.damage
-        let victimDead = victim.health <= 0
+        let victimDead = false
+        let miss = false
+        let dodge = false
+        let criticalHit = false
+
+        if(probability(e.fromUnit.missRate)){
+            //nothing
+            miss = true
+            console.log("miss!")
+        }else if(probability(e.toUnit.dodgeRate)){
+            //nothing
+            dodge = true
+            console.log("dodge!")
+        }else if (probability(e.fromUnit.criticalHitRate)){
+            criticalHit = true
+            victim.health -= e.fromUnit.criticalHitMultiplier*e.fromUnit.damage
+            victimDead = victim.health <= 0
+            console.log("critical!")
+        }else{
+            victim.health -= e.fromUnit.damage
+            victimDead = victim.health <= 0
+        }
+
+
         this.addBattleUnit(victim)
 
         if (victimDead) {
             this.killBattleUnit(victim)
-        } else {
+        } else if(!miss && !dodge){
             this.animateBattleUnit(victim, BattleUnit.STATE_TAKING_HIT)
         }
 
@@ -235,7 +284,8 @@ export default class Game {
         this.changeTurn()
 
         this._allDead = (this.getBattleUnits(S.getInstance().get(S.USERNAME)).map(x => x ? 1 : 0).reduce((a, b) => a + b) <= 1) && victimDead
-        return { "victim": victim, "victimDead": victimDead }
+        // return { "victim": victim, "victimDead": victimDead, "miss":miss, "dodge":dodge, "critical": criticalHit }
+        return new FireResults(victim, victimDead, this._allDead, miss, dodge, criticalHit)
     }
 
     /**
@@ -245,6 +295,7 @@ export default class Game {
         return this._allDead
     }
 
+   
 
 }
 

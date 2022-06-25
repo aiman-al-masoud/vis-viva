@@ -21,6 +21,12 @@ export default class BattleUnit {
         this.damage = damage
         this.position = 0  // or undef 
         this.faction = undefined
+
+        this.missRate = 0.5
+        this.criticalHitRate = 0
+        this.criticalHitMultiplier = 1.5
+        this.dodgeRate = 0
+
         // this.__attack_duration = 2000
         // this.__die_duration = 2000
         // this.__take_hit_duration = 2000
@@ -56,18 +62,32 @@ export default class BattleUnit {
 
         this.state = state;
 
-        (async (state) => {
-            switch (state) {
-                case BattleUnit.STATE_ATTACKING:
-                    Audio.playBase64(this.__attacking_sound)
-                    break
-                case BattleUnit.STATE_TAKING_HIT:
-                case BattleUnit.STATE_DYING:
-                    Audio.playBase64(this.__taking_hit_sound)
-                    break
-            }
-        })(state)
+        // (async (state) => {
+        //     switch (state) {
+        //         case BattleUnit.STATE_ATTACKING:
+        //             Audio.playBase64(this.__attacking_sound)
+        //             break
+        //         case BattleUnit.STATE_TAKING_HIT:
+        //         case BattleUnit.STATE_DYING:
+        //             Audio.playBase64(this.__taking_hit_sound)
+        //             break
+        //     }
+        // })(state)
 
+        setTimeout(this.playSound, 250)
+
+    }
+
+    playSound = async ()=>{
+        switch (this.state) {
+            case BattleUnit.STATE_ATTACKING:
+                Audio.playBase64(this.__attacking_sound)
+                break
+            case BattleUnit.STATE_TAKING_HIT:
+            case BattleUnit.STATE_DYING:
+                Audio.playBase64(this.__taking_hit_sound)
+                break
+        }
     }
 
 

@@ -195,12 +195,16 @@ def fire_ack():
     victimDead = request.json["victimDead"]
     allDeadGiveUp = request.json["allDeadGiveUp"]
 
+    miss = request.json["miss"]
+    dodge = request.json["dodge"]
+    criticalHit = request.json["criticalHit"]
+
 
     # fetch and update Game's state
     g = Game.get_game_for(username)
 
     # relay fire-ack event to back to attacker 
-    ev = FireAckEvent(toUnit, Id, gameId, victimDead, allDeadGiveUp)
+    ev = FireAckEvent(toUnit, Id, gameId, victimDead, allDeadGiveUp, miss, dodge, criticalHit)
     Events.instance().add_event( g.get_other_player(username), ev)
 
     # eventually terminate Game

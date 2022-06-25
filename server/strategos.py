@@ -60,7 +60,11 @@ class Strategos:
 
             self.game.set_battle_units(self.game.defender(), battle_units)
 
-            e = FireAckEvent(victim, event["id"], self.game.game_id(), victim["health"]<=0,  len(battle_units)==0 )
+            miss = False
+            dodge = False
+            criticalHit = False
+
+            e = FireAckEvent(victim, event["id"], self.game.game_id(), victim["health"]<=0,  len(battle_units)==0, miss, dodge, criticalHit )
             e.set_sent_by_strategos(True)
             Events.instance().add_event(self.game.challenger(), e)
 

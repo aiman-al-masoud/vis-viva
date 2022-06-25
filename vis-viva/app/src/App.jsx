@@ -165,7 +165,7 @@ export default class App extends Component {
                     let ga = this.state.game
                     let fireRes = ga.fireEvent(new FireEvent(ev))
                     ga.update()
-                    Server.instance().fireAck(this.state.game, fireRes.victim, ev.id, fireRes.victimDead, ga.allDead())
+                    Server.instance().fireAck(this.state.game, ev.id ,fireRes)
                     break
 
                 case RemoteEvents.FIRE_ACK:
@@ -219,7 +219,7 @@ export default class App extends Component {
             Server.instance().fire(this.state.game, fromUnit, toUnit)
             let g = this.state.game
             g.animateBattleUnit(fromUnit, BattleUnit.STATE_ATTACKING)
-            g.animateBattleUnit(toUnit, BattleUnit.STATE_TAKING_HIT)
+            // g.animateBattleUnit(toUnit, BattleUnit.STATE_TAKING_HIT)
             g.changeTurn()
             this.setGame(g)
         }

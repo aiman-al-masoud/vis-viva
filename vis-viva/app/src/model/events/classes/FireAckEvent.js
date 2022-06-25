@@ -13,7 +13,10 @@ export default class FireAckEvent extends Event{
      * toUnit: {},
      * id: number,
      * victimDead: boolean,
-     * allDeadGiveUp: boolean
+     * allDeadGiveUp: boolean,
+     * miss : boolean,
+     * dodge : boolean,
+     * criticalHit :boolean
      * }} json 
      */
     constructor(json){
@@ -24,6 +27,9 @@ export default class FireAckEvent extends Event{
         this.id = json.id
         this.victimDead = json.victimDead
         this.allDeadGiveUp = json.allDeadGiveUp
+        this.miss = json.miss
+        this.dodge = json.dodge
+        this.criticalHit = json.criticalHit
     }
     
 }
