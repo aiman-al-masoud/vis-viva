@@ -20,8 +20,9 @@ export default class Game {
      * @param {string} defender 
      * @param {int} gameId 
      * @param { (game:Game)=>Promise<void> } setGame 
+     * @param {()=>Promise<void>} abortGame
      */
-    constructor(challenger, defender, gameId, setGame) {
+    constructor(challenger, defender, gameId, setGame, abortGame) {
         this.challenger = challenger
         this.defender = defender
         this.gameId = gameId
@@ -32,6 +33,7 @@ export default class Game {
         this.gameOver = false
         this.winner = undefined
         this.setGame = setGame
+        this.abortGame = abortGame
     }
 
     /**
@@ -245,3 +247,4 @@ export default class Game {
 
 
 }
+

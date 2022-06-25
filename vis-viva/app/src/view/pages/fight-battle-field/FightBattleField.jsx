@@ -76,5 +76,9 @@ export default class FightBattleField extends Component {
     }
 
 
+    componentWillUnmount(){
+        this.props.game.abortGame()
+    }
+
 
 }

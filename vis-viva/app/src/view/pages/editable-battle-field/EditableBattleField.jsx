@@ -106,5 +106,9 @@ export default class EditableBattleField extends Component {
         this.setState({ selectedBattleUnitType: type })
     }
 
+    componentWillUnmount(){
+        this.props.game.abortGame()
+    }
+
 
 }

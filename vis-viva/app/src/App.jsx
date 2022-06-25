@@ -243,14 +243,14 @@ export default class App extends Component {
     }
 
     /**
-     * Creates a new Game with App's setGame callback.
+     * Creates a new Game with extra callbacks from App.
      * @param {string} challenger player who sends fight-invite
      * @param {string} defender player who sends back fight-accept
      * @param {int} gameId unique game id on server
      * @returns 
      */
     newGame = (challenger, defender, gameId) => {
-        return new Game(challenger, defender, gameId, this.setGame)
+        return new Game(challenger, defender, gameId, this.setGame, this.abortGame)
     }
 
 
@@ -265,6 +265,9 @@ export default class App extends Component {
     abortGame = ()=>{
         Server.instance().abortGame()
         this.setGame(undefined)
+        setTimeout(()=>{
+            console.log("after aborting, current game is:", this.state.game)
+        }, 1000)
     }
 
     componentDidMount() {
