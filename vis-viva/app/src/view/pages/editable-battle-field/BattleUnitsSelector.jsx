@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Button from "../../recycled/Button.jsx";
-// import ArrowIcon from "../../../../res/icons/icons/arrow.png"
 import ArrowIcon from "../../../../res/icons/arrow.png"
+import UnitStats from "../../../model/battle-units/UnitStats.js";
 
 /**
  */
@@ -13,7 +13,8 @@ export default class BattleUnitsSelector extends Component {
      * getIcon:(string)=>string,
      * selectedType:string,
      * types:[string],
-     * selectType:(string)=>Promise<void>
+     * selectType:(string)=>Promise<void>,
+     * getTypeStats : (string)=>UnitStats
      * }} props 
      */
     constructor(props){
@@ -29,6 +30,8 @@ export default class BattleUnitsSelector extends Component {
             <h2>{this.props.selectedType}</h2>
                 <img src={this.props.getIcon(this.props.selectedType)} width="200"/>
                 <br />
+                {this.props.getTypeStats(this.props.selectedType).prettyPrintHtml()}
+
                 <Button onClick={this.prev} title="Previous"  icon={ArrowIcon}  flippedX={true} />
                 <Button onClick={this.next} title="Next"  icon={ArrowIcon}  />
             </center>

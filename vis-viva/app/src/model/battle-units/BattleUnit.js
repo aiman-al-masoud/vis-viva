@@ -1,4 +1,5 @@
 import Audio from "../utils/Audio"
+import UnitStats from "./UnitStats"
 
 
 export default class BattleUnit {
@@ -159,6 +160,14 @@ export default class BattleUnit {
      */
     setTextMessage = (textMessage) => {
         this.textMessage = textMessage
+    }
+
+    /**
+     * 
+     * @returns {UnitStats}
+     */
+    getStats(){
+       return new UnitStats(this.maxHealth, this.damage, this.missRate, this.dodgeRate, this.criticalHitRate, this.criticalHitMultiplier)
     }
 
 }
