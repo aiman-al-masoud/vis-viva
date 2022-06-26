@@ -73,6 +73,11 @@ export default class Game {
         this.setBattleUnits(battleUnit.getFaction(), bs)
     }
 
+    getBattleUnit = (battleUnit)=>{
+        let bs = this.getBattleUnits(battleUnit.getFaction())
+        return bs.filter(b => b.position == battleUnit.position)[0]
+    }
+
     /**
      * Based on faction and position.
      * @param {BattleUnit} battleUnit 
@@ -155,6 +160,24 @@ export default class Game {
 
     }
 
+
+
+    displayTextOnBattleUnit = (battleUnit, text, durationMillisecs)=>{
+        // this.addBattleUnit()
+        let b = this.getBattleUnit(battleUnit)
+        b.setTextMessage(text)
+        this.addBattleUnit(b)
+
+        setTimeout(()=>{
+            let b = this.getBattleUnit(battleUnit)
+            b.setTextMessage("")
+            this.addBattleUnit(b)
+            this.update()
+        }, durationMillisecs)
+
+    }
+
+
     /**
      * Checks if it's the local player's turn to play.
      * @returns boolean 
@@ -211,7 +234,15 @@ export default class Game {
             }
         }
 
-        console.log("miss:", e.miss, "dodge:",e.dodge, "critical:",e.criticalHit)
+        if(e.miss){
+            this.displayTextOnBattleUnit(e.toUnit, "miss!", 500)
+        }else if(e.dodge){
+            this.displayTextOnBattleUnit(e.toUnit, "dodge!", 500)
+        }else if(e.criticalHit){
+            this.displayTextOnBattleUnit(e.toUnit, "critical!", 500)
+        }
+
+        // console.log("miss:", e.miss, "dodge:",e.dodge, "critical:",e.criticalHit)
 
     }
 

@@ -26,6 +26,7 @@ export default class BattleUnit {
         this.criticalHitMultiplier = 1.5
         this.dodgeRate = 0
         this.state = BattleUnit.STATE_IDLING
+        this.textMessage = "" //overlay text on battleunit sprite
 
         // this.__attack_duration = 2000
         // this.__die_duration = 2000
@@ -55,7 +56,7 @@ export default class BattleUnit {
      */
     setAnimation = (state) => {
 
-        if(this.state==BattleUnit.STATE_DYING){
+        if (this.state == BattleUnit.STATE_DYING) {
             return
         }
 
@@ -68,7 +69,7 @@ export default class BattleUnit {
     /**
      * 
      */
-    playSound = async ()=>{
+    playSound = async () => {
         switch (this.state) {
             case BattleUnit.STATE_ATTACKING:
                 Audio.playBase64(this.__attacking_sound)
@@ -86,7 +87,7 @@ export default class BattleUnit {
      * @returns {string} icon
      */
     getIcon = () => {
-        
+
         switch (this.state) {
             case BattleUnit.STATE_IDLING:
                 return this.__idling_icon
@@ -131,8 +132,8 @@ export default class BattleUnit {
      * 
      * @param {*} r 
      */
-    importResources = (r)=>{
-        
+    importResources = (r) => {
+
         let images = {}
         r.keys().map(item => { images[item.replace('./', '')] = r(item).default; })
         this.__idling_icon = images["idle.gif"]
@@ -142,9 +143,26 @@ export default class BattleUnit {
         this.__attacking_sound = images["attack.mp3"]
         this.__dying_sound = images["take-hit.mp3"]
         this.__taking_hit_sound = images["take-hit.mp3"]
-    }   
+    }
+
+    /**
+     * 
+     * @returns {string}
+     */
+    getTextMessage = () => {
+        return this.textMessage
+    }
+
+    /**
+     * 
+     * @param {string} textMessage 
+     */
+    setTextMessage = (textMessage) => {
+        this.textMessage = textMessage
+    }
 
 }
+
 
 
 
