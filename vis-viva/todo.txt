@@ -8,6 +8,7 @@
 -> description and rules
 -> attributions
 -> fix you lost arriving twice from server in PVC
+-> stunned and stunning battle units
 
 # Maybe 
 -> cost per battle unit mechanism 
