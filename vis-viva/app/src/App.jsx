@@ -215,6 +215,10 @@ export default class App extends Component {
      */
     sendFire = (fromUnit, toUnit) => {
 
+        if(!fromUnit || !toUnit){
+            return 
+        }
+
         if (this.state.game.isMyTurn()) {
             Server.instance().fire(this.state.game, fromUnit, toUnit)
             let g = this.state.game
