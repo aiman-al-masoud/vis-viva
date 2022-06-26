@@ -8,11 +8,15 @@ export default class Master extends BattleUnit {
 
 
     constructor() {
-        super(Master.TYPE, 40, 20)
+        super(Master.TYPE, 40, 30)
         this.importResources(res)
         this.__attack_duration = 1200
         this.__die_duration = 1100
         this.__take_hit_duration = 800
+        this.missRate = 0.1
+        this.criticalHitRate = 0.7
+        this.criticalHitMultiplier = 2.5
+        this.dodgeRate = 0.3
     }
 
 }

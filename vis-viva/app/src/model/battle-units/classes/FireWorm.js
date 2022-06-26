@@ -13,6 +13,10 @@ export default class FireWorm  extends BattleUnit{
         this.__attack_duration = 1600
         this.__die_duration = 1500
         this.__take_hit_duration = 600
+        this.missRate = 0.3
+        this.criticalHitRate = 0.8
+        this.criticalHitMultiplier = 3
+        this.dodgeRate = 0.1
     }
 
 }

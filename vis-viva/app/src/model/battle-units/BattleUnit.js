@@ -23,9 +23,9 @@ export default class BattleUnit {
         this.position = 0  // or undef 
         this.faction = undefined
         this.missRate = 0
-        this.criticalHitRate = 1
-        this.criticalHitMultiplier = 1.5
-        this.dodgeRate = 0.2
+        this.criticalHitRate = 0
+        this.criticalHitMultiplier = 0
+        this.dodgeRate = 0
         this.state = BattleUnit.STATE_IDLING
         this.textMessage = "" //overlay text on battleunit sprite
 

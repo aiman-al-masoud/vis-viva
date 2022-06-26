@@ -8,11 +8,15 @@ export default class Samurai  extends BattleUnit{
 
 
     constructor(){
-        super(Samurai.TYPE, 20, 5)
+        super(Samurai.TYPE, 50, 15)
         this.importResources(res)
         this.__attack_duration = 800
         this.__die_duration = 1300
         this.__take_hit_duration = 600
+        this.missRate = 0.2
+        this.criticalHitRate = 0.6
+        this.criticalHitMultiplier = 2
+        this.dodgeRate = 0.2
     }
 
 }
