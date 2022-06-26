@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import L from "../../../model/utils/Language.js"
 import LogoImage from "../../../../res/icons/logo.png"
 
+
 /**
  */
 export default class Login extends Component{
