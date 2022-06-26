@@ -5,6 +5,7 @@
 -> add miss, dodge, and critical messages
 -> add a couple more battle units
 -> extract lang  strings
+-> pass Language object down as a prop, and make reload in Settings just setState in App.
 -> description and rules
 -> attributions
 -> fix you lost arriving twice from server in PVC
