@@ -5,6 +5,8 @@
 -> attributions
 -> fix you lost arriving twice from server in PVC
 -> fix up and improve strategos
+-> server NOT re-reading page for production
+-> flask cache headers
 
 # Refactoring
 -> move game business logic code into Game
