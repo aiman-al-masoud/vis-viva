@@ -14,14 +14,18 @@ import Cookies from "./Cookies.js"
  export default class Settings{
 
     //Keys:
-    static APP_LANGUAGE = "APP_LANGUAGE"
+    static APP_LANGUAGE = "app_language"
     static USERNAME = "username"
+    static SOUND = "sound"
 
     //instance
     static __instance = undefined
 
     constructor(){
         this.settingsDict = JSON.parse( localStorage.getItem("SETTINGS") ?? "{}" )
+        
+        //set defaults 
+        this.settingsDict[Settings.SOUND] = this.settingsDict[Settings.SOUND]??true
     }
 
     /**

@@ -13,7 +13,13 @@ export default class Settings extends Component{
 
     onSet = (key, event) => {
         let choice = event.target
-        choice = choice.options[choice.selectedIndex].text
+
+        try{
+            choice = choice.options[choice.selectedIndex].text
+        }catch{
+            choice = choice.checked
+        }
+        
         console.log("onSet()", key, choice)
         S.getInstance().set(key, choice)
         L.reload() 
@@ -31,6 +37,10 @@ export default class Settings extends Component{
             <select value={S.getInstance().get(S.APP_LANGUAGE)} onChange={(event) => { this.onSet(S.APP_LANGUAGE, event)  }} >
                 {L.available().map((opt, index) => { return <option title={opt} key={index}>{opt}</option> })}
             </select>
+
+            <h1>Sound</h1>
+            <input type="checkbox"  checked={S.getInstance().get(S.SOUND)} onChange={(event) => { this.onSet(S.SOUND, event)  }} />
+
 
         </div>)
     }
