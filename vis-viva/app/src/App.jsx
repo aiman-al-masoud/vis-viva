@@ -75,7 +75,7 @@ export default class App extends Component {
 
         switch (this.state.mode) {
             case App.LOGIN:
-                view = <Login onLogin={this.onLogin} />
+                view = <Login onLogin={this.onLogin} goToSettings={() => { this.switchMode(App.SETTINGS) }} />
                 break
             case App.MAIN_MENU:
                 view = <MainMenu goToWorldMap={() => { this.switchMode(App.WORLD_MAP) }} goToSettings={() => { this.switchMode(App.SETTINGS) }} goToInfo={() => { this.switchMode(App.INFO) }} challengeServer={this.challengeServer} />

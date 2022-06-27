@@ -10,7 +10,8 @@ export default class Login extends Component{
     /**
      * 
      * @param {{
-     * onLogin : (username:string, password:string) => Promise<void>
+     * onLogin : (username:string, password:string) => Promise<void>,
+     * goToSettings : ()=>{}
      * }} props 
      */
     constructor(props){
@@ -37,6 +38,7 @@ export default class Login extends Component{
             
             <button className="button"  onClick={()=>{this.props.onLogin( this.usernameTextBox.current.value  ) }}>{L.login}</button>
 
+            <button onClick={this.props.goToSettings}>Settings</button>
             </div>
         </div>)
     }
