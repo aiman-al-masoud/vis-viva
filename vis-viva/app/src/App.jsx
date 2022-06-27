@@ -19,7 +19,6 @@ import FireAckEvent from "./model/events/classes/FireAckEvent.js"
 import FireEvent from "./model/events/classes/FireEvent.js"
 import GameOverEvent from "./model/events/classes/GameOverEvent.js";
 
-
 /**
  * All of the state *everywhere* is managed *solely* by App.
  * 
@@ -91,7 +90,7 @@ export default class App extends Component {
                 view = <FightBattleField game={this.state.game} sendFire={this.sendFire} />
                 break
             case App.SETTINGS:
-                view = <Settings />
+                view = <Settings update={()=>{this.forceUpdate}}/>
                 break
             case App.INFO:
                 view = <Info />

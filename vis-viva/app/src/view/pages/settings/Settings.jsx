@@ -28,7 +28,7 @@ export default class Settings extends Component{
 
         if(key==S.APP_LANGUAGE){
             L.reload() //redundant
-            window.location.reload()
+            this.props.update()
         }
     }
 
@@ -36,7 +36,7 @@ export default class Settings extends Component{
     render(){
 
         return (<div>
-            <h1>Settings</h1>
+            <h1>{L.settings}</h1>
 
             <h1>Language</h1>
             <select value={this.state.APP_LANGUAGE} onChange={(event) => { this.onSet(S.APP_LANGUAGE, event)  }} >

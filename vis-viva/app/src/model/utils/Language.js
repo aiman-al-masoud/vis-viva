@@ -11,7 +11,7 @@ import S from "./Settings.js"
 function reload() {
     let langName = S.getInstance().get(S.APP_LANGUAGE) ?? "english"
     Language.currentLang = langName
-    Language = { ...Language, ...langs[langName] }
+    Object.entries(langs[langName]).forEach(e=> Language[e[0]] = e[1] )
 }
 
 /**
@@ -29,6 +29,7 @@ function available() {
 function current() {
     return Language.currentLang
 }
+
 
 
 /**
@@ -50,10 +51,10 @@ function current() {
  */
 var Language = { ...english, reload, available, current }
 
-
 // to be called any time the webpage reloads
 Language.reload()
 console.log(Language.app_name, Language.help)
 
 
 export default Language;
+

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Button from "../../recycled/Button.jsx";
 import S from "../../../model/utils/Settings";
+import L from "../../../model/utils/Language.js";
 
 
 import WorldMapIcon from "../../../../res/icons/world-map.png"
@@ -31,7 +32,7 @@ export default class MainMenu extends Component {
     render() {
         return (<div >
 
-            <h1 className="center">Welcome back {S.getInstance().get(S.USERNAME)}!</h1>
+            <h1 className="center">{L.welcome_back} {S.getInstance().get(S.USERNAME)}!</h1>
 
 
             <center>
