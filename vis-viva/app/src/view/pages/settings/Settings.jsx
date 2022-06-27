@@ -38,7 +38,7 @@ export default class Settings extends Component{
                 {L.available().map((opt, index) => { return <option title={opt} key={index}>{opt}</option> })}
             </select>
 
-            <h1>Sound</h1>
+            <h1>{L.sounds}</h1>
             <input type="checkbox"  checked={S.getInstance().get(S.SOUND)} onChange={(event) => { this.onSet(S.SOUND, event)  }} />
 
 

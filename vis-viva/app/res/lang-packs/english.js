@@ -4,5 +4,6 @@ module.exports = {
     login : "Login",
     settings : "Settings",
     welcome_back : "Welcome back",
-    language : "Language"
+    language : "Language",
+    sounds : "Sounds"
 }

@@ -4,5 +4,7 @@ module.exports = {
     login : "Entra",
     settings : "Impostazioni",
     welcome_back : "Benvenuto/a",
-    language : "Lingua"
+    language : "Lingua",
+    sounds : "Suoni"
+
 }
