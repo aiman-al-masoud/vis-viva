@@ -260,22 +260,23 @@ export default class Game {
         let miss = false
         let dodge = false
         let criticalHit = false
+        let text = ""
 
         if(probability(e.fromUnit.missRate)){
-            //nothing
             miss = true
+            text = "miss!"
         }else if(probability(e.toUnit.dodgeRate)){
-            //nothing
             dodge = true
+            text = "dodge!"
         }else if (probability(e.fromUnit.criticalHitRate)){
             criticalHit = true
             victim.health -= e.fromUnit.criticalHitMultiplier*e.fromUnit.damage
             victimDead = victim.health <= 0
+            text = "critical!"
         }else{
             victim.health -= e.fromUnit.damage
             victimDead = victim.health <= 0
         }
-
 
         this.addBattleUnit(victim)
 
@@ -285,7 +286,10 @@ export default class Game {
             this.animateBattleUnit(victim, BattleUnit.STATE_TAKING_HIT)
         }
 
+        this.displayTextOnBattleUnit(victim, text, 250)
+
         this.animateBattleUnit(e.fromUnit, BattleUnit.STATE_ATTACKING)
+
         this.changeTurn()
 
         this._allDead = (this.getBattleUnits(S.getInstance().get(S.USERNAME)).map(x => x ? 1 : 0).reduce((a, b) => a + b) <= 1) && victimDead
