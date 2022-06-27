@@ -30,7 +30,7 @@ export default class Settings extends Component{
 
     render(){
 
-        return (<div style={{padding:"2vw"}}>
+        return (<div style={{padding:"2vw", background:"rgba(255, 255, 255, 0.318)"}}>
             <h1>{L.settings}</h1>
 
             <h1>{L.language}</h1>
