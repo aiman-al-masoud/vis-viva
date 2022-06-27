@@ -1,16 +1,17 @@
-# Refactoring
--> move game business logic code into Game
-
 # TODO 
 -> add a couple more battle units
 -> extract lang  strings
--> pass Language object down as a prop, and make reload in Settings just setState in App.
 -> description and rules
 -> attributions
 -> fix you lost arriving twice from server in PVC
--> stunned and stunning battle units
+-> fix up and improve strategos
+
+# Refactoring
+-> move game business logic code into Game
+
 
 # Maybe 
+-> stunned and stunning battle units
 -> cost per battle unit mechanism 
 -> better selected unit indicator
 -> range of hit
