@@ -130,6 +130,11 @@ export default class App extends Component {
     }
 
     onLogin = (username, password) => {
+
+        if(!username){
+            return 
+        }
+
         S.getInstance().set(S.USERNAME, username)
         this.switchMode(App.MAIN_MENU, {})
         //start the event loop upon a successful login
