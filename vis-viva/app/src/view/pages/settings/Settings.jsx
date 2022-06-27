@@ -27,7 +27,7 @@ export default class Settings extends Component{
         this.setState(newState)
 
         if(key==S.APP_LANGUAGE){
-            L.reload() //redundant
+            L.reload() 
             this.props.update()
         }
     }
