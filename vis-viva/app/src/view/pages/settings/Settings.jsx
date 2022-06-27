@@ -27,7 +27,7 @@ export default class Settings extends Component{
         return (<div>
             <h1>{L.settings}</h1>
 
-            <h1>Language</h1>
+            <h1>{L.language}</h1>
             <select value={S.getInstance().get(S.APP_LANGUAGE)} onChange={(event) => { this.onSet(S.APP_LANGUAGE, event)  }} >
                 {L.available().map((opt, index) => { return <option title={opt} key={index}>{opt}</option> })}
             </select>

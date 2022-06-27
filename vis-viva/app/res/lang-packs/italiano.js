@@ -3,5 +3,6 @@ module.exports = {
     help : "Aiuto",
     login : "Entra",
     settings : "Impostazioni",
-    welcome_back : "Benvenuto/a"
+    welcome_back : "Benvenuto/a",
+    language : "Lingua"
 }
