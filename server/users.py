@@ -1,12 +1,20 @@
 from time import time
+import json
+import os
+import sys
+
+my_open = open
+my_meta_path = sys.meta_path
 
 class Users:
 
+    path = "./data/users.json"
     __instance = None
     __duration_of_session = 5*30 # seconds
 
     def __init__(self):
         self.users = {}
+        self.load()
 
     @staticmethod
     def instance()->"Users":
@@ -21,22 +29,16 @@ class Users:
         if username not in self.users:
             user = {"xp":0, "last_online":-1}
             self.users[username] = user
+            self.save()
         else:
             user = self.users[username]
         
         return user
     
     def set_user_online(self, username:str):
-        
-        # if username not in self.users:
-        #     user = {}
-        # else:
-        #     user = self.users[username]
-
         user = self.get_user(username)
         user["last_online"] = int(time())
-        # self.users[username] = user
-
+        
     def is_user_online(self, username:str)->bool:
 
         if username not in self.users:
@@ -60,6 +62,8 @@ class Users:
         user = self.get_user(username)
         user["xp"] = user["xp"] or 0 
         user["xp"]+=delta_xp
+
+        self.save()
     
     def user_xps(self)->[(str, int)]:
         """
@@ -67,3 +71,19 @@ class Users:
         """
         return [ (username, data["xp"]) for username, data in self.users.items() ]
 
+    def save(self):
+        
+        if not os.path.isdir(os.path.split(Users.path)[0]):
+            os.makedirs(os.path.split(Users.path)[0])
+
+        with my_open(Users.path, "w+") as f:
+            f.write(json.dumps(self.users))
+
+    def load(self):
+        
+        if not os.path.exists(Users.path):
+            return 
+
+        with open(Users.path, "r") as f:
+            self.users = json.loads(f.read())
+    
