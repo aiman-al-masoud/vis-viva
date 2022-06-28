@@ -1,8 +1,8 @@
 {
-  "name": "@luxlunaris/strategery",
+  "name": "@luxlunaris/vis-viva",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "",
+  "license": "GPL-3.0-only",
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.17.0",
     "react": "^17.0.2",
