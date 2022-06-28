@@ -1,17 +1,12 @@
-# TODO 
+# Urgent
 -> add links to license, code once repo goes public 
 -> server NOT re-reading page for production
 -> add a couple more battle units
 -> fix you lost arriving twice from server in PVC
--> fix up and improve strategos
 -> flask cache headers
--> battle unit categories (like in pkmn)
-
-# Refactoring
--> move game business logic code into Game
-
 
 # Maybe 
+-> battle unit categories (like in pkmn)
 -> stunned and stunning battle units
 -> cost per battle unit mechanism 
 -> better selected unit indicator
@@ -22,6 +17,9 @@
 -> blocking effect/range (can't hit rear)
 -> random challenger button
 -> add fancy real Component previews in "tutorial part of info"
+
+# Refactoring
+-> move game business logic code into Game as much as possible
 
 # Improve
 
