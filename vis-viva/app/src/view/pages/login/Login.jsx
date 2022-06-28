@@ -38,7 +38,7 @@ export default class Login extends Component{
             
             <button className="button"  onClick={()=>{this.props.onLogin( this.usernameTextBox.current.value  ) }}>{L.login}</button>
 
-            <button onClick={this.props.goToSettings}>Settings</button>
+            <button onClick={this.props.goToSettings}>{L.settings}</button>
             </div>
         </div>)
     }

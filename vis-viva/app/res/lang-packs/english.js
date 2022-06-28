@@ -24,5 +24,6 @@ module.exports= {
     your_opponent_left_the_game : "(Your Opponent Left the Game)",
     miss : "miss!",
     dodge : "dodge!",
-    critical : "critical!"
+    critical : "critical!",
+    ready : "Ready, go!"
 }

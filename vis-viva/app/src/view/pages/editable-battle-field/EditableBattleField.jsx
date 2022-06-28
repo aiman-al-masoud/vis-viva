@@ -6,12 +6,10 @@ import S from "../../../model/utils/Settings.js";
 import BattleUnitsSelector from "./BattleUnitsSelector.jsx";
 import BattleUnitFactory from "../../../model/battle-units/BattleUnitFactory.js";
 import Button from "../../recycled/Button.jsx"
+import L from "../../../model/utils/Language.js";
 
-// import FightIcon from "../../../../res/icons/icons/fight.png"
-// import BackgroundImage from "../../../../res/icons/backgrounds/bg1.png"
 import FightIcon from "../../../../res/icons/fight.png"
 import BackgroundImage from "../../../../res/backgrounds/bg1.png"
-
 
 /**
  * Lets the user prepare his/her HalfChessboard before a battle.
@@ -38,9 +36,9 @@ export default class EditableBattleField extends Component {
         return (<div style={{ backgroundImage: `url(${BackgroundImage})`, backgroundSize: "cover" }}>
 
             <div style={{ display: "grid", gridTemplateColumns: "auto auto" }} >
-                <h1>Field your troops!</h1>
+                <h1>{L.field_your_troops}</h1>
                 <div className="center">
-                    <Button title="Ready!" onClick={this.props.onReady} icon={FightIcon} style={{ background: "red" }} />
+                    <Button title={L.ready} onClick={this.props.onReady} icon={FightIcon} style={{ background: "red" }} />
                 </div>
             </div>
 

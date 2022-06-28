@@ -5,6 +5,7 @@ import GameOverEvent from "./events/classes/GameOverEvent.js"
 import FireResults from "./FireResults.js"
 import { probability } from "./utils/Functions.js"
 import S from "./utils/Settings.js"
+import L from "./utils/Language.js"
 
 
 /**
@@ -235,11 +236,11 @@ export default class Game {
         }
 
         if(e.miss){
-            this.displayTextOnBattleUnit(e.toUnit, "miss!", 500)
+            this.displayTextOnBattleUnit(e.toUnit, L.miss, 500)
         }else if(e.dodge){
-            this.displayTextOnBattleUnit(e.toUnit, "dodge!", 500)
+            this.displayTextOnBattleUnit(e.toUnit, L.dodge, 500)
         }else if(e.criticalHit){
-            this.displayTextOnBattleUnit(e.toUnit, "critical!", 500)
+            this.displayTextOnBattleUnit(e.toUnit, L.critical, 500)
         }
 
         // console.log("miss:", e.miss, "dodge:",e.dodge, "critical:",e.criticalHit)
@@ -264,15 +265,15 @@ export default class Game {
 
         if(probability(e.fromUnit.missRate)){
             miss = true
-            text = "miss!"
+            text = L.miss
         }else if(probability(e.toUnit.dodgeRate)){
             dodge = true
-            text = "dodge!"
+            text = L.dodge
         }else if (probability(e.fromUnit.criticalHitRate)){
             criticalHit = true
             victim.health -= e.fromUnit.criticalHitMultiplier*e.fromUnit.damage
             victimDead = victim.health <= 0
-            text = "critical!"
+            text = L.critical
         }else{
             victim.health -= e.fromUnit.damage
             victimDead = victim.health <= 0

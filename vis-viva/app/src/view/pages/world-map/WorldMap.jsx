@@ -1,8 +1,9 @@
-//allows you to browse active players and challenge them
 import React, { Component } from "react";
 import BackgroundImage from "../../../../res/backgrounds/world-map-bg.gif"
+import L from "../../../model/utils/Language";
 
 /**
+ * Allows the user to browse active players and challenge them.
  */
 export default class WorldMap extends Component {
 
@@ -31,8 +32,8 @@ export default class WorldMap extends Component {
             <div style={{display:"flex",  justifyContent:"center"}}>
                
                 <div style={{background:"rgba(255, 255, 255, 0.318)", width:"fit-content"}}>
-                    <h2>Online Users</h2>
-                    <p>Click on a user in the list to challenge them!</p>
+                    <h2>{L.online_users}</h2>
+                    <p>{L.click_on_user_in_list}</p>
 
                     <ul>
                         {this.state.onlineUsers.map((u, i) => <li key={i}  >    <button onClick={() => { this.props.challengeUser(u) }}  > {u}</button>    </li>)}
@@ -40,7 +41,7 @@ export default class WorldMap extends Component {
                 </div>
 
                 <div style={{background:"rgba(255, 255, 255, 0.318)", width:"fit-content", float:"right"  }}>
-                    <h2>Global Ranking</h2>
+                    <h2>{ L.global_ranking   } </h2>
                     <img src={BackgroundImage} width="200" />
                     <ol >
                         {this.state.usersXps.map((u, i) => <li key={i}    >         {u[0]}  - {u[1]}       </li>)}

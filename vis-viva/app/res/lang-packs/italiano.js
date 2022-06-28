@@ -8,7 +8,7 @@ module.exports= {
     sounds : "Suoni",
     field_your_troops : "Disponi le tue truppe!",
     player_vs_player : "Giocatore contro Giocatore",
-    player_vs_compuer : "Player vs Computer",
+    player_vs_compuer : "Giocatore contro Computer",
     info : "Info",
     settings : "Impostazioni",
     logout : "Esci",
@@ -24,5 +24,6 @@ module.exports= {
     your_opponent_left_the_game : "(Il tuo avversario ha abbandonato la partita)",
     miss : "mancato!",
     dodge : "schivata!",
-    critical : "critico!"
+    critical : "critico!",
+    ready : "Pronto, via!"
 }
