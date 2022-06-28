@@ -13,6 +13,8 @@ from random import random
 from battle_units.Samurai import Samurai
 from battle_units.Master import Master
 from battle_units.FireWorm import FireWorm
+from battle_units.KingBourouf import KingBourouf
+from battle_units.Mushroom import Mushroom
 
 
 class Strategos:
@@ -31,13 +33,17 @@ class Strategos:
         return (False if probability==0 else True) and (random() <= probability )
 
     def get_random_battle_unit(self, position):
-            x = randint(1, 3)
+            x = randint(1, 5)
             if x==1:
                 return Samurai(self.game.game_id(), position) 
             if x==2:
                 return Master(self.game.game_id(), position)
             if x==3:
                 return FireWorm(self.game.game_id(), position)
+            if x==4:
+                return KingBourouf(self.game.game_id(), position) 
+            if x==5:
+                return Mushroom(self.game.game_id(), position)
             
     def generate_random_army(self):
         return [self.get_random_battle_unit(i) for i in range(1, 9)]

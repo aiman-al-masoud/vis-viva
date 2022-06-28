@@ -14,7 +14,7 @@ export default class Mushroom  extends BattleUnit{
         this.__die_duration = 800
         this.__take_hit_duration = 800
         this.missRate = 0.1
-        this.criticalHitRate = 1
+        this.criticalHitRate = 0.9
         this.criticalHitMultiplier = 4
         this.dodgeRate = 0
     }
