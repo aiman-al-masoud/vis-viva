@@ -1,11 +1,8 @@
 # TODO 
+-> server NOT re-reading page for production
 -> add a couple more battle units
--> extract lang  strings
--> description and rules
--> attributions
 -> fix you lost arriving twice from server in PVC
 -> fix up and improve strategos
--> server NOT re-reading page for production
 -> flask cache headers
 -> battle unit categories (like in pkmn)
 
