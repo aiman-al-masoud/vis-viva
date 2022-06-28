@@ -32,7 +32,6 @@ export default class BattleUnitsSelector extends Component {
 
                 <div style={{ display: "grid", gridTemplateColumns: "auto 4vw" }} >
                     <img src={this.props.getIcon(this.props.selectedType)} width="200" />
-                    {/* <br /> */}
                     {this.props.getTypeStats(this.props.selectedType).prettyPrintHtml()}
                 </div>
 
