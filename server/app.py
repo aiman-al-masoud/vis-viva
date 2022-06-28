@@ -1,6 +1,6 @@
 # python3 -m flask run
 import json
-from flask import Flask, render_template, request, send_file, redirect, url_for
+from flask import Flask, render_template, request, send_file, redirect, url_for, make_response
 from flask_cors import CORS
 from game import Game
 from events.events import Events
@@ -18,12 +18,19 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route('/')                                                                                                 
-def index():     
+def get_html():
     path=app.root_path+"/../vis-viva/dist/index.html"                                                              
     with open(path) as f:
-        homepage=f.read()
-    return homepage
+        return f.read()
+
+homepage = get_html()
+
+@app.route('/')                                                                                                 
+def index():     
+    resp  = make_response(homepage)
+    resp.cache_control.max_age=1*60*60
+    return resp
+
 
 @app.route('/i-am-online', methods = ["GET", "POST"])                                                                                                 
 def i_am_online():
