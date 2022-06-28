@@ -1,9 +1,28 @@
-module.exports = {
+module.exports= {
     app_name : "Vis Viva",
     help : "Help",
     login : "Login",
     settings : "Settings",
     welcome_back : "Welcome back",
     language : "Language",
-    sounds : "Sounds"
+    sounds : "Sounds",
+    field_your_troops : "Field your troops!",
+    player_vs_player : "Player vs Player",
+    player_vs_compuer : "Player vs Computer",
+    info : "Info",
+    settings : "Settings",
+    logout : "Logout",
+    online_users : "Online Users",
+    click_on_user_in_list: "Click on a user in the list to challenge them!",
+    global_ranking : "Global Ranking",
+    you_got_a_challenge_from : "You got a challenge from",
+    accept : "Accept",
+    game_over : "Game Over",
+    ok : "Ok",
+    you_won : "You Won!",
+    you_lost : "You Lost!",
+    your_opponent_left_the_game : "(Your Opponent Left the Game)",
+    miss : "miss!",
+    dodge : "dodge!",
+    critical : "critical!"
 }
