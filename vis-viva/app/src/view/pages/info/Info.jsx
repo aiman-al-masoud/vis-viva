@@ -27,47 +27,50 @@ export default class Info extends Component {
 
                     <h2>{L.gameplay}</h2>
 
-                    <p>The rules are simple!</p>
+                    <p>{L.the_rules_are_simple}</p>
 
                     <ol>
-                        <li>When you challenge someone, an invite is sent, and you're taken to the battlefield; which you can field your troops in.</li>
-                        <li>After you're done fielding your troops, you can hit the red {L.ready} button.</li>
-                        <li>Your opponent will have received an invite, and may still be fielding his/her troops, so be patient...</li>
-                        <li>When your opponent's troops appear on the screen, you're all set! You get the first turn, by virtue of being the attacker.</li>
-                        <li>Blows are exchanged by selecting a battle unit in your half of the field, and then selecting your target on your oppoenent's half of the field.</li>
-                      
+                        <li>{L.rule_1}</li>
+                        <li>{L.rule_2}</li>
+                        <li>{L.rule_3}</li>
+                        <li>{L.rule_4}</li>
+                        <li>{L.rule_5}</li>
                     </ol>
 
-                    <p>You can play this game entirely using your mouse, or your keyboard.</p>
-                    <p>Depending on what battle units you and your opponent chose, blows may miss, be dodged by the target, or land a critical hit!</p>
-                    <p>That's it, I won't bother you any further, go ahead and give it a go!</p>
+                    <p>{L.you_can_play_with_mouse_or_keyboard}</p>
+                    <p>{L.depending_on_battle_units_there_can_be_misses}</p>
+                    <p>{L.wont_bother_you_any_further}</p>
                     
                    
                     <h2>{L.license}</h2>
 
-                    <p>Vis Viva is free software, licensed under GPLv3.</p>
+                    <p>{L.short_license_notice}</p>
 
-                    <h3>See the full terms of the license here:</h3>
+                    <h3>{L.see_full_license_terms}:</h3>
 
+                    <a href={L.full_license_termns_link} target="_blank">{L.full_license_termns_link}</a>
 
-                    <h3>Get the source code:</h3>
+                    <h3>{L.get_the_source_code}:</h3>
+
+                    <a href={L.full_source_link} target="_blank">{L.full_source_link}</a>
+
 
 
                     <h2>{L.credits}</h2>
 
-                    <p>Assets (images, sounds) come from several sources, they're all carefully linked here (together with their respective authors, when possible).</p>
+                    <p>{L.assets_credits_are_here}</p>
 
                     <h2>{L.privacy}</h2>
 
-                    <p>I don't collect any personal data on the users, except for their usernames and the history of their scores, which counts as legitimate usage.</p>
+                    <p>{L.privacy_notice}</p>
 
                     <h2>{L.other_links}</h2>
 
-                    <span>Please check out  <a href="https://aiman-al-masoud.github.io/" target="_blank">my other projects</a>, and especially this one: </span>
-                    <a href="https://psittacus.eu.pythonanywhere.com" target="_blank">Psittacus</a>.
+                    <span>{L.please_check_out}  <a href={L.contact_website} target="_blank">{L.my_other_projects}</a>, {L.and_especially_this_one}: </span>
+                    <a href={L.psittacus_website} target="_blank">{L.psittacus}</a>.
 
-                    <p>Liked the game? Do you want to see more similar games? Do you have any game ideas to share? Contact me at:</p>
-                    <a href="mailto:luxlunarislabs@gmail.com">luxlunarislabs@gmail.com</a>
+                    <p>{L.liked_the_game_have_ideas}:</p>
+                    <a href="mailto:luxlunarislabs@gmail.com">{L.contact_email}</a>
 
                 </div>
             </div>
