@@ -35,7 +35,7 @@ export default class WorldMap extends Component {
                     <h2>{L.online_users}</h2>
                     <p>{L.click_on_user_in_list}</p>
 
-                    <ul>
+                    <ul className="special-list">
                         {this.state.onlineUsers.map((u, i) => <li key={i}  >    <button onClick={() => { this.props.challengeUser(u) }}  > {u}</button>    </li>)}
                     </ul>
                 </div>
@@ -43,7 +43,7 @@ export default class WorldMap extends Component {
                 <div style={{background:"rgba(255, 255, 255, 0.318)", width:"fit-content", float:"right"  }}>
                     <h2>{ L.global_ranking   } </h2>
                     <img src={BackgroundImage} width="200" />
-                    <ol >
+                    <ol className="special-list">
                         {this.state.usersXps.map((u, i) => <li key={i}    >         {u[0]}  - {u[1]}       </li>)}
                     </ol>
                 </div>

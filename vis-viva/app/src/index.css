@@ -126,7 +126,12 @@
 
 
 /* https://designshack.net/articles/css/5-simple-and-practical-css-list-styles-you-can-copy-and-paste/ */
-ul {
+
+
+
+
+
+ul.special-list, ol.special-list {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -134,13 +139,13 @@ ul {
     width: fit-content;
 }
 
-li {
+.special-list li {
     font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
     border-bottom: 1px solid black;
     padding: 0;
 }
 
-li button{
+.special-list li button{
     background: transparent;
     border: none;
     font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
@@ -148,27 +153,31 @@ li button{
     height: inherit;
 }
 
-li:last-child {
+.special-list li:last-child {
     border: none;
 }
 
-li {
+.special-list li {
     text-decoration: none;
     color: #000;
     display: block;
     width: 200px;
-
-    /* -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
-    -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
-    -o-transition: font-size 0.3s ease, background-color 0.3s ease;
-    -ms-transition: font-size 0.3s ease, background-color 0.3s ease; */
     transition: font-size 0.3s ease, background-color 0.3s ease;
 }
 
-li:hover {
+.special-list li:hover {
     font-size: 30px;
     background: #f6f6f6;
 }
+
+
+
+
+
+
+
+
+
 
 input[type=checkbox]
 {
@@ -180,3 +189,5 @@ input[type=checkbox]
   transform: scale(2);
   padding: 10px;
 }
+
+

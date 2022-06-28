@@ -30,6 +30,13 @@ module.exports= {
     attack_stat : "Attack",
     dodge_stat : "Dodge",
     miss_stat : "Miss",
-    critical_hit_rate_stat : "Critical"
+    critical_hit_rate_stat : "Critical",
+    vis_viva_is : "Vis Viva is an online, multiplayer strategy game, taking inspiration from various sources.",
+    invite_your_friends_and_challege_them :"Invite your friends and challenge them on an engrossing one-to-one PVP battle, where only one will be left to stand! Or try beating the server in PVC mode!",
+    gameplay : "Gameplay",
+    license : "License",
+    credits : "Credits",
+    privacy : "Privacy",
+    other_links: "Other Links",
 
 }
