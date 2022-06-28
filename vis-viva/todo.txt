@@ -1,4 +1,5 @@
 # TODO 
+-> add links to license, code once repo goes public 
 -> server NOT re-reading page for production
 -> add a couple more battle units
 -> fix you lost arriving twice from server in PVC
