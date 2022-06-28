@@ -46,8 +46,6 @@ class Strategos:
             from_unit = event["fromUnit"]
             to_unit = event["toUnit"]
 
-            print("look here you idiot", from_unit, to_unit)
-
             miss = self.probability(from_unit["missRate"])
             dodge = self.probability(to_unit["dodgeRate"])
             criticalHit = self.probability(from_unit["criticalHitRate"])
