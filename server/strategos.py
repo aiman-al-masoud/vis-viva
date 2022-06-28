@@ -8,6 +8,7 @@ from events.classes.game_over_event import *
 from battle_unit import BattleUnit
 from game import Game
 from random import randint
+from random import random
 
 class Strategos:
 
@@ -21,6 +22,9 @@ class Strategos:
     def __init__(self, game:Game):
         self.game=game
         Strategos.STRATEGOI_POOL.append(self)
+
+    def probability(self, probability):
+        return (False if probability==0 else True) and (random() <= probability ) 
         
     def add_event(self, event:Event):
 
@@ -38,32 +42,39 @@ class Strategos:
             Events.instance().add_event(self.game.challenger(), e)
         
         elif isinstance(event, FireEvent):
+            
             from_unit = event["fromUnit"]
             to_unit = event["toUnit"]
 
-            print("Strategos.add_event()", from_unit, to_unit)
+            print("look here you idiot", from_unit, to_unit)
 
+            miss = self.probability(from_unit["missRate"])
+            dodge = self.probability(to_unit["dodgeRate"])
+            criticalHit = self.probability(from_unit["criticalHitRate"])
+            criticalHitMultiplier = from_unit["criticalHitMultiplier"]
+            damage = from_unit["damage"]
+
+            # get strategos's battle units
             battle_units = self.game.get_battle_units(self.game.defender())
-            
-            # for b in battle_units:
-            #     if b["position"]==to_unit["position"]:
-            #         b["health"]-=from_unit["damage"]
-            #         victim = b
-
             battle_units = [b for b in battle_units if b["position"]!=to_unit["position"]]
-            to_unit["health"]-=from_unit["damage"]
+
+            # determine damage 
+            if miss:
+                damage = 0
+            elif dodge:
+                damage = 0
+            elif criticalHit:
+                damage = criticalHitMultiplier*damage
+
+            to_unit["health"]-=damage
             victim = to_unit
             battle_units.append(victim)
 
-            
+            # remove dead battle units
             battle_units = [b for b in battle_units if b["health"] > 0]
-
             self.game.set_battle_units(self.game.defender(), battle_units)
 
-            miss = False
-            dodge = False
-            criticalHit = False
-
+            # send fire-ack
             e = FireAckEvent(victim, event["id"], self.game.game_id(), victim["health"]<=0,  len(battle_units)==0, miss, dodge, criticalHit )
             e.set_sent_by_strategos(True)
             Events.instance().add_event(self.game.challenger(), e)
@@ -79,7 +90,6 @@ class Strategos:
             # fire back
             from_unit = battle_units[0]
             to_unit = event["fromUnit"]
-            # to_unit = self.game.get_battle_units(self.game.challenger())[0]
             e = FireEvent(from_unit, to_unit, randint(1, 999999999), self.game.game_id())
             e.set_sent_by_strategos(True)
             Events.instance().add_event(self.game.challenger(), e)

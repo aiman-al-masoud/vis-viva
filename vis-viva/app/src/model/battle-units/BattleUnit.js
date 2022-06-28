@@ -125,7 +125,11 @@ export default class BattleUnit {
             health: this.health,
             position: this.position,
             damage: this.damage,
-            faction: this.faction
+            faction: this.faction,
+            missRate : this.missRate,
+            dodgeRate : this.dodgeRate,
+            criticalHitRate: this.criticalHitRate,
+            criticalHitMultiplier : this.criticalHitMultiplier
         }
     }
 

@@ -145,6 +145,8 @@ def fire():
     if "gameId" not in request.json:
         return "error: 'gameId' not specified in json", 400
 
+
+
     username = request.cookies["username"]
     fromUnit = request.json["fromUnit"]
     toUnit = request.json["toUnit"]
