@@ -60,6 +60,9 @@ export default class Info extends Component {
 
                     <p>{L.assets_credits_are_here}</p>
 
+                    <a href={L.asset_credits_link} target="_blank">{L.asset_credits_link}</a>
+
+
                     <h2>{L.privacy}</h2>
 
                     <p>{L.privacy_notice}</p>

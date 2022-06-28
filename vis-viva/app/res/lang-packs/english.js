@@ -3,6 +3,7 @@ module.exports= {
     contact_email : "luxlunarislabs@gmail.com",
     contact_website : "https://aiman-al-masoud.github.io/",
     psittacus_website :"https://psittacus.eu.pythonanywhere.com" ,
+    asset_credits_link : "../attribs.md",
     full_source_link : "...............",
     full_license_termns_link: "..........",
     psittacus: "Psittacus",
