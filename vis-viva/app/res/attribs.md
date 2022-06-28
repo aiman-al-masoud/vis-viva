@@ -34,16 +34,27 @@ Author: https://ansimuz.itch.io/
 
 * https://www.iconfinder.com/icons/211846/world_icon
 
+Author: Ionicons 
+
 * https://www.iconfinder.com/icons/185095/settings_icon
+
+Author: https://www.iconfinder.com/webalys
 
 * https://www.iconfinder.com/icons/172483/info_icon
 
+Author: Visual Pharm
+
 * https://www.iconfinder.com/icons/7695339/sword_weapon_game_fight_gaming_icon
+
+Author: https://www.iconfinder.com/rezamuhammadramadhan761gmailcom
 
 * https://www.iconfinder.com/icons/216973/r2d2_droid_robot_icon
 
+Author: https://www.iconfinder.com/sensibleworld
+
 * https://www.iconfinder.com/icons/4115235/exit_logout_sign_out_icon
 
+Author: https://www.iconfinder.com/kreevstudio
 
 # Sounds 
 * https://freesound.org/s/413310/
