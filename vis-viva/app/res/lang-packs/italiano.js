@@ -25,5 +25,10 @@ module.exports= {
     miss : "mancato!",
     dodge : "schivata!",
     critical : "critico!",
-    ready : "Pronto, via!"
+    ready : "Pronto, via!",
+    health_stat : "Vita",
+    attack_stat : "Attacco",
+    dodge_stat : "Schivata",
+    miss_stat : "Inaccuratezza",
+    critical_hit_rate_stat : "Critico"
 }

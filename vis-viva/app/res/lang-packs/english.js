@@ -25,5 +25,11 @@ module.exports= {
     miss : "miss!",
     dodge : "dodge!",
     critical : "critical!",
-    ready : "Ready, go!"
+    ready : "Ready, go!",
+    health_stat : "Health",
+    attack_stat : "Attack",
+    dodge_stat : "Dodge",
+    miss_stat : "Miss",
+    critical_hit_rate_stat : "Critical"
+
 }
