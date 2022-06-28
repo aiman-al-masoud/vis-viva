@@ -21,7 +21,6 @@ class Strategos:
     Plays a game against a client.
     """
 
-    # STRATEGOI_POOL:["Strategos"] = []
     STRATEGOI_POOL = []
 
     def __init__(self, game:Game):
@@ -29,7 +28,20 @@ class Strategos:
         Strategos.STRATEGOI_POOL.append(self)
 
     def probability(self, probability):
-        return (False if probability==0 else True) and (random() <= probability ) 
+        return (False if probability==0 else True) and (random() <= probability )
+
+    def get_random_battle_unit(self, position):
+            x = randint(1, 3)
+            if x==1:
+                return Samurai(self.game.game_id(), position) 
+            if x==2:
+                return Master(self.game.game_id(), position)
+            if x==3:
+                return FireWorm(self.game.game_id(), position)
+            
+    def generate_random_army(self):
+        return [self.get_random_battle_unit(i) for i in range(1, 9)]
+        
         
     def add_event(self, event:Event):
 
@@ -40,8 +52,7 @@ class Strategos:
             Events.instance().add_event(event["challenger"], e)
         
         elif isinstance(event, ReadyEvent):
-            # battle_units = [BattleUnit(self.game.game_id(), 2, "Samurai", 20, 20), BattleUnit(self.game.game_id(), 3, "Master", 20, 20)]
-            battle_units = [Samurai(self.game.game_id(), 1), Samurai(self.game.game_id(), 2), Samurai(self.game.game_id(), 3), Samurai(self.game.game_id(), 4)  ]
+            battle_units = self.generate_random_army()
             self.game.set_battle_units( self.game.defender() , battle_units)
             e = ReadyEvent(battle_units, event["gameId"])
             e.set_sent_by_strategos(True)
