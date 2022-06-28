@@ -48,7 +48,7 @@ export default class Info extends Component {
 
                     <h2>Credits</h2>
 
-                    <p>Assets (images, sounds) come from several sources, they're all carefully linked here (together with their respective authors).</p>
+                    <p>Assets (images, sounds) come from several sources, they're all carefully linked here (together with their respective authors, when possible).</p>
 
                     <h2>Privacy</h2>
 
