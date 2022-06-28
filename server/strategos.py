@@ -111,12 +111,6 @@ class Strategos:
                 Events.instance().add_event(self.game.challenger(),e )
                 self.game.game_over()
                 return 
-
-
-
-
-        
-
         
     @staticmethod
     def get_strategos(gameId:str)->'Strategos':
@@ -127,7 +121,3 @@ class Strategos:
 
         li = [s for s in Strategos.STRATEGOI_POOL if s.game.game_id()==gameId]
         return li[0] if len(li)!=0 else None
-
-    
-
-
