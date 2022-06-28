@@ -4,5 +4,5 @@ class BattleUnit(dict):
         self["faction"] = faction
         self["position"] = position
         self["type"] = Type
-        self["health"] = health
         self["maxHealth"] = maxHealth
+        self["health"] = health

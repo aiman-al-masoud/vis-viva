@@ -10,6 +10,11 @@ from game import Game
 from random import randint
 from random import random
 
+from battle_units.Samurai import Samurai
+from battle_units.Master import Master
+from battle_units.FireWorm import FireWorm
+
+
 class Strategos:
 
     """
@@ -35,7 +40,8 @@ class Strategos:
             Events.instance().add_event(event["challenger"], e)
         
         elif isinstance(event, ReadyEvent):
-            battle_units = [BattleUnit(self.game.game_id(), 2, "Samurai", 20, 20), BattleUnit(self.game.game_id(), 3, "Master", 20, 20)]
+            # battle_units = [BattleUnit(self.game.game_id(), 2, "Samurai", 20, 20), BattleUnit(self.game.game_id(), 3, "Master", 20, 20)]
+            battle_units = [Samurai(self.game.game_id(), 1), Samurai(self.game.game_id(), 2), Samurai(self.game.game_id(), 3), Samurai(self.game.game_id(), 4)  ]
             self.game.set_battle_units( self.game.defender() , battle_units)
             e = ReadyEvent(battle_units, event["gameId"])
             e.set_sent_by_strategos(True)
