@@ -38,13 +38,13 @@ export default class FightBattleField extends Component {
             <div style={{ display: "grid", gridTemplateColumns: "auto 1vw auto", background: "blue" }}>
 
                 <div className={ this.props.game.isMyTurn()?  "center-container  highlighted-player-name" : "center-container"      }  >
-                    <p style={{fontFamily:"'Samurai', Arial"}}>{S.getInstance().get(S.USERNAME)}</p>
+                    <p style={{fontFamily:"'Samurai', Arial", fontSize:"x-large"}}>{S.getInstance().get(S.USERNAME)}</p>
                 </div>
 
                 <p className="center-container"  style={{fontFamily:"'Samurai', Arial", fontSize:"large"}}>vs</p>
 
                 <div className={ (!this.props.game.isMyTurn())?  "center-container  highlighted-player-name" : "center-container" }>
-                    <p style={{fontFamily:"'Samurai', Arial"}}>{this.props.game.getOpponent()}</p>
+                    <p style={{fontFamily:"'Samurai', Arial", fontSize:"x-large"}}>{this.props.game.getOpponent()}</p>
                 </div>
 
             </div>
