@@ -145,3 +145,10 @@ Author: https://freesound.org/people/sventhors
 https://freesound.org/people/Debsound/sounds/332487/
 
 Author: https://freesound.org/people/Debsound
+
+# Fonts
+
+## Gomo/'Samurai' Font
+
+https://www.fontspace.com/gomo-font-f3969
+

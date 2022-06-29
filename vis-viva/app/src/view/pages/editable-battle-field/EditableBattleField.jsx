@@ -36,7 +36,7 @@ export default class EditableBattleField extends Component {
         return (<div style={{ backgroundImage: `url(${BackgroundImage})`, backgroundSize: "cover" }}>
 
             <div style={{ display: "grid", gridTemplateColumns: "auto auto" }} >
-                <h1>{L.field_your_troops}</h1>
+                <h1 style={{fontFamily:'"Samurai", Arial'}}>{L.field_your_troops}</h1>
                 <div className="center">
                     <Button title={L.ready} onClick={this.props.onReady} icon={FightIcon} style={{ background: "red" }} />
                 </div>

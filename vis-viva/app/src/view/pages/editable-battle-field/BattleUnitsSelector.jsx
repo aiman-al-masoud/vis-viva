@@ -28,13 +28,13 @@ export default class BattleUnitsSelector extends Component {
         return (<div style={{ padding: 0, margin: 0, width: "fit-content" }}>
 
             <center>
-                <h2>{this.props.selectedType}</h2>
+                <h2 style={{fontFamily:'"Samurai", Arial'}}>{this.props.selectedType}</h2>
 
 
                 <div style={{ display: "grid", gridTemplateColumns: "auto 4vw" }} >
                     <div style={{ inlineSize: "30vw", margin: "0" }}>
                         <img src={this.props.getIcon(this.props.selectedType)} width="200" />
-                        <p style={{ overflowWrap: "break-word", inlineSize: "20vw", textAlign: "left" }}>{this.props.getDescription(this.props.selectedType)}</p>
+                        <p style={{ overflowWrap: "break-word", inlineSize: "20vw", textAlign: "left", fontFamily:'"Samurai", Arial' }}>{this.props.getDescription(this.props.selectedType)}</p>
                     </div>
                     {this.props.getTypeStats(this.props.selectedType).prettyPrintHtml()}
                 </div>
