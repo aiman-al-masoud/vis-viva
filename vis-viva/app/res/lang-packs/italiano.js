@@ -62,5 +62,11 @@ module.exports= {
     liked_the_game_have_ideas : "Ti è piaciuto il gioco? Ne vuoi vedere altri simili? Hai nuove idee da proporre? Contattami a",
     my_other_projects : "i miei altri progetti",
     and_especially_this_one : "e specialmente questo",
-    please_check_out : "Dai un'occhiata a"
+    please_check_out : "Dai un'occhiata a",
+    samurai_description : "Un formidabile guerriero. Guai a colui la cui povera pelle è sfiorata dalla sua temibile katana.",
+    master_description : "Il saggio e vetusto maestro. Tante grandi lezioni insegnò, e tante ancora ne insegnerà...",
+    fire_worm_description : "Arriva dalla landa dell'ascensore sociale incantato: da giovane verme, sognava di diventare un dragone sputafuoco.",
+    king_bourouf_description : "L'ultimo discendente di una dinastia caduta in oblio, che da secoli regnava con un pugno di ferro, e un accento accentuato: la sua lama è pesante quanto quest'utlimo.",
+    mushroom_description : "È l'abominazione omicida che infesta la foresta. Il suo cappello velenoso è pericoloso quanto le sue terribili fauci."
+
 }
