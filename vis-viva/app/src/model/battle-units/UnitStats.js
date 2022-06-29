@@ -1,6 +1,3 @@
-import React, { Component } from "react";
-import L from "../utils/Language.js";
-
 /**
  * Holds stats of a BattleUnit.
  */
