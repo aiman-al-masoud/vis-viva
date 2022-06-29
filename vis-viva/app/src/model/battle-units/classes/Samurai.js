@@ -1,4 +1,5 @@
 import BattleUnit from "../BattleUnit.js"
+import L from "../../utils/Language.js"
 const res = require.context('../../../../res/battle-units/samurai', false, /\.(png|jpe?g|svg|mp3|gif)$/)
 
 export default class Samurai  extends BattleUnit{
@@ -17,6 +18,8 @@ export default class Samurai  extends BattleUnit{
         this.criticalHitRate = 0.6
         this.criticalHitMultiplier = 2
         this.dodgeRate = 0.2
+        this.description = L.samurai_description
     }
 
+ 
 }

@@ -11,6 +11,7 @@ export default class BattleUnitsSelector extends Component {
      * 
      * @param {{
      * getIcon:(string)=>string,
+     * getDescription:(string)=>string,
      * selectedType:string,
      * types:[string],
      * selectType:(string)=>Promise<void>,
@@ -31,7 +32,10 @@ export default class BattleUnitsSelector extends Component {
 
 
                 <div style={{ display: "grid", gridTemplateColumns: "auto 4vw" }} >
+                    <div style={{inlineSize:"40vw"}}>
                     <img src={this.props.getIcon(this.props.selectedType)} width="200" />
+                    <p style={{overflowWrap: "break-word"}}>{  this.props.getDescription(this.props.selectedType)    }</p>
+                    </div>
                     {this.props.getTypeStats(this.props.selectedType).prettyPrintHtml()}
                 </div>
 

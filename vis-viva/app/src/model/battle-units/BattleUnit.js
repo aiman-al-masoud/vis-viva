@@ -28,6 +28,7 @@ export default class BattleUnit {
         this.dodgeRate = 0
         this.state = BattleUnit.STATE_IDLING
         this.textMessage = "" //overlay text on battleunit sprite
+        this.description = ""
 
         // this.__attack_duration = 2000
         // this.__die_duration = 2000
@@ -172,6 +173,14 @@ export default class BattleUnit {
      */
     getStats(){
        return new UnitStats(this.maxHealth, this.damage, this.missRate, this.dodgeRate, this.criticalHitRate, this.criticalHitMultiplier)
+    }
+
+    /**
+     * 
+     * @returns {string}
+     */
+    getDescription(){
+        return this.description
     }
 
 }

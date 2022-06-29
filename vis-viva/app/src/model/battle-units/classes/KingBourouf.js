@@ -1,4 +1,5 @@
 import BattleUnit from "../BattleUnit.js";
+import L from "../../utils/Language.js";
 const res = require.context('../../../../res/battle-units/king-bourouf', false, /\.(png|jpe?g|svg|mp3|gif)$/)
 
 export default class KingBourouf  extends BattleUnit{
@@ -17,6 +18,7 @@ export default class KingBourouf  extends BattleUnit{
         this.criticalHitRate = 0.2
         this.criticalHitMultiplier = 10
         this.dodgeRate = 0.3
+        this.description = L.king_bourouf_description
     }
 
 }

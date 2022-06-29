@@ -1,4 +1,5 @@
 import BattleUnit from "../BattleUnit.js";
+import L from "../../utils/Language.js";
 const res = require.context('../../../../res/battle-units/mushroom', false, /\.(png|jpe?g|svg|mp3|gif)$/)
 
 export default class Mushroom  extends BattleUnit{
@@ -17,6 +18,8 @@ export default class Mushroom  extends BattleUnit{
         this.criticalHitRate = 0.9
         this.criticalHitMultiplier = 4
         this.dodgeRate = 0
+        this.description = L.mushroom_description
+
     }
 
 }

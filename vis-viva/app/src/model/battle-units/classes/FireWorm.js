@@ -1,4 +1,5 @@
 import BattleUnit from "../BattleUnit.js";
+import L from "../../utils/Language.js";
 const res = require.context('../../../../res/battle-units/fire-worm', false, /\.(png|jpe?g|svg|mp3|gif)$/)
 
 export default class FireWorm  extends BattleUnit{
@@ -17,6 +18,7 @@ export default class FireWorm  extends BattleUnit{
         this.criticalHitRate = 0.8
         this.criticalHitMultiplier = 3
         this.dodgeRate = 0.1
+        this.description = L.fire_worm_description
     }
 
 }

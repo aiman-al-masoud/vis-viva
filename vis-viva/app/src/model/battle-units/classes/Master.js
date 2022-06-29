@@ -1,4 +1,5 @@
 import BattleUnit from "../BattleUnit.js";
+import L from "../../utils/Language.js";
 const res = require.context('../../../../res/battle-units/master', false, /\.(png|jpe?g|svg|mp3|gif)$/)
 
 export default class Master extends BattleUnit {
@@ -17,6 +18,7 @@ export default class Master extends BattleUnit {
         this.criticalHitRate = 0.7
         this.criticalHitMultiplier = 2.5
         this.dodgeRate = 0.3
+        this.description = L.master_description
     }
 
 }

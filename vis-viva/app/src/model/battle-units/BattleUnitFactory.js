@@ -56,5 +56,12 @@ export default class BattleUnitFactory {
         return battleUnitTypes[0]
     }
 
+    /**
+     * @returns {string}
+     */
+    static getDescriptionFor(type){
+        return BattleUnitFactory.new(type).getDescription()
+    }
+
 
 }

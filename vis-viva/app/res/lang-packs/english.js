@@ -62,7 +62,12 @@ module.exports= {
     liked_the_game_have_ideas : "Liked the game? Do you want to see more similar games? Do you have any game ideas to share? Contact me at",
     my_other_projects : "my other projects",
     and_especially_this_one : "and especially this one",
-    please_check_out : "Please check out"
+    please_check_out : "Please check out",
+    samurai_description : "A skilled warrior is he indeed. Woe to whose poor flesh is touched by his dreadsome katana.",
+    master_description : "He's the old wise master, many a great lesson he has taught, and many more he will teach...",
+    fire_worm_description : "It hails from the far away land of the enchanted social elevator: when it was a juvenile worm, it dreamed of becoming a fire-spitting dragon.",
+    king_bourouf_description : "The last descendent of an forgotten dynasty, that ruled the land with an iron fist, and spoke with a thick accent: his sword is just as heavy as that.",
+    mushroom_description : "'Tis the murderous abomination that lurks in the forest. Its poisonous cap is as deadly as its venomous fangs."
 
 
 

@@ -44,7 +44,7 @@ export default class EditableBattleField extends Component {
 
             <div style={{ display: "grid", gridTemplateColumns: "auto auto" }} >
                 <HalfChessboard battleUnits={this.props.game.getBattleUnits(S.getInstance().get(S.USERNAME))} onClickSquare={this.onClickSquare} />
-                <BattleUnitsSelector selectedType={this.state.selectedBattleUnitType} getIcon={BattleUnitFactory.getIconFor} types={BattleUnitFactory.getTypes()} selectType={this.selectBattleUnitType}   getTypeStats={ (type)=>{ return BattleUnitFactory.new(type).getStats()  }}   />
+                <BattleUnitsSelector selectedType={this.state.selectedBattleUnitType} getIcon={BattleUnitFactory.getIconFor} types={BattleUnitFactory.getTypes()} selectType={this.selectBattleUnitType}   getTypeStats={ (type)=>{ return BattleUnitFactory.new(type).getStats()  }}  getDescription={BattleUnitFactory.getDescriptionFor}   />
             </div>
 
         </div>)
