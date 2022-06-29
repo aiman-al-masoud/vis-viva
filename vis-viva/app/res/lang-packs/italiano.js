@@ -39,7 +39,7 @@ module.exports= {
     miss_stat : "Inaccuratezza",
     critical_hit_rate_stat : "Critico",
     vis_viva_is : "Vis Viva è un videogioco di strategia multigiocatore, che trae ispirazione da varie fonti.",
-    invite_your_friends_and_challege_them :"Invita i tuoi amici e sfidali ad un'avvincente duello in PVP! O prova a battere il server in modalità PVC!",
+    invite_your_friends_and_challege_them :"Invita i tuoi amici e sfidali ad un avvincente duello in PVP! O prova a battere il server in modalità PVC!",
     gameplay : "Regole",
     license : "Licenza",
     credits : "Crediti",
