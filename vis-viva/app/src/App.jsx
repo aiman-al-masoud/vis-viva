@@ -208,6 +208,12 @@ export default class App extends Component {
     }
 
     onReady = () => {
+
+        // don't send ready if player has no battle units
+        if(!this.state.game.getBattleUnits(S.getInstance().get(S.USERNAME)).length){
+            return 
+        }
+
         Server.instance().ready(this.state.game)
         this.switchMode(App.FIGHT_BATTLE_FIELD)
     }
