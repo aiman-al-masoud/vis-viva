@@ -67,6 +67,6 @@ module.exports= {
     master_description : "Il saggio e vetusto maestro. Tante grandi lezioni insegnò, e tante ancora ne insegnerà...",
     fire_worm_description : "Arriva dalla landa dell'ascensore sociale incantato: da giovane verme, sognava di diventare un dragone sputafuoco.",
     king_bourouf_description : "L'ultimo discendente di una dinastia caduta in oblio, che da secoli regnava con un pugno di ferro, e un accento accentuato: la sua lama è pesante quanto quest'utlimo.",
-    mushroom_description : "È l'abominazione omicida che infesta la foresta. Il suo cappello velenoso è pericoloso quanto le sue terribili fauci."
+    mushroom_description : "È l'abominazione omicida che infesta la foresta. Il suo velenoso cappello è deleterio quanto le sue venefiche fauci."
 
 }

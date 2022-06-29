@@ -32,9 +32,9 @@ export default class BattleUnitsSelector extends Component {
 
 
                 <div style={{ display: "grid", gridTemplateColumns: "auto 4vw" }} >
-                    <div style={{inlineSize:"40vw"}}>
+                    <div style={{inlineSize:"30vw", margin:"0"}}>
                     <img src={this.props.getIcon(this.props.selectedType)} width="200" />
-                    <p style={{overflowWrap: "break-word"}}>{  this.props.getDescription(this.props.selectedType)    }</p>
+                    <p style={{overflowWrap: "break-word", inlineSize:"20vw", textAlign:"left"}}>{  this.props.getDescription(this.props.selectedType)    }</p>
                     </div>
                     {this.props.getTypeStats(this.props.selectedType).prettyPrintHtml()}
                 </div>
