@@ -37,7 +37,6 @@ export default class BattleUnitsSelector extends Component {
                         <img src={this.props.getIcon(this.props.selectedType)} width="200" />
                         <p style={{ overflowWrap: "break-word", inlineSize: "20vw", textAlign: "left", fontFamily:'"Samurai", Arial' }}>{this.props.getDescription(this.props.selectedType)}</p>
                     </div>
-                    {/* {this.props.getTypeStats(this.props.selectedType).prettyPrintHtml()} */}
                     <UnitStatsTable unitStats={this.props.getTypeStats(this.props.selectedType)} />
                 </div>
 

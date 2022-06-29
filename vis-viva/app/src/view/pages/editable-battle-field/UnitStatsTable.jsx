@@ -18,7 +18,7 @@ export default class UnitStatsTable extends Component {
     }
 
     render() {
-        return (<div>
+        return (<div style={{fontFamily:"'Samurai', Arial"}}>
             <tr><td>{L.health_stat}:</td><td>{this.props.unitStats.maxHealth}</td></tr>
             <tr><td>{L.attack_stat}:</td><td>{this.props.unitStats.damage}</td></tr>
             <tr><td>{L.dodge_stat}:</td><td>{100 * this.props.unitStats.dodgeRate}%</td></tr>
