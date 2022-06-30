@@ -25,6 +25,27 @@ https://luizmelo.itch.io/fire-worm/
 
 Author: https://luizmelo.itch.io
 
+
+
+## King Bourouf
+<img src="./battle-units/king-bourouf/attack.gif">
+
+https://luizmelo.itch.io/martial-hero-2 
+
+Author: https://luizmelo.itch.io
+
+
+
+## Mushroom
+<img src="./battle-units/mushroom/attack.gif">
+
+https://luizmelo.itch.io/monsters-creatures-fantasy
+
+Author: https://luizmelo.itch.io
+
+
+
+
 # Backgrounds 
 
 ## Main Background
