@@ -26,7 +26,7 @@ export default class BattleUnitSprite extends Component {
                 <div style={{ position: "relative" }}>
 
                     <img src={this.props.battleUnit.getIcon()} className="battle-unit-sprite" style={this.props.invertedForEnemy ? { transform: "scaleX(-1)" } : { transform: "scaleX(1)" }} />
-                    <span style={{ position: "absolute", top: "50%", left: "50%", transform: " translate(-50%, -50%)", color: "red", fontFamily: "sans-serif", fontWeight: "bold" }}>{this.props.battleUnit.getTextMessage()}</span>
+                    <span style={{ position: "absolute", top: "50%", left: "50%", transform: " translate(-50%, -50%)", color: "red", fontFamily: "'Samurai', sans-serif", fontWeight: "bold" }}>{this.props.battleUnit.getTextMessage()}</span>
 
                 </div>
 
