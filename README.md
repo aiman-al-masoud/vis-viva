@@ -11,4 +11,5 @@ Vis Viva is an online, multiplayer strategy game built with React.js, enjoy!
 
 
 # Code License
-The code is licensed under GPLv3. 
+The code is free and open-source, licensed under <a href="LICENSE" />GPLv3</a>.
+
