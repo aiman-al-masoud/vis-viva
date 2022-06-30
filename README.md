@@ -1,6 +1,10 @@
 # Vis Viva
 
-<img src="./vis-viva/app/res/icons/logo.png">
+
+<a href="https://visviva.eu.pythonanywhere.com" title="click to play!"><img src="./vis-viva/app/res/icons/logo.png"></a>
+
+
+
 
 
 Vis Viva is an online, multiplayer strategy game built with React.js, enjoy!
@@ -11,8 +15,8 @@ Vis Viva is an online, multiplayer strategy game built with React.js, enjoy!
 <a href="https://visviva.eu.pythonanywhere.com">https://visviva.eu.pythonanywhere.com</a>
 </strong>
 
-<br>
-<br>
+<br/>
+<br/>
 
 <div  style="display: flex;  flex-direction: row;"  >
   
