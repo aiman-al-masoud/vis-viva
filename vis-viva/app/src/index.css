@@ -95,7 +95,7 @@
 }
 
 
-.game-over-popup{
+.game-over-popup {
     border: solid black 5px;
     padding: 10px;
     width: 30vw;
@@ -104,24 +104,28 @@
     background: yellow;
     color: red;
     z-index: 100000;
-    text-align: center;      
+    text-align: center;
     position: absolute;
-    top:0;
+    top: 0;
     bottom: 0;
     left: 0;
-    right: 0;   
+    right: 0;
     margin: auto;
     animation-name: pulse;
     animation-duration: 3s;
-    animation-iteration-count:infinite;
+    animation-iteration-count: infinite;
 }
 
 
 @keyframes pulse {
-   
-    0%{}
-    50%{transform: scale(0.9)}
-    100%{}
+
+    0% {}
+
+    50% {
+        transform: scale(0.9)
+    }
+
+    100% {}
 }
 
 
@@ -131,7 +135,8 @@
 
 
 
-ul.special-list, ol.special-list {
+ul.special-list,
+ol.special-list {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -145,7 +150,7 @@ ul.special-list, ol.special-list {
     padding: 0;
 }
 
-.special-list li button{
+.special-list li button {
     background: transparent;
     border: none;
     font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
@@ -179,15 +184,35 @@ ul.special-list, ol.special-list {
 
 
 
-input[type=checkbox]
-{
-  /* Double-sized Checkboxes */
-  -ms-transform: scale(2); /* IE */
-  -moz-transform: scale(2); /* FF */
-  -webkit-transform: scale(2); /* Safari and Chrome */
-  -o-transform: scale(2); /* Opera */
-  transform: scale(2);
-  padding: 10px;
+input[type=checkbox] {
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(2);
+    /* IE */
+    -moz-transform: scale(2);
+    /* FF */
+    -webkit-transform: scale(2);
+    /* Safari and Chrome */
+    -o-transform: scale(2);
+    /* Opera */
+    transform: scale(2);
+    padding: 10px;
 }
 
 
+progress {
+    background-color: red;
+    color: green;
+}
+
+progress::-webkit-progress-bar {
+    background-color: red;
+    width: 100%;
+}
+
+progress::-moz-progress-bar {
+    color: green !important;
+}
+
+/* progress::-webkit-progress-value {
+    background-color: red !important;
+} */

@@ -38,7 +38,7 @@ export default class BattleUnitSprite extends Component {
             {/* extract health bar component and make it colored and w/ hp number */}
 
             <div style={this.props.invertedForEnemy ? { transform: "scaleX(-1)" } : { transform: "scaleX(1)" }} >
-                <progress id="health" value={this.props.battleUnit.health} max={this.props.battleUnit.maxHealth}      ></progress>
+                <progress id="health" value={this.props.battleUnit.health} max={this.props.battleUnit.maxHealth}  style={ { background:"red", color:"green" }}    ></progress>
             </div>
 
             {/* <input type="range" max={this.props.battleUnit.maxHealth} value={this.props.battleUnit.health} /> */}
